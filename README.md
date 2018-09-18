@@ -6,5 +6,7 @@ This language was inspired by [Brainfuck](https://en.wikipedia.org/wiki/Brainfuc
 
 ## Differences
 - Elemental seperates branching from looping
-- Elemental has what could be thought of as either gotos and labels or callsites and functions
-- Element has what could be thought of as either [computed gotos](http://gcc.gnu.org/onlinedocs/gcc/Labels-as-Values.html) or function pointers
+- Elemental has gotos and labels
+- Element has [computed gotos](http://gcc.gnu.org/onlinedocs/gcc/Labels-as-Values.html)
+- Elemental has callsites and functions
+- Element has function pointers
