@@ -1,19 +1,35 @@
 package com.benjholla.elemental.ast;
 
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 import com.benjholla.elemental.parser.support.ParserSourceCorrespondence;
 
 public class Program extends ASTNode {
-	private List<Function> functions;
+	private LinkedHashSet<Function> functions = new LinkedHashSet<Function>();
 
 	public Program(ParserSourceCorrespondence sc, List<Function> functions) {
 		super(sc);
-		this.functions = functions;
+		for(Function function : functions) {
+			String name = function.getName();
+			try {
+				int nameInt = Integer.parseInt(name);
+				if(nameInt >= 0 && nameInt <= 255) {
+					if(!this.functions.add(function)) {
+						throw new IllegalArgumentException("Function \"" + function + "\" is not unique.");
+					}
+				} else {
+					throw new IllegalArgumentException("Function \"" + function + "\" is not inclusively between 0 and 255.");
+				}
+			} catch (NumberFormatException e) {
+				throw new IllegalArgumentException("Function \"" + function + "\" is not a positive decimal integer.");
+			}
+		}
 	}
 	
 	public List<Function> getFunctions(){
-		return functions;
+		return new ArrayList<Function>(functions);
 	}
 
 	@Override
