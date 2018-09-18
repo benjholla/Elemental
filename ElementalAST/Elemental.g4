@@ -181,6 +181,10 @@ branch returns [BranchInstruction value]
    }
    ;
 
+ONE_LINE_COMMENT
+   : '#' (~ '\n')* '\n'? -> skip
+   ;
+   
 ID         : [0-9]+;
 TAPE_INCREMENT : '+';
 TAPE_DECREMENT : '-';
@@ -188,9 +192,5 @@ TAPE_LEFT      : '<';
 TAPE_RIGHT     : '>';
 INPUT          : ',';
 OUTPUT         : '.';
-
-ONE_LINE_COMMENT
-   : '#' (~ '\n')* '\n'? -> skip
-   ;
 
 WHITESPACE : . -> skip;

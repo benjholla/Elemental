@@ -15,7 +15,7 @@ import com.benjholla.elemental.parser.ElementalParser;
 public class Test {
 
 	public static void main(String[] args) throws Exception {	
-		String code = "0:[+](+)-\"1\"{0}'1'";
+		String code = "0:[+](+)-\"1\"{0}'1'#[\n";
 		InputStream is = new ByteArrayInputStream(code.getBytes());
 		CharStream codeInputStream = CharStreams.fromStream(is);
 		ElementalLexer lexer = new ElementalLexer(codeInputStream);
