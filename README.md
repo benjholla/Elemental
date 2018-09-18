@@ -10,7 +10,7 @@ This language was inspired by [Brainfuck](https://en.wikipedia.org/wiki/Brainfuc
 - Element has [computed gotos](http://gcc.gnu.org/onlinedocs/gcc/Labels-as-Values.html)
 - Elemental has callsites and functions
 - Element has function pointers
-- Element has comments
+- Element has native comments
 
 ## Language
 
@@ -25,9 +25,9 @@ This language was inspired by [Brainfuck](https://en.wikipedia.org/wiki/Brainfuc
 |      (      | (Branch) If the byte value at the current cell is 0 then jump to the instruction following the matching ), else execute the next instruction                                                           |
 |      [      | (While Loop) If the byte value at the current cell is 0 then jump to the instruction following the matching ], else execute instructions until the matching ] and then unconditionally return to the [ |
 |  *[0-9]+*:  | (Function) Declares a named function (named [0-9]+ within range 0-255)                                                                                                                                 |
-|  {*[0-9]+*} | (Callsite) Jump to a named function                                                                                                                                                                    |
-|      ?      | (Function Pointer) Jumps to a named function with the value of the current cell                                                                                                                        |
-|  "*[0-9]+*" | (Label) Sets a label (named [0-9]+ within range 0-255)                                                                                                                                                 |
+|  {*[0-9]+*} | (Static Dispatch) Jump to a named function                                                                                                                                                             |
+|      ?      | (Dynamic Dispatch/Function Pointer) Jumps to a named function with the value of the current cell                                                                                                       |
+|  "*[0-9]+*" | (Label) Sets a unique label (named [0-9]+ within range 0-255) within a function                                                                                                                        |
 |  '*[0-9]+*' | (GOTO) Jumps to a named label within the current function                                                                                                                                              |
 |      &      | (Computed GOTO) Jumps to the named label within the current function with the value of the current cell                                                                                                |
 |      #      | A one line comment                                                                                                                                                                                     |
