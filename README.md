@@ -14,20 +14,20 @@ This language was inspired by [Brainfuck](https://en.wikipedia.org/wiki/Brainfuc
 
 ## Language
 
-| Instruction | Description                                                                                                                                                                               |
-|:-----------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|      +      | Increment the byte at the current tape cell by 1                                                                                                                                          |
-|      -      | Decrement the byte at the current tape cell by 1                                                                                                                                          |
-|      <      | Move the tape one cell to the left                                                                                                                                                        |
-|      >      | Move the tape one cell to the right                                                                                                                                                       |
-|      ,      | Read byte value from input into current tape cell                                                                                                                                         |
-|      .      | Write byte value to output from current tape cell                                                                                                                                         |
-|      (      | If the byte value at the current cell is 0 then jump to the instruction following the matching ), else execute the next instruction                                                       |
-|      [      | If the byte value at the current cell is 0 then jump to the instruction following the matching ], else execute instructions until the matching ] and then unconditionally return to the [ |
-|  *[0-9]+*:  | Declares a named function (named [0-9]+ within range 0-255)                                                                                                                               |
-|  {*[0-9]+*} | Callsite to a named function                                                                                                                                                              |
-|      ?      | Jumps to a named function with the value of the current cell (function pointer)                                                                                                           |
-|  "*[0-9]+*" | Sets a label (named [0-9]+ within range 0-255)                                                                                                                                            |
-|  '*[0-9]+*' | Jumps (goto) to a named label within the current function                                                                                                                                 |
-|      &      | Jumps to the named label within the current function with the value of the current cell (computed goto)                                                                                   |
-|      #      | A one line comment                                                                                                                                                                        |
+| Instruction | Description                                                                                                                                                                                            |
+|:-----------:|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|      +      | Increment the byte at the current tape cell by 1                                                                                                                                                       |
+|      -      | Decrement the byte at the current tape cell by 1                                                                                                                                                       |
+|      <      | Move the tape one cell to the left                                                                                                                                                                     |
+|      >      | Move the tape one cell to the right                                                                                                                                                                    |
+|      ,      | Read byte value from input into current tape cell                                                                                                                                                      |
+|      .      | Write byte value to output from current tape cell                                                                                                                                                      |
+|      (      | If the byte value at the current cell is 0 then jump to the instruction following the matching ), else execute the next instruction (branch)                                                           |
+|      [      | If the byte value at the current cell is 0 then jump to the instruction following the matching ], else execute instructions until the matching ] and then unconditionally return to the [ (while loop) |
+|  *[0-9]+*:  | Declares a named function (named [0-9]+ within range 0-255)                                                                                                                                            |
+|  {*[0-9]+*} | Callsite to a named function                                                                                                                                                                           |
+|      ?      | Jumps to a named function with the value of the current cell (function pointer)                                                                                                                        |
+|  "*[0-9]+*" | Sets a label (named [0-9]+ within range 0-255)                                                                                                                                                         |
+|  '*[0-9]+*' | Jumps (goto) to a named label within the current function                                                                                                                                              |
+|      &      | Jumps to the named label within the current function with the value of the current cell (computed goto)                                                                                                |
+|      #      | A one line comment                                                                                                                                                                                     |
