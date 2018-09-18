@@ -1,5 +1,5 @@
 # Elemental
-An esoteric language for exploring elemental properties program language features
+An esoteric language for exploring elemental properties of program language features
 
 ## Lineage
 This language was inspired by [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck), which is a variation on [Corrado Böhm](https://en.wikipedia.org/wiki/Corrado_Böhm)'s [P''](https://esolangs.org/wiki/P%E2%80%B2%E2%80%B2). Both languages however implement branching as a type of loop. 
@@ -10,6 +10,7 @@ This language was inspired by [Brainfuck](https://en.wikipedia.org/wiki/Brainfuc
 - Element has [computed gotos](http://gcc.gnu.org/onlinedocs/gcc/Labels-as-Values.html)
 - Elemental has callsites and functions
 - Element has function pointers
+- Element has comments
 
 ## Language
 
@@ -29,3 +30,4 @@ This language was inspired by [Brainfuck](https://en.wikipedia.org/wiki/Brainfuc
 |  "*[0-9]+*" | Sets a label (named [0-9]+ within range 0-255)                                                                                                                                            |
 |  '*[0-9]+*' | Jumps (goto) to a named label within the current function                                                                                                                                 |
 |      &      | Jumps to the named label within the current function with the value of the current cell (computed goto)                                                                                   |
+|      #      | A one line comment                                                                                                                                                                        |
