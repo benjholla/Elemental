@@ -16,7 +16,7 @@ public class GOTOInstruction extends Instruction {
 	}
 	
 	public String toString() {
-		return "GOTO: '" + name + "'";
+		return "GOTO: label='" + name + "'";
 	}
 	
 	@Override

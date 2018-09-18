@@ -17,13 +17,13 @@ public class Program extends ASTNode {
 				int nameInt = Integer.parseInt(name);
 				if(nameInt >= 0 && nameInt <= 255) {
 					if(!this.functions.add(function)) {
-						throw new IllegalArgumentException("Function \"" + function + "\" is not unique.");
+						throw new IllegalArgumentException(function + " is not unique.");
 					}
 				} else {
-					throw new IllegalArgumentException("Function \"" + function + "\" is not inclusively between 0 and 255.");
+					throw new IllegalArgumentException(function + " is not inclusively between 0 and 255.");
 				}
 			} catch (NumberFormatException e) {
-				throw new IllegalArgumentException("Function \"" + function + "\" is not a positive decimal integer.");
+				throw new IllegalArgumentException(function + " is not a positive decimal integer.");
 			}
 		}
 	}

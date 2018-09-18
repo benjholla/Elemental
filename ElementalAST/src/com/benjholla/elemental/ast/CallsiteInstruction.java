@@ -16,7 +16,7 @@ public class CallsiteInstruction extends Instruction {
 	}
 	
 	public String toString() {
-		return "Callsite: {" + name + "}";
+		return "Callsite: function={" + name + "}";
 	}
 	
 	@Override

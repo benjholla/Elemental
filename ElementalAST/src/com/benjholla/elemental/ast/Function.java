@@ -24,13 +24,13 @@ public class Function extends ASTNode {
 					int nameInt = Integer.parseInt(labelName);
 					if(nameInt >= 0 && nameInt <= 255) {
 						if(!this.labels.add(label)) {
-							throw new IllegalArgumentException("Label \"" + label + "\" is not unique.");
+							throw new IllegalArgumentException(label + " is not unique.");
 						}
 					} else {
-						throw new IllegalArgumentException("Label \"" + label + "\" is not inclusively between 0 and 255.");
+						throw new IllegalArgumentException(label + " is not inclusively between 0 and 255.");
 					}
 				} catch (NumberFormatException e) {
-					throw new IllegalArgumentException("Label \"" + label + "\" is not a positive decimal integer.");
+					throw new IllegalArgumentException(label + " is not a positive decimal integer.");
 				}
 			}
 		}
