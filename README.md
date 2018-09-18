@@ -25,6 +25,7 @@ This language was inspired by [Brainfuck](https://en.wikipedia.org/wiki/Brainfuc
 |      [      | While the byte value at the current cell is 0 then jump to the instruction following the matching ], else execute instructions until the matching ] and unconditionally return to the [ |
 |  "*[0-9]+*" | Sets a label (named [0-9]+ within range 0-255)                                                                                                                                          |
 |  '*[0-9]+*' | Jumps (GOTO) to a named label                                                                                                                                                           |
+|  *[0-9]+*:  | Declares a named function                                                                                                                                                               |
 |  {*[0-9]+*} | Callsite to a named function                                                                                                                                                            |
 |      &      | Jumps to the named label with the value of the current cell                                                                                                                             |
 |      ?      | Jumps to a named function with the value of the current cell                                                                                                                            |
