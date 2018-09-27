@@ -8,13 +8,30 @@ import com.benjholla.elemental.parser.support.ParserSourceCorrespondence;
 
 public class Function extends ASTNode {
 
-	private String name;
+	public static final int MAIN_FUNCTION = 0;
+	
+	private int name;
 	private List<Instruction> instructions;
 	private LinkedHashSet<LabelInstruction> labels = new LinkedHashSet<LabelInstruction>();
 
+	public Function(ParserSourceCorrespondence sc, List<Instruction> instructions) {
+		this(sc, new Integer(MAIN_FUNCTION).toString(), instructions);
+	}
+	
 	public Function(ParserSourceCorrespondence sc, String name, List<Instruction> instructions) {
 		super(sc);
-		this.name = name;
+		try {
+			this.name = Integer.parseInt(name);
+			try {
+				if(this.name >= 0 && this.name <= Integer.MAX_VALUE) {
+					throw new IllegalArgumentException("Function " + this.name + " is not inclusively between 0 and " + Integer.MAX_VALUE + ".");
+				}
+			} catch (NumberFormatException e) {
+				throw new IllegalArgumentException("Function " + this.name + " is not a positive decimal integer.");
+			}
+		} catch (Exception e) {
+			throw new IllegalArgumentException();
+		}
 		this.instructions = instructions;
 		for(Instruction instruction : instructions) {
 			if(instruction instanceof LabelInstruction) {
@@ -27,7 +44,7 @@ public class Function extends ASTNode {
 							throw new IllegalArgumentException(label + " is not unique.");
 						}
 					} else {
-						throw new IllegalArgumentException(label + " is not inclusively between 0 and 255.");
+						throw new IllegalArgumentException(label + " is not inclusively between 0 and " + Integer.MAX_VALUE + ".");
 					}
 				} catch (NumberFormatException e) {
 					throw new IllegalArgumentException(label + " is not a positive decimal integer.");
@@ -36,7 +53,7 @@ public class Function extends ASTNode {
 		}
 	}
 	
-	public String getName() {
+	public int getName() {
 		return name;
 	}
 	

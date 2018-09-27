@@ -34,7 +34,7 @@ public class Semant {
 					CallsiteInstruction callsite = (CallsiteInstruction) instruction;
 					boolean functionExists = false;
 					for(Function functionDeclaration : program.getFunctions()) {
-						if(functionDeclaration.getName().equals(callsite.getName())){
+						if(functionDeclaration.getName() == callsite.getName()){
 							functionExists = true;
 							break;
 						}

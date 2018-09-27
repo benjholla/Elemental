@@ -4,14 +4,25 @@ import com.benjholla.elemental.parser.support.ParserSourceCorrespondence;
 
 public class CallsiteInstruction extends Instruction {
 
-	private String name;
+	private int name;
 	
 	public CallsiteInstruction(ParserSourceCorrespondence sc, String name) {
 		super(sc);
-		this.name = name;
+		try {
+			this.name = Integer.parseInt(name);
+			try {
+				if(this.name >= 0 && this.name <= Integer.MAX_VALUE) {
+					throw new IllegalArgumentException("Callsite " + this.name + " is not inclusively between 0 and " + Integer.MAX_VALUE + ".");
+				}
+			} catch (NumberFormatException e) {
+				throw new IllegalArgumentException("Callsite " + this.name + " is not a positive decimal integer.");
+			}
+		} catch (Exception e) {
+			throw new IllegalArgumentException();
+		}
 	}
 	
-	public String getName() {
+	public int getName() {
 		return name;
 	}
 	

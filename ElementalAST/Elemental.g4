@@ -22,14 +22,18 @@ grammar Elemental;
 }
 
 program returns [Program prog]
-   : functions=function_list eof=EOF
+   : instructions=instruction_list functions=function_list eof=EOF
    {
+   	  if(!$instructions.list.isEmpty()){
+   	  	ParserSourceCorrespondence firstInstructionSC = $instructions.list.get(0).getParserSourceCorrespondence();
+   	  	$functions.list.add(new Function(firstInstructionSC, $instructions.list));
+   	  }
    	  ParserSourceCorrespondence sc;
    	  if($functions.list.isEmpty()){
-   	     sc = new ParserSourceCorrespondence(file, 0, 0, 0, 0);
+   	    sc = new ParserSourceCorrespondence(file, 0, 0, 0, 0);
    	  } else {
-   	     ParserSourceCorrespondence firstFunctionSC = $functions.list.get(0).getParserSourceCorrespondence();
-   	     sc = new ParserSourceCorrespondence(file, firstFunctionSC.getOffset(), ((int) $eof.getStartIndex()- (int) firstFunctionSC.getOffset()), firstFunctionSC.getStartLine(), $eof.getLine()); 
+   	    ParserSourceCorrespondence firstFunctionSC = $functions.list.get(0).getParserSourceCorrespondence();
+   	    sc = new ParserSourceCorrespondence(file, firstFunctionSC.getOffset(), ((int) $eof.getStartIndex()-(int) firstFunctionSC.getOffset()), firstFunctionSC.getStartLine(), $eof.getLine()); 
    	  }
       $prog = new Program(sc, $functions.list);
    }
@@ -72,14 +76,6 @@ instruction returns [Instruction value]
    {
       $value = $c.value;
    }
-   | cgo2=computed_goto
-   {
-      $value = $cgo2.value;
-   }
-   | fpc=function_pointer_callsite
-   {
-      $value = $fpc.value;
-   }
    | l=loop
    {
       $value = $l.value;
@@ -118,21 +114,20 @@ instruction returns [Instruction value]
       ParserSourceCorrespondence sc = new ParserSourceCorrespondence(file, $output.getStartIndex(), $output.getText().length(), $output.getLine(), $output.getLine());
       $value = new WriteOutputInstruction(sc);
    }
-   ;
-
-computed_goto returns [ComputedGOTOInstruction value]
-   : address='&'
+   | assignment=ASSIGNMENT
    {
-   	  ParserSourceCorrespondence sc = new ParserSourceCorrespondence(file, $address.getStartIndex(), $address.getText().length(), $address.getLine(), $address.getLine());
-      $value = new ComputedGOTOInstruction(sc);
+      ParserSourceCorrespondence sc = new ParserSourceCorrespondence(file, $assignment.getStartIndex(), $assignment.getText().length(), $assignment.getLine(), $assignment.getLine());
+      $value = new WriteOutputInstruction(sc);
    }
-   ;
-
-function_pointer_callsite returns [FunctionPointerCallsiteInstruction value]
-   : func_address='?'
+   | computed_goto=COMPUTED_GOTO
    {
-   	  ParserSourceCorrespondence sc = new ParserSourceCorrespondence(file, $func_address.getStartIndex(), $func_address.getText().length(), $func_address.getLine(), $func_address.getLine());
-      $value = new FunctionPointerCallsiteInstruction(sc);
+      ParserSourceCorrespondence sc = new ParserSourceCorrespondence(file, $computed_goto.getStartIndex(), $computed_goto.getText().length(), $computed_goto.getLine(), $computed_goto.getLine());
+      $value = new WriteOutputInstruction(sc);
+   }
+   | function_pointer_callsite=FUNCTION_POINTER_CALLSITE
+   {
+      ParserSourceCorrespondence sc = new ParserSourceCorrespondence(file, $function_pointer_callsite.getStartIndex(), $function_pointer_callsite.getText().length(), $function_pointer_callsite.getLine(), $function_pointer_callsite.getLine());
+      $value = new WriteOutputInstruction(sc);
    }
    ;
 
@@ -185,12 +180,15 @@ ONE_LINE_COMMENT
    : '#' (~ '\n')* '\n'? -> skip
    ;
    
-ID         : [0-9]+;
-TAPE_INCREMENT : '+';
-TAPE_DECREMENT : '-';
-TAPE_LEFT      : '<';
-TAPE_RIGHT     : '>';
-INPUT          : ',';
-OUTPUT         : '.';
+ID                         : [0-9]+;
+TAPE_INCREMENT             : '+';
+TAPE_DECREMENT             : '-';
+TAPE_LEFT                  : '<';
+TAPE_RIGHT                 : '>';
+INPUT                      : ',';
+OUTPUT                     : '.';
+ASSIGNMENT                 : '=';
+COMPUTED_GOTO              : '&';
+FUNCTION_POINTER_CALLSITE  : '?';
 
 WHITESPACE : . -> skip;

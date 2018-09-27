@@ -12,10 +12,9 @@ public class Program extends ASTNode {
 	public Program(ParserSourceCorrespondence sc, List<Function> functions) {
 		super(sc);
 		for(Function function : functions) {
-			String name = function.getName();
+			int name = function.getName();
 			try {
-				int nameInt = Integer.parseInt(name);
-				if(nameInt >= 0 && nameInt <= 255) {
+				if(name >= 0 && name <= Integer.MAX_VALUE) {
 					if(!this.functions.add(function)) {
 						throw new IllegalArgumentException(function + " is not unique.");
 					}

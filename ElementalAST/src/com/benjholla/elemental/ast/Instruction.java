@@ -17,7 +17,8 @@ public abstract class Instruction extends ASTNode {
 		GOTO("'"), 
 		CALLSITE("{"), 
 		COMPUTED_GOTO("&"), 
-		FUNCTION_POINTER_CALLSITE("?");
+		FUNCTION_POINTER_CALLSITE("?"), 
+		ASSIGNMENT("=");
 		
 		private String name;
 		
