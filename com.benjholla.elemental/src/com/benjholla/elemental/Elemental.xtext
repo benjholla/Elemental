@@ -1,0 +1,80 @@
+grammar com.benjholla.elemental.Elemental hidden(WHITESPACE, COMMENT)
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+generate elemental "http://www.benjholla.com/elemental/Elemental"
+
+Model:
+	implicitFunction=Block
+	explicitFunctions+=(Function)*;
+	
+Block:
+	{Block} instructions+=Instruction*;
+	
+Label:
+	'"' name=ID '"';
+	
+Function:
+	name=ID ':' body=Block;
+
+Instruction: 
+	{Instruction} Increment
+	| {Instruction} Decrement
+	| {Instruction} MoveLeft
+	| {Instruction} MoveRight
+	| {Instruction} Store
+	| {Instruction} Recall
+	| {Instruction} Assignment
+	| Branch
+	| Loop
+	| GOTO
+	| {Instruction} ComputedGOTO
+	| StaticDispatch
+	| {Instruction} DynamicDispatch;
+
+Increment:
+	'+';
+
+Decrement:
+	'-';
+	
+MoveLeft:
+	'<';
+
+MoveRight:
+	'>';
+	
+Store:
+	',';
+	
+Recall:
+	'.';
+	
+Assignment:
+	'=';	
+
+Branch:
+	{Branch} '(' body=Block ')';
+	
+Loop:
+	{Loop} '[' body=Block ']';
+	
+GOTO:
+	'\'' label=[Label] '\'';
+	
+ComputedGOTO:
+	'&';
+
+StaticDispatch:
+	'{' target=[Function] '}';
+	
+DynamicDispatch:
+	'?';
+
+terminal ID: ('0'..'9')*;
+
+terminal COMMENT : '#' !('\n'|'\r')* ('\r'? '\n')?;
+
+terminal WHITESPACE         : (' '|'\t'|'\r'|'\n')+;
+
+terminal ANY_OTHER: .;

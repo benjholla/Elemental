@@ -1,0 +1,30 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: com.benjholla.elemental
+Bundle-ManifestVersion: 2
+Bundle-Name: com.benjholla.elemental
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: com.benjholla.elemental; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib;bundle-version="2.14.0",
+ org.eclipse.xtext.util,
+ org.eclipse.emf.common,
+ org.eclipse.xtend.lib;bundle-version="2.14.0",
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: com.benjholla.elemental.elemental.impl,
+ com.benjholla.elemental.validation,
+ com.benjholla.elemental.elemental.util,
+ com.benjholla.elemental.services,
+ com.benjholla.elemental,
+ com.benjholla.elemental.elemental,
+ com.benjholla.elemental.generator,
+ com.benjholla.elemental.serializer,
+ com.benjholla.elemental.scoping,
+ com.benjholla.elemental.parser.antlr.internal,
+ com.benjholla.elemental.parser.antlr
+Import-Package: org.apache.log4j
