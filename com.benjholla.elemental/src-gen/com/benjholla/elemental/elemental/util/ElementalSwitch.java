@@ -108,11 +108,59 @@ public class ElementalSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ElementalPackage.INCREMENT:
+      {
+        Increment increment = (Increment)theEObject;
+        T result = caseIncrement(increment);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ElementalPackage.DECREMENT:
+      {
+        Decrement decrement = (Decrement)theEObject;
+        T result = caseDecrement(decrement);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ElementalPackage.MOVE_LEFT:
+      {
+        MoveLeft moveLeft = (MoveLeft)theEObject;
+        T result = caseMoveLeft(moveLeft);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ElementalPackage.MOVE_RIGHT:
+      {
+        MoveRight moveRight = (MoveRight)theEObject;
+        T result = caseMoveRight(moveRight);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ElementalPackage.STORE:
+      {
+        Store store = (Store)theEObject;
+        T result = caseStore(store);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ElementalPackage.RECALL:
+      {
+        Recall recall = (Recall)theEObject;
+        T result = caseRecall(recall);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ElementalPackage.ASSIGNMENT:
+      {
+        Assignment assignment = (Assignment)theEObject;
+        T result = caseAssignment(assignment);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case ElementalPackage.BRANCH:
       {
         Branch branch = (Branch)theEObject;
         T result = caseBranch(branch);
-        if (result == null) result = caseInstruction(branch);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -120,7 +168,6 @@ public class ElementalSwitch<T> extends Switch<T>
       {
         Loop loop = (Loop)theEObject;
         T result = caseLoop(loop);
-        if (result == null) result = caseInstruction(loop);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -128,7 +175,13 @@ public class ElementalSwitch<T> extends Switch<T>
       {
         GOTO goto_ = (GOTO)theEObject;
         T result = caseGOTO(goto_);
-        if (result == null) result = caseInstruction(goto_);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ElementalPackage.COMPUTED_GOTO:
+      {
+        ComputedGOTO computedGOTO = (ComputedGOTO)theEObject;
+        T result = caseComputedGOTO(computedGOTO);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -136,7 +189,13 @@ public class ElementalSwitch<T> extends Switch<T>
       {
         StaticDispatch staticDispatch = (StaticDispatch)theEObject;
         T result = caseStaticDispatch(staticDispatch);
-        if (result == null) result = caseInstruction(staticDispatch);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ElementalPackage.DYNAMIC_DISPATCH:
+      {
+        DynamicDispatch dynamicDispatch = (DynamicDispatch)theEObject;
+        T result = caseDynamicDispatch(dynamicDispatch);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -225,6 +284,118 @@ public class ElementalSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Increment</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Increment</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseIncrement(Increment object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Decrement</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Decrement</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDecrement(Decrement object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Move Left</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Move Left</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMoveLeft(MoveLeft object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Move Right</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Move Right</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMoveRight(MoveRight object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Store</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Store</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseStore(Store object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Recall</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Recall</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseRecall(Recall object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Assignment</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Assignment</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAssignment(Assignment object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Branch</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -273,6 +444,22 @@ public class ElementalSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Computed GOTO</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Computed GOTO</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseComputedGOTO(ComputedGOTO object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Static Dispatch</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -284,6 +471,22 @@ public class ElementalSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseStaticDispatch(StaticDispatch object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Dynamic Dispatch</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Dynamic Dispatch</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDynamicDispatch(DynamicDispatch object)
   {
     return null;
   }

@@ -20,7 +20,16 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Elemental.ecore#//Function/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Elemental.ecore#//Function/body"/>
     </genClasses>
-    <genClasses ecoreClass="Elemental.ecore#//Instruction"/>
+    <genClasses ecoreClass="Elemental.ecore#//Instruction">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Elemental.ecore#//Instruction/type"/>
+    </genClasses>
+    <genClasses ecoreClass="Elemental.ecore#//Increment"/>
+    <genClasses ecoreClass="Elemental.ecore#//Decrement"/>
+    <genClasses ecoreClass="Elemental.ecore#//MoveLeft"/>
+    <genClasses ecoreClass="Elemental.ecore#//MoveRight"/>
+    <genClasses ecoreClass="Elemental.ecore#//Store"/>
+    <genClasses ecoreClass="Elemental.ecore#//Recall"/>
+    <genClasses ecoreClass="Elemental.ecore#//Assignment"/>
     <genClasses ecoreClass="Elemental.ecore#//Branch">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Elemental.ecore#//Branch/body"/>
     </genClasses>
@@ -30,8 +39,10 @@
     <genClasses ecoreClass="Elemental.ecore#//GOTO">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Elemental.ecore#//GOTO/label"/>
     </genClasses>
+    <genClasses ecoreClass="Elemental.ecore#//ComputedGOTO"/>
     <genClasses ecoreClass="Elemental.ecore#//StaticDispatch">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Elemental.ecore#//StaticDispatch/target"/>
     </genClasses>
+    <genClasses ecoreClass="Elemental.ecore#//DynamicDispatch"/>
   </genPackages>
 </genmodel:GenModel>

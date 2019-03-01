@@ -555,27 +555,51 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleInstruction"
-    // InternalElemental.g:233:1: ruleInstruction returns [EObject current=null] : ( ( () ruleIncrement ) | ( () ruleDecrement ) | ( () ruleMoveLeft ) | ( () ruleMoveRight ) | ( () ruleStore ) | ( () ruleRecall ) | ( () ruleAssignment ) | this_Branch_14= ruleBranch | this_Loop_15= ruleLoop | this_GOTO_16= ruleGOTO | ( () ruleComputedGOTO ) | this_StaticDispatch_19= ruleStaticDispatch | ( () ruleDynamicDispatch ) ) ;
+    // InternalElemental.g:233:1: ruleInstruction returns [EObject current=null] : ( ( (lv_type_0_1= ruleIncrement | lv_type_0_2= ruleDecrement | lv_type_0_3= ruleMoveLeft | lv_type_0_4= ruleMoveRight | lv_type_0_5= ruleStore | lv_type_0_6= ruleRecall | lv_type_0_7= ruleAssignment | lv_type_0_8= ruleBranch | lv_type_0_9= ruleLoop | lv_type_0_10= ruleGOTO | lv_type_0_11= ruleComputedGOTO | lv_type_0_12= ruleStaticDispatch | lv_type_0_13= ruleDynamicDispatch ) ) ) ;
     public final EObject ruleInstruction() throws RecognitionException {
         EObject current = null;
 
-        EObject this_Branch_14 = null;
+        EObject lv_type_0_1 = null;
 
-        EObject this_Loop_15 = null;
+        EObject lv_type_0_2 = null;
 
-        EObject this_GOTO_16 = null;
+        EObject lv_type_0_3 = null;
 
-        EObject this_StaticDispatch_19 = null;
+        EObject lv_type_0_4 = null;
+
+        EObject lv_type_0_5 = null;
+
+        EObject lv_type_0_6 = null;
+
+        EObject lv_type_0_7 = null;
+
+        EObject lv_type_0_8 = null;
+
+        EObject lv_type_0_9 = null;
+
+        EObject lv_type_0_10 = null;
+
+        EObject lv_type_0_11 = null;
+
+        EObject lv_type_0_12 = null;
+
+        EObject lv_type_0_13 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalElemental.g:239:2: ( ( ( () ruleIncrement ) | ( () ruleDecrement ) | ( () ruleMoveLeft ) | ( () ruleMoveRight ) | ( () ruleStore ) | ( () ruleRecall ) | ( () ruleAssignment ) | this_Branch_14= ruleBranch | this_Loop_15= ruleLoop | this_GOTO_16= ruleGOTO | ( () ruleComputedGOTO ) | this_StaticDispatch_19= ruleStaticDispatch | ( () ruleDynamicDispatch ) ) )
-            // InternalElemental.g:240:2: ( ( () ruleIncrement ) | ( () ruleDecrement ) | ( () ruleMoveLeft ) | ( () ruleMoveRight ) | ( () ruleStore ) | ( () ruleRecall ) | ( () ruleAssignment ) | this_Branch_14= ruleBranch | this_Loop_15= ruleLoop | this_GOTO_16= ruleGOTO | ( () ruleComputedGOTO ) | this_StaticDispatch_19= ruleStaticDispatch | ( () ruleDynamicDispatch ) )
+            // InternalElemental.g:239:2: ( ( ( (lv_type_0_1= ruleIncrement | lv_type_0_2= ruleDecrement | lv_type_0_3= ruleMoveLeft | lv_type_0_4= ruleMoveRight | lv_type_0_5= ruleStore | lv_type_0_6= ruleRecall | lv_type_0_7= ruleAssignment | lv_type_0_8= ruleBranch | lv_type_0_9= ruleLoop | lv_type_0_10= ruleGOTO | lv_type_0_11= ruleComputedGOTO | lv_type_0_12= ruleStaticDispatch | lv_type_0_13= ruleDynamicDispatch ) ) ) )
+            // InternalElemental.g:240:2: ( ( (lv_type_0_1= ruleIncrement | lv_type_0_2= ruleDecrement | lv_type_0_3= ruleMoveLeft | lv_type_0_4= ruleMoveRight | lv_type_0_5= ruleStore | lv_type_0_6= ruleRecall | lv_type_0_7= ruleAssignment | lv_type_0_8= ruleBranch | lv_type_0_9= ruleLoop | lv_type_0_10= ruleGOTO | lv_type_0_11= ruleComputedGOTO | lv_type_0_12= ruleStaticDispatch | lv_type_0_13= ruleDynamicDispatch ) ) )
             {
-            // InternalElemental.g:240:2: ( ( () ruleIncrement ) | ( () ruleDecrement ) | ( () ruleMoveLeft ) | ( () ruleMoveRight ) | ( () ruleStore ) | ( () ruleRecall ) | ( () ruleAssignment ) | this_Branch_14= ruleBranch | this_Loop_15= ruleLoop | this_GOTO_16= ruleGOTO | ( () ruleComputedGOTO ) | this_StaticDispatch_19= ruleStaticDispatch | ( () ruleDynamicDispatch ) )
+            // InternalElemental.g:240:2: ( ( (lv_type_0_1= ruleIncrement | lv_type_0_2= ruleDecrement | lv_type_0_3= ruleMoveLeft | lv_type_0_4= ruleMoveRight | lv_type_0_5= ruleStore | lv_type_0_6= ruleRecall | lv_type_0_7= ruleAssignment | lv_type_0_8= ruleBranch | lv_type_0_9= ruleLoop | lv_type_0_10= ruleGOTO | lv_type_0_11= ruleComputedGOTO | lv_type_0_12= ruleStaticDispatch | lv_type_0_13= ruleDynamicDispatch ) ) )
+            // InternalElemental.g:241:3: ( (lv_type_0_1= ruleIncrement | lv_type_0_2= ruleDecrement | lv_type_0_3= ruleMoveLeft | lv_type_0_4= ruleMoveRight | lv_type_0_5= ruleStore | lv_type_0_6= ruleRecall | lv_type_0_7= ruleAssignment | lv_type_0_8= ruleBranch | lv_type_0_9= ruleLoop | lv_type_0_10= ruleGOTO | lv_type_0_11= ruleComputedGOTO | lv_type_0_12= ruleStaticDispatch | lv_type_0_13= ruleDynamicDispatch ) )
+            {
+            // InternalElemental.g:241:3: ( (lv_type_0_1= ruleIncrement | lv_type_0_2= ruleDecrement | lv_type_0_3= ruleMoveLeft | lv_type_0_4= ruleMoveRight | lv_type_0_5= ruleStore | lv_type_0_6= ruleRecall | lv_type_0_7= ruleAssignment | lv_type_0_8= ruleBranch | lv_type_0_9= ruleLoop | lv_type_0_10= ruleGOTO | lv_type_0_11= ruleComputedGOTO | lv_type_0_12= ruleStaticDispatch | lv_type_0_13= ruleDynamicDispatch ) )
+            // InternalElemental.g:242:4: (lv_type_0_1= ruleIncrement | lv_type_0_2= ruleDecrement | lv_type_0_3= ruleMoveLeft | lv_type_0_4= ruleMoveRight | lv_type_0_5= ruleStore | lv_type_0_6= ruleRecall | lv_type_0_7= ruleAssignment | lv_type_0_8= ruleBranch | lv_type_0_9= ruleLoop | lv_type_0_10= ruleGOTO | lv_type_0_11= ruleComputedGOTO | lv_type_0_12= ruleStaticDispatch | lv_type_0_13= ruleDynamicDispatch )
+            {
+            // InternalElemental.g:242:4: (lv_type_0_1= ruleIncrement | lv_type_0_2= ruleDecrement | lv_type_0_3= ruleMoveLeft | lv_type_0_4= ruleMoveRight | lv_type_0_5= ruleStore | lv_type_0_6= ruleRecall | lv_type_0_7= ruleAssignment | lv_type_0_8= ruleBranch | lv_type_0_9= ruleLoop | lv_type_0_10= ruleGOTO | lv_type_0_11= ruleComputedGOTO | lv_type_0_12= ruleStaticDispatch | lv_type_0_13= ruleDynamicDispatch )
             int alt3=13;
             switch ( input.LA(1) ) {
             case 9:
@@ -652,383 +676,336 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
             switch (alt3) {
                 case 1 :
-                    // InternalElemental.g:241:3: ( () ruleIncrement )
-                    {
-                    // InternalElemental.g:241:3: ( () ruleIncrement )
-                    // InternalElemental.g:242:4: () ruleIncrement
-                    {
-                    // InternalElemental.g:242:4: ()
-                    // InternalElemental.g:243:5: 
+                    // InternalElemental.g:243:5: lv_type_0_1= ruleIncrement
                     {
 
-                    					current = forceCreateModelElement(
-                    						grammarAccess.getInstructionAccess().getInstructionAction_0_0(),
-                    						current);
+                    					newCompositeNode(grammarAccess.getInstructionAccess().getTypeIncrementParserRuleCall_0_0());
                     				
-
-                    }
-
-
-                    				newCompositeNode(grammarAccess.getInstructionAccess().getIncrementParserRuleCall_0_1());
-                    			
                     pushFollow(FOLLOW_2);
-                    ruleIncrement();
+                    lv_type_0_1=ruleIncrement();
 
                     state._fsp--;
 
 
-                    				afterParserOrEnumRuleCall();
-                    			
-
-                    }
-
+                    					if (current==null) {
+                    						current = createModelElementForParent(grammarAccess.getInstructionRule());
+                    					}
+                    					set(
+                    						current,
+                    						"type",
+                    						lv_type_0_1,
+                    						"com.benjholla.elemental.Elemental.Increment");
+                    					afterParserOrEnumRuleCall();
+                    				
 
                     }
                     break;
                 case 2 :
-                    // InternalElemental.g:258:3: ( () ruleDecrement )
-                    {
-                    // InternalElemental.g:258:3: ( () ruleDecrement )
-                    // InternalElemental.g:259:4: () ruleDecrement
-                    {
-                    // InternalElemental.g:259:4: ()
-                    // InternalElemental.g:260:5: 
+                    // InternalElemental.g:259:5: lv_type_0_2= ruleDecrement
                     {
 
-                    					current = forceCreateModelElement(
-                    						grammarAccess.getInstructionAccess().getInstructionAction_1_0(),
-                    						current);
+                    					newCompositeNode(grammarAccess.getInstructionAccess().getTypeDecrementParserRuleCall_0_1());
                     				
-
-                    }
-
-
-                    				newCompositeNode(grammarAccess.getInstructionAccess().getDecrementParserRuleCall_1_1());
-                    			
                     pushFollow(FOLLOW_2);
-                    ruleDecrement();
+                    lv_type_0_2=ruleDecrement();
 
                     state._fsp--;
 
 
-                    				afterParserOrEnumRuleCall();
-                    			
-
-                    }
-
+                    					if (current==null) {
+                    						current = createModelElementForParent(grammarAccess.getInstructionRule());
+                    					}
+                    					set(
+                    						current,
+                    						"type",
+                    						lv_type_0_2,
+                    						"com.benjholla.elemental.Elemental.Decrement");
+                    					afterParserOrEnumRuleCall();
+                    				
 
                     }
                     break;
                 case 3 :
-                    // InternalElemental.g:275:3: ( () ruleMoveLeft )
-                    {
-                    // InternalElemental.g:275:3: ( () ruleMoveLeft )
-                    // InternalElemental.g:276:4: () ruleMoveLeft
-                    {
-                    // InternalElemental.g:276:4: ()
-                    // InternalElemental.g:277:5: 
+                    // InternalElemental.g:275:5: lv_type_0_3= ruleMoveLeft
                     {
 
-                    					current = forceCreateModelElement(
-                    						grammarAccess.getInstructionAccess().getInstructionAction_2_0(),
-                    						current);
+                    					newCompositeNode(grammarAccess.getInstructionAccess().getTypeMoveLeftParserRuleCall_0_2());
                     				
-
-                    }
-
-
-                    				newCompositeNode(grammarAccess.getInstructionAccess().getMoveLeftParserRuleCall_2_1());
-                    			
                     pushFollow(FOLLOW_2);
-                    ruleMoveLeft();
+                    lv_type_0_3=ruleMoveLeft();
 
                     state._fsp--;
 
 
-                    				afterParserOrEnumRuleCall();
-                    			
-
-                    }
-
+                    					if (current==null) {
+                    						current = createModelElementForParent(grammarAccess.getInstructionRule());
+                    					}
+                    					set(
+                    						current,
+                    						"type",
+                    						lv_type_0_3,
+                    						"com.benjholla.elemental.Elemental.MoveLeft");
+                    					afterParserOrEnumRuleCall();
+                    				
 
                     }
                     break;
                 case 4 :
-                    // InternalElemental.g:292:3: ( () ruleMoveRight )
-                    {
-                    // InternalElemental.g:292:3: ( () ruleMoveRight )
-                    // InternalElemental.g:293:4: () ruleMoveRight
-                    {
-                    // InternalElemental.g:293:4: ()
-                    // InternalElemental.g:294:5: 
+                    // InternalElemental.g:291:5: lv_type_0_4= ruleMoveRight
                     {
 
-                    					current = forceCreateModelElement(
-                    						grammarAccess.getInstructionAccess().getInstructionAction_3_0(),
-                    						current);
+                    					newCompositeNode(grammarAccess.getInstructionAccess().getTypeMoveRightParserRuleCall_0_3());
                     				
-
-                    }
-
-
-                    				newCompositeNode(grammarAccess.getInstructionAccess().getMoveRightParserRuleCall_3_1());
-                    			
                     pushFollow(FOLLOW_2);
-                    ruleMoveRight();
+                    lv_type_0_4=ruleMoveRight();
 
                     state._fsp--;
 
 
-                    				afterParserOrEnumRuleCall();
-                    			
-
-                    }
-
+                    					if (current==null) {
+                    						current = createModelElementForParent(grammarAccess.getInstructionRule());
+                    					}
+                    					set(
+                    						current,
+                    						"type",
+                    						lv_type_0_4,
+                    						"com.benjholla.elemental.Elemental.MoveRight");
+                    					afterParserOrEnumRuleCall();
+                    				
 
                     }
                     break;
                 case 5 :
-                    // InternalElemental.g:309:3: ( () ruleStore )
-                    {
-                    // InternalElemental.g:309:3: ( () ruleStore )
-                    // InternalElemental.g:310:4: () ruleStore
-                    {
-                    // InternalElemental.g:310:4: ()
-                    // InternalElemental.g:311:5: 
+                    // InternalElemental.g:307:5: lv_type_0_5= ruleStore
                     {
 
-                    					current = forceCreateModelElement(
-                    						grammarAccess.getInstructionAccess().getInstructionAction_4_0(),
-                    						current);
+                    					newCompositeNode(grammarAccess.getInstructionAccess().getTypeStoreParserRuleCall_0_4());
                     				
-
-                    }
-
-
-                    				newCompositeNode(grammarAccess.getInstructionAccess().getStoreParserRuleCall_4_1());
-                    			
                     pushFollow(FOLLOW_2);
-                    ruleStore();
+                    lv_type_0_5=ruleStore();
 
                     state._fsp--;
 
 
-                    				afterParserOrEnumRuleCall();
-                    			
-
-                    }
-
+                    					if (current==null) {
+                    						current = createModelElementForParent(grammarAccess.getInstructionRule());
+                    					}
+                    					set(
+                    						current,
+                    						"type",
+                    						lv_type_0_5,
+                    						"com.benjholla.elemental.Elemental.Store");
+                    					afterParserOrEnumRuleCall();
+                    				
 
                     }
                     break;
                 case 6 :
-                    // InternalElemental.g:326:3: ( () ruleRecall )
-                    {
-                    // InternalElemental.g:326:3: ( () ruleRecall )
-                    // InternalElemental.g:327:4: () ruleRecall
-                    {
-                    // InternalElemental.g:327:4: ()
-                    // InternalElemental.g:328:5: 
+                    // InternalElemental.g:323:5: lv_type_0_6= ruleRecall
                     {
 
-                    					current = forceCreateModelElement(
-                    						grammarAccess.getInstructionAccess().getInstructionAction_5_0(),
-                    						current);
+                    					newCompositeNode(grammarAccess.getInstructionAccess().getTypeRecallParserRuleCall_0_5());
                     				
-
-                    }
-
-
-                    				newCompositeNode(grammarAccess.getInstructionAccess().getRecallParserRuleCall_5_1());
-                    			
                     pushFollow(FOLLOW_2);
-                    ruleRecall();
+                    lv_type_0_6=ruleRecall();
 
                     state._fsp--;
 
 
-                    				afterParserOrEnumRuleCall();
-                    			
-
-                    }
-
+                    					if (current==null) {
+                    						current = createModelElementForParent(grammarAccess.getInstructionRule());
+                    					}
+                    					set(
+                    						current,
+                    						"type",
+                    						lv_type_0_6,
+                    						"com.benjholla.elemental.Elemental.Recall");
+                    					afterParserOrEnumRuleCall();
+                    				
 
                     }
                     break;
                 case 7 :
-                    // InternalElemental.g:343:3: ( () ruleAssignment )
-                    {
-                    // InternalElemental.g:343:3: ( () ruleAssignment )
-                    // InternalElemental.g:344:4: () ruleAssignment
-                    {
-                    // InternalElemental.g:344:4: ()
-                    // InternalElemental.g:345:5: 
+                    // InternalElemental.g:339:5: lv_type_0_7= ruleAssignment
                     {
 
-                    					current = forceCreateModelElement(
-                    						grammarAccess.getInstructionAccess().getInstructionAction_6_0(),
-                    						current);
+                    					newCompositeNode(grammarAccess.getInstructionAccess().getTypeAssignmentParserRuleCall_0_6());
                     				
-
-                    }
-
-
-                    				newCompositeNode(grammarAccess.getInstructionAccess().getAssignmentParserRuleCall_6_1());
-                    			
                     pushFollow(FOLLOW_2);
-                    ruleAssignment();
+                    lv_type_0_7=ruleAssignment();
 
                     state._fsp--;
 
 
-                    				afterParserOrEnumRuleCall();
-                    			
-
-                    }
-
+                    					if (current==null) {
+                    						current = createModelElementForParent(grammarAccess.getInstructionRule());
+                    					}
+                    					set(
+                    						current,
+                    						"type",
+                    						lv_type_0_7,
+                    						"com.benjholla.elemental.Elemental.Assignment");
+                    					afterParserOrEnumRuleCall();
+                    				
 
                     }
                     break;
                 case 8 :
-                    // InternalElemental.g:360:3: this_Branch_14= ruleBranch
+                    // InternalElemental.g:355:5: lv_type_0_8= ruleBranch
                     {
 
-                    			newCompositeNode(grammarAccess.getInstructionAccess().getBranchParserRuleCall_7());
-                    		
+                    					newCompositeNode(grammarAccess.getInstructionAccess().getTypeBranchParserRuleCall_0_7());
+                    				
                     pushFollow(FOLLOW_2);
-                    this_Branch_14=ruleBranch();
+                    lv_type_0_8=ruleBranch();
 
                     state._fsp--;
 
 
-                    			current = this_Branch_14;
-                    			afterParserOrEnumRuleCall();
-                    		
+                    					if (current==null) {
+                    						current = createModelElementForParent(grammarAccess.getInstructionRule());
+                    					}
+                    					set(
+                    						current,
+                    						"type",
+                    						lv_type_0_8,
+                    						"com.benjholla.elemental.Elemental.Branch");
+                    					afterParserOrEnumRuleCall();
+                    				
 
                     }
                     break;
                 case 9 :
-                    // InternalElemental.g:369:3: this_Loop_15= ruleLoop
+                    // InternalElemental.g:371:5: lv_type_0_9= ruleLoop
                     {
 
-                    			newCompositeNode(grammarAccess.getInstructionAccess().getLoopParserRuleCall_8());
-                    		
+                    					newCompositeNode(grammarAccess.getInstructionAccess().getTypeLoopParserRuleCall_0_8());
+                    				
                     pushFollow(FOLLOW_2);
-                    this_Loop_15=ruleLoop();
+                    lv_type_0_9=ruleLoop();
 
                     state._fsp--;
 
 
-                    			current = this_Loop_15;
-                    			afterParserOrEnumRuleCall();
-                    		
+                    					if (current==null) {
+                    						current = createModelElementForParent(grammarAccess.getInstructionRule());
+                    					}
+                    					set(
+                    						current,
+                    						"type",
+                    						lv_type_0_9,
+                    						"com.benjholla.elemental.Elemental.Loop");
+                    					afterParserOrEnumRuleCall();
+                    				
 
                     }
                     break;
                 case 10 :
-                    // InternalElemental.g:378:3: this_GOTO_16= ruleGOTO
+                    // InternalElemental.g:387:5: lv_type_0_10= ruleGOTO
                     {
 
-                    			newCompositeNode(grammarAccess.getInstructionAccess().getGOTOParserRuleCall_9());
-                    		
+                    					newCompositeNode(grammarAccess.getInstructionAccess().getTypeGOTOParserRuleCall_0_9());
+                    				
                     pushFollow(FOLLOW_2);
-                    this_GOTO_16=ruleGOTO();
+                    lv_type_0_10=ruleGOTO();
 
                     state._fsp--;
 
 
-                    			current = this_GOTO_16;
-                    			afterParserOrEnumRuleCall();
-                    		
+                    					if (current==null) {
+                    						current = createModelElementForParent(grammarAccess.getInstructionRule());
+                    					}
+                    					set(
+                    						current,
+                    						"type",
+                    						lv_type_0_10,
+                    						"com.benjholla.elemental.Elemental.GOTO");
+                    					afterParserOrEnumRuleCall();
+                    				
 
                     }
                     break;
                 case 11 :
-                    // InternalElemental.g:387:3: ( () ruleComputedGOTO )
-                    {
-                    // InternalElemental.g:387:3: ( () ruleComputedGOTO )
-                    // InternalElemental.g:388:4: () ruleComputedGOTO
-                    {
-                    // InternalElemental.g:388:4: ()
-                    // InternalElemental.g:389:5: 
+                    // InternalElemental.g:403:5: lv_type_0_11= ruleComputedGOTO
                     {
 
-                    					current = forceCreateModelElement(
-                    						grammarAccess.getInstructionAccess().getInstructionAction_10_0(),
-                    						current);
+                    					newCompositeNode(grammarAccess.getInstructionAccess().getTypeComputedGOTOParserRuleCall_0_10());
                     				
-
-                    }
-
-
-                    				newCompositeNode(grammarAccess.getInstructionAccess().getComputedGOTOParserRuleCall_10_1());
-                    			
                     pushFollow(FOLLOW_2);
-                    ruleComputedGOTO();
+                    lv_type_0_11=ruleComputedGOTO();
 
                     state._fsp--;
 
 
-                    				afterParserOrEnumRuleCall();
-                    			
-
-                    }
-
+                    					if (current==null) {
+                    						current = createModelElementForParent(grammarAccess.getInstructionRule());
+                    					}
+                    					set(
+                    						current,
+                    						"type",
+                    						lv_type_0_11,
+                    						"com.benjholla.elemental.Elemental.ComputedGOTO");
+                    					afterParserOrEnumRuleCall();
+                    				
 
                     }
                     break;
                 case 12 :
-                    // InternalElemental.g:404:3: this_StaticDispatch_19= ruleStaticDispatch
+                    // InternalElemental.g:419:5: lv_type_0_12= ruleStaticDispatch
                     {
 
-                    			newCompositeNode(grammarAccess.getInstructionAccess().getStaticDispatchParserRuleCall_11());
-                    		
+                    					newCompositeNode(grammarAccess.getInstructionAccess().getTypeStaticDispatchParserRuleCall_0_11());
+                    				
                     pushFollow(FOLLOW_2);
-                    this_StaticDispatch_19=ruleStaticDispatch();
+                    lv_type_0_12=ruleStaticDispatch();
 
                     state._fsp--;
 
 
-                    			current = this_StaticDispatch_19;
-                    			afterParserOrEnumRuleCall();
-                    		
+                    					if (current==null) {
+                    						current = createModelElementForParent(grammarAccess.getInstructionRule());
+                    					}
+                    					set(
+                    						current,
+                    						"type",
+                    						lv_type_0_12,
+                    						"com.benjholla.elemental.Elemental.StaticDispatch");
+                    					afterParserOrEnumRuleCall();
+                    				
 
                     }
                     break;
                 case 13 :
-                    // InternalElemental.g:413:3: ( () ruleDynamicDispatch )
-                    {
-                    // InternalElemental.g:413:3: ( () ruleDynamicDispatch )
-                    // InternalElemental.g:414:4: () ruleDynamicDispatch
-                    {
-                    // InternalElemental.g:414:4: ()
-                    // InternalElemental.g:415:5: 
+                    // InternalElemental.g:435:5: lv_type_0_13= ruleDynamicDispatch
                     {
 
-                    					current = forceCreateModelElement(
-                    						grammarAccess.getInstructionAccess().getInstructionAction_12_0(),
-                    						current);
+                    					newCompositeNode(grammarAccess.getInstructionAccess().getTypeDynamicDispatchParserRuleCall_0_12());
                     				
-
-                    }
-
-
-                    				newCompositeNode(grammarAccess.getInstructionAccess().getDynamicDispatchParserRuleCall_12_1());
-                    			
                     pushFollow(FOLLOW_2);
-                    ruleDynamicDispatch();
+                    lv_type_0_13=ruleDynamicDispatch();
 
                     state._fsp--;
 
 
-                    				afterParserOrEnumRuleCall();
-                    			
-
-                    }
-
+                    					if (current==null) {
+                    						current = createModelElementForParent(grammarAccess.getInstructionRule());
+                    					}
+                    					set(
+                    						current,
+                    						"type",
+                    						lv_type_0_13,
+                    						"com.benjholla.elemental.Elemental.DynamicDispatch");
+                    					afterParserOrEnumRuleCall();
+                    				
 
                     }
                     break;
+
+            }
+
+
+            }
+
 
             }
 
@@ -1052,16 +1029,16 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleIncrement"
-    // InternalElemental.g:433:1: entryRuleIncrement returns [String current=null] : iv_ruleIncrement= ruleIncrement EOF ;
-    public final String entryRuleIncrement() throws RecognitionException {
-        String current = null;
+    // InternalElemental.g:456:1: entryRuleIncrement returns [EObject current=null] : iv_ruleIncrement= ruleIncrement EOF ;
+    public final EObject entryRuleIncrement() throws RecognitionException {
+        EObject current = null;
 
-        AntlrDatatypeRuleToken iv_ruleIncrement = null;
+        EObject iv_ruleIncrement = null;
 
 
         try {
-            // InternalElemental.g:433:49: (iv_ruleIncrement= ruleIncrement EOF )
-            // InternalElemental.g:434:2: iv_ruleIncrement= ruleIncrement EOF
+            // InternalElemental.g:456:50: (iv_ruleIncrement= ruleIncrement EOF )
+            // InternalElemental.g:457:2: iv_ruleIncrement= ruleIncrement EOF
             {
              newCompositeNode(grammarAccess.getIncrementRule()); 
             pushFollow(FOLLOW_1);
@@ -1069,7 +1046,7 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
             state._fsp--;
 
-             current =iv_ruleIncrement.getText(); 
+             current =iv_ruleIncrement; 
             match(input,EOF,FOLLOW_2); 
 
             }
@@ -1088,24 +1065,40 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleIncrement"
-    // InternalElemental.g:440:1: ruleIncrement returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : kw= '+' ;
-    public final AntlrDatatypeRuleToken ruleIncrement() throws RecognitionException {
-        AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
+    // InternalElemental.g:463:1: ruleIncrement returns [EObject current=null] : ( () otherlv_1= '+' ) ;
+    public final EObject ruleIncrement() throws RecognitionException {
+        EObject current = null;
 
-        Token kw=null;
+        Token otherlv_1=null;
 
 
         	enterRule();
 
         try {
-            // InternalElemental.g:446:2: (kw= '+' )
-            // InternalElemental.g:447:2: kw= '+'
+            // InternalElemental.g:469:2: ( ( () otherlv_1= '+' ) )
+            // InternalElemental.g:470:2: ( () otherlv_1= '+' )
             {
-            kw=(Token)match(input,9,FOLLOW_2); 
+            // InternalElemental.g:470:2: ( () otherlv_1= '+' )
+            // InternalElemental.g:471:3: () otherlv_1= '+'
+            {
+            // InternalElemental.g:471:3: ()
+            // InternalElemental.g:472:4: 
+            {
 
-            		current.merge(kw);
-            		newLeafNode(kw, grammarAccess.getIncrementAccess().getPlusSignKeyword());
-            	
+            				current = forceCreateModelElement(
+            					grammarAccess.getIncrementAccess().getIncrementAction_0(),
+            					current);
+            			
+
+            }
+
+            otherlv_1=(Token)match(input,9,FOLLOW_2); 
+
+            			newLeafNode(otherlv_1, grammarAccess.getIncrementAccess().getPlusSignKeyword_1());
+            		
+
+            }
+
 
             }
 
@@ -1126,16 +1119,16 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleDecrement"
-    // InternalElemental.g:455:1: entryRuleDecrement returns [String current=null] : iv_ruleDecrement= ruleDecrement EOF ;
-    public final String entryRuleDecrement() throws RecognitionException {
-        String current = null;
+    // InternalElemental.g:486:1: entryRuleDecrement returns [EObject current=null] : iv_ruleDecrement= ruleDecrement EOF ;
+    public final EObject entryRuleDecrement() throws RecognitionException {
+        EObject current = null;
 
-        AntlrDatatypeRuleToken iv_ruleDecrement = null;
+        EObject iv_ruleDecrement = null;
 
 
         try {
-            // InternalElemental.g:455:49: (iv_ruleDecrement= ruleDecrement EOF )
-            // InternalElemental.g:456:2: iv_ruleDecrement= ruleDecrement EOF
+            // InternalElemental.g:486:50: (iv_ruleDecrement= ruleDecrement EOF )
+            // InternalElemental.g:487:2: iv_ruleDecrement= ruleDecrement EOF
             {
              newCompositeNode(grammarAccess.getDecrementRule()); 
             pushFollow(FOLLOW_1);
@@ -1143,7 +1136,7 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
             state._fsp--;
 
-             current =iv_ruleDecrement.getText(); 
+             current =iv_ruleDecrement; 
             match(input,EOF,FOLLOW_2); 
 
             }
@@ -1162,24 +1155,40 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleDecrement"
-    // InternalElemental.g:462:1: ruleDecrement returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : kw= '-' ;
-    public final AntlrDatatypeRuleToken ruleDecrement() throws RecognitionException {
-        AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
+    // InternalElemental.g:493:1: ruleDecrement returns [EObject current=null] : ( () otherlv_1= '-' ) ;
+    public final EObject ruleDecrement() throws RecognitionException {
+        EObject current = null;
 
-        Token kw=null;
+        Token otherlv_1=null;
 
 
         	enterRule();
 
         try {
-            // InternalElemental.g:468:2: (kw= '-' )
-            // InternalElemental.g:469:2: kw= '-'
+            // InternalElemental.g:499:2: ( ( () otherlv_1= '-' ) )
+            // InternalElemental.g:500:2: ( () otherlv_1= '-' )
             {
-            kw=(Token)match(input,10,FOLLOW_2); 
+            // InternalElemental.g:500:2: ( () otherlv_1= '-' )
+            // InternalElemental.g:501:3: () otherlv_1= '-'
+            {
+            // InternalElemental.g:501:3: ()
+            // InternalElemental.g:502:4: 
+            {
 
-            		current.merge(kw);
-            		newLeafNode(kw, grammarAccess.getDecrementAccess().getHyphenMinusKeyword());
-            	
+            				current = forceCreateModelElement(
+            					grammarAccess.getDecrementAccess().getDecrementAction_0(),
+            					current);
+            			
+
+            }
+
+            otherlv_1=(Token)match(input,10,FOLLOW_2); 
+
+            			newLeafNode(otherlv_1, grammarAccess.getDecrementAccess().getHyphenMinusKeyword_1());
+            		
+
+            }
+
 
             }
 
@@ -1200,16 +1209,16 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleMoveLeft"
-    // InternalElemental.g:477:1: entryRuleMoveLeft returns [String current=null] : iv_ruleMoveLeft= ruleMoveLeft EOF ;
-    public final String entryRuleMoveLeft() throws RecognitionException {
-        String current = null;
+    // InternalElemental.g:516:1: entryRuleMoveLeft returns [EObject current=null] : iv_ruleMoveLeft= ruleMoveLeft EOF ;
+    public final EObject entryRuleMoveLeft() throws RecognitionException {
+        EObject current = null;
 
-        AntlrDatatypeRuleToken iv_ruleMoveLeft = null;
+        EObject iv_ruleMoveLeft = null;
 
 
         try {
-            // InternalElemental.g:477:48: (iv_ruleMoveLeft= ruleMoveLeft EOF )
-            // InternalElemental.g:478:2: iv_ruleMoveLeft= ruleMoveLeft EOF
+            // InternalElemental.g:516:49: (iv_ruleMoveLeft= ruleMoveLeft EOF )
+            // InternalElemental.g:517:2: iv_ruleMoveLeft= ruleMoveLeft EOF
             {
              newCompositeNode(grammarAccess.getMoveLeftRule()); 
             pushFollow(FOLLOW_1);
@@ -1217,7 +1226,7 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
             state._fsp--;
 
-             current =iv_ruleMoveLeft.getText(); 
+             current =iv_ruleMoveLeft; 
             match(input,EOF,FOLLOW_2); 
 
             }
@@ -1236,24 +1245,40 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMoveLeft"
-    // InternalElemental.g:484:1: ruleMoveLeft returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : kw= '<' ;
-    public final AntlrDatatypeRuleToken ruleMoveLeft() throws RecognitionException {
-        AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
+    // InternalElemental.g:523:1: ruleMoveLeft returns [EObject current=null] : ( () otherlv_1= '<' ) ;
+    public final EObject ruleMoveLeft() throws RecognitionException {
+        EObject current = null;
 
-        Token kw=null;
+        Token otherlv_1=null;
 
 
         	enterRule();
 
         try {
-            // InternalElemental.g:490:2: (kw= '<' )
-            // InternalElemental.g:491:2: kw= '<'
+            // InternalElemental.g:529:2: ( ( () otherlv_1= '<' ) )
+            // InternalElemental.g:530:2: ( () otherlv_1= '<' )
             {
-            kw=(Token)match(input,11,FOLLOW_2); 
+            // InternalElemental.g:530:2: ( () otherlv_1= '<' )
+            // InternalElemental.g:531:3: () otherlv_1= '<'
+            {
+            // InternalElemental.g:531:3: ()
+            // InternalElemental.g:532:4: 
+            {
 
-            		current.merge(kw);
-            		newLeafNode(kw, grammarAccess.getMoveLeftAccess().getLessThanSignKeyword());
-            	
+            				current = forceCreateModelElement(
+            					grammarAccess.getMoveLeftAccess().getMoveLeftAction_0(),
+            					current);
+            			
+
+            }
+
+            otherlv_1=(Token)match(input,11,FOLLOW_2); 
+
+            			newLeafNode(otherlv_1, grammarAccess.getMoveLeftAccess().getLessThanSignKeyword_1());
+            		
+
+            }
+
 
             }
 
@@ -1274,16 +1299,16 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleMoveRight"
-    // InternalElemental.g:499:1: entryRuleMoveRight returns [String current=null] : iv_ruleMoveRight= ruleMoveRight EOF ;
-    public final String entryRuleMoveRight() throws RecognitionException {
-        String current = null;
+    // InternalElemental.g:546:1: entryRuleMoveRight returns [EObject current=null] : iv_ruleMoveRight= ruleMoveRight EOF ;
+    public final EObject entryRuleMoveRight() throws RecognitionException {
+        EObject current = null;
 
-        AntlrDatatypeRuleToken iv_ruleMoveRight = null;
+        EObject iv_ruleMoveRight = null;
 
 
         try {
-            // InternalElemental.g:499:49: (iv_ruleMoveRight= ruleMoveRight EOF )
-            // InternalElemental.g:500:2: iv_ruleMoveRight= ruleMoveRight EOF
+            // InternalElemental.g:546:50: (iv_ruleMoveRight= ruleMoveRight EOF )
+            // InternalElemental.g:547:2: iv_ruleMoveRight= ruleMoveRight EOF
             {
              newCompositeNode(grammarAccess.getMoveRightRule()); 
             pushFollow(FOLLOW_1);
@@ -1291,7 +1316,7 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
             state._fsp--;
 
-             current =iv_ruleMoveRight.getText(); 
+             current =iv_ruleMoveRight; 
             match(input,EOF,FOLLOW_2); 
 
             }
@@ -1310,24 +1335,40 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMoveRight"
-    // InternalElemental.g:506:1: ruleMoveRight returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : kw= '>' ;
-    public final AntlrDatatypeRuleToken ruleMoveRight() throws RecognitionException {
-        AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
+    // InternalElemental.g:553:1: ruleMoveRight returns [EObject current=null] : ( () otherlv_1= '>' ) ;
+    public final EObject ruleMoveRight() throws RecognitionException {
+        EObject current = null;
 
-        Token kw=null;
+        Token otherlv_1=null;
 
 
         	enterRule();
 
         try {
-            // InternalElemental.g:512:2: (kw= '>' )
-            // InternalElemental.g:513:2: kw= '>'
+            // InternalElemental.g:559:2: ( ( () otherlv_1= '>' ) )
+            // InternalElemental.g:560:2: ( () otherlv_1= '>' )
             {
-            kw=(Token)match(input,12,FOLLOW_2); 
+            // InternalElemental.g:560:2: ( () otherlv_1= '>' )
+            // InternalElemental.g:561:3: () otherlv_1= '>'
+            {
+            // InternalElemental.g:561:3: ()
+            // InternalElemental.g:562:4: 
+            {
 
-            		current.merge(kw);
-            		newLeafNode(kw, grammarAccess.getMoveRightAccess().getGreaterThanSignKeyword());
-            	
+            				current = forceCreateModelElement(
+            					grammarAccess.getMoveRightAccess().getMoveRightAction_0(),
+            					current);
+            			
+
+            }
+
+            otherlv_1=(Token)match(input,12,FOLLOW_2); 
+
+            			newLeafNode(otherlv_1, grammarAccess.getMoveRightAccess().getGreaterThanSignKeyword_1());
+            		
+
+            }
+
 
             }
 
@@ -1348,16 +1389,16 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleStore"
-    // InternalElemental.g:521:1: entryRuleStore returns [String current=null] : iv_ruleStore= ruleStore EOF ;
-    public final String entryRuleStore() throws RecognitionException {
-        String current = null;
+    // InternalElemental.g:576:1: entryRuleStore returns [EObject current=null] : iv_ruleStore= ruleStore EOF ;
+    public final EObject entryRuleStore() throws RecognitionException {
+        EObject current = null;
 
-        AntlrDatatypeRuleToken iv_ruleStore = null;
+        EObject iv_ruleStore = null;
 
 
         try {
-            // InternalElemental.g:521:45: (iv_ruleStore= ruleStore EOF )
-            // InternalElemental.g:522:2: iv_ruleStore= ruleStore EOF
+            // InternalElemental.g:576:46: (iv_ruleStore= ruleStore EOF )
+            // InternalElemental.g:577:2: iv_ruleStore= ruleStore EOF
             {
              newCompositeNode(grammarAccess.getStoreRule()); 
             pushFollow(FOLLOW_1);
@@ -1365,7 +1406,7 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
             state._fsp--;
 
-             current =iv_ruleStore.getText(); 
+             current =iv_ruleStore; 
             match(input,EOF,FOLLOW_2); 
 
             }
@@ -1384,24 +1425,40 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleStore"
-    // InternalElemental.g:528:1: ruleStore returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : kw= ',' ;
-    public final AntlrDatatypeRuleToken ruleStore() throws RecognitionException {
-        AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
+    // InternalElemental.g:583:1: ruleStore returns [EObject current=null] : ( () otherlv_1= ',' ) ;
+    public final EObject ruleStore() throws RecognitionException {
+        EObject current = null;
 
-        Token kw=null;
+        Token otherlv_1=null;
 
 
         	enterRule();
 
         try {
-            // InternalElemental.g:534:2: (kw= ',' )
-            // InternalElemental.g:535:2: kw= ','
+            // InternalElemental.g:589:2: ( ( () otherlv_1= ',' ) )
+            // InternalElemental.g:590:2: ( () otherlv_1= ',' )
             {
-            kw=(Token)match(input,13,FOLLOW_2); 
+            // InternalElemental.g:590:2: ( () otherlv_1= ',' )
+            // InternalElemental.g:591:3: () otherlv_1= ','
+            {
+            // InternalElemental.g:591:3: ()
+            // InternalElemental.g:592:4: 
+            {
 
-            		current.merge(kw);
-            		newLeafNode(kw, grammarAccess.getStoreAccess().getCommaKeyword());
-            	
+            				current = forceCreateModelElement(
+            					grammarAccess.getStoreAccess().getStoreAction_0(),
+            					current);
+            			
+
+            }
+
+            otherlv_1=(Token)match(input,13,FOLLOW_2); 
+
+            			newLeafNode(otherlv_1, grammarAccess.getStoreAccess().getCommaKeyword_1());
+            		
+
+            }
+
 
             }
 
@@ -1422,16 +1479,16 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleRecall"
-    // InternalElemental.g:543:1: entryRuleRecall returns [String current=null] : iv_ruleRecall= ruleRecall EOF ;
-    public final String entryRuleRecall() throws RecognitionException {
-        String current = null;
+    // InternalElemental.g:606:1: entryRuleRecall returns [EObject current=null] : iv_ruleRecall= ruleRecall EOF ;
+    public final EObject entryRuleRecall() throws RecognitionException {
+        EObject current = null;
 
-        AntlrDatatypeRuleToken iv_ruleRecall = null;
+        EObject iv_ruleRecall = null;
 
 
         try {
-            // InternalElemental.g:543:46: (iv_ruleRecall= ruleRecall EOF )
-            // InternalElemental.g:544:2: iv_ruleRecall= ruleRecall EOF
+            // InternalElemental.g:606:47: (iv_ruleRecall= ruleRecall EOF )
+            // InternalElemental.g:607:2: iv_ruleRecall= ruleRecall EOF
             {
              newCompositeNode(grammarAccess.getRecallRule()); 
             pushFollow(FOLLOW_1);
@@ -1439,7 +1496,7 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
             state._fsp--;
 
-             current =iv_ruleRecall.getText(); 
+             current =iv_ruleRecall; 
             match(input,EOF,FOLLOW_2); 
 
             }
@@ -1458,24 +1515,40 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleRecall"
-    // InternalElemental.g:550:1: ruleRecall returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : kw= '.' ;
-    public final AntlrDatatypeRuleToken ruleRecall() throws RecognitionException {
-        AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
+    // InternalElemental.g:613:1: ruleRecall returns [EObject current=null] : ( () otherlv_1= '.' ) ;
+    public final EObject ruleRecall() throws RecognitionException {
+        EObject current = null;
 
-        Token kw=null;
+        Token otherlv_1=null;
 
 
         	enterRule();
 
         try {
-            // InternalElemental.g:556:2: (kw= '.' )
-            // InternalElemental.g:557:2: kw= '.'
+            // InternalElemental.g:619:2: ( ( () otherlv_1= '.' ) )
+            // InternalElemental.g:620:2: ( () otherlv_1= '.' )
             {
-            kw=(Token)match(input,14,FOLLOW_2); 
+            // InternalElemental.g:620:2: ( () otherlv_1= '.' )
+            // InternalElemental.g:621:3: () otherlv_1= '.'
+            {
+            // InternalElemental.g:621:3: ()
+            // InternalElemental.g:622:4: 
+            {
 
-            		current.merge(kw);
-            		newLeafNode(kw, grammarAccess.getRecallAccess().getFullStopKeyword());
-            	
+            				current = forceCreateModelElement(
+            					grammarAccess.getRecallAccess().getRecallAction_0(),
+            					current);
+            			
+
+            }
+
+            otherlv_1=(Token)match(input,14,FOLLOW_2); 
+
+            			newLeafNode(otherlv_1, grammarAccess.getRecallAccess().getFullStopKeyword_1());
+            		
+
+            }
+
 
             }
 
@@ -1496,16 +1569,16 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleAssignment"
-    // InternalElemental.g:565:1: entryRuleAssignment returns [String current=null] : iv_ruleAssignment= ruleAssignment EOF ;
-    public final String entryRuleAssignment() throws RecognitionException {
-        String current = null;
+    // InternalElemental.g:636:1: entryRuleAssignment returns [EObject current=null] : iv_ruleAssignment= ruleAssignment EOF ;
+    public final EObject entryRuleAssignment() throws RecognitionException {
+        EObject current = null;
 
-        AntlrDatatypeRuleToken iv_ruleAssignment = null;
+        EObject iv_ruleAssignment = null;
 
 
         try {
-            // InternalElemental.g:565:50: (iv_ruleAssignment= ruleAssignment EOF )
-            // InternalElemental.g:566:2: iv_ruleAssignment= ruleAssignment EOF
+            // InternalElemental.g:636:51: (iv_ruleAssignment= ruleAssignment EOF )
+            // InternalElemental.g:637:2: iv_ruleAssignment= ruleAssignment EOF
             {
              newCompositeNode(grammarAccess.getAssignmentRule()); 
             pushFollow(FOLLOW_1);
@@ -1513,7 +1586,7 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
             state._fsp--;
 
-             current =iv_ruleAssignment.getText(); 
+             current =iv_ruleAssignment; 
             match(input,EOF,FOLLOW_2); 
 
             }
@@ -1532,24 +1605,40 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAssignment"
-    // InternalElemental.g:572:1: ruleAssignment returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : kw= '=' ;
-    public final AntlrDatatypeRuleToken ruleAssignment() throws RecognitionException {
-        AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
+    // InternalElemental.g:643:1: ruleAssignment returns [EObject current=null] : ( () otherlv_1= '=' ) ;
+    public final EObject ruleAssignment() throws RecognitionException {
+        EObject current = null;
 
-        Token kw=null;
+        Token otherlv_1=null;
 
 
         	enterRule();
 
         try {
-            // InternalElemental.g:578:2: (kw= '=' )
-            // InternalElemental.g:579:2: kw= '='
+            // InternalElemental.g:649:2: ( ( () otherlv_1= '=' ) )
+            // InternalElemental.g:650:2: ( () otherlv_1= '=' )
             {
-            kw=(Token)match(input,15,FOLLOW_2); 
+            // InternalElemental.g:650:2: ( () otherlv_1= '=' )
+            // InternalElemental.g:651:3: () otherlv_1= '='
+            {
+            // InternalElemental.g:651:3: ()
+            // InternalElemental.g:652:4: 
+            {
 
-            		current.merge(kw);
-            		newLeafNode(kw, grammarAccess.getAssignmentAccess().getEqualsSignKeyword());
-            	
+            				current = forceCreateModelElement(
+            					grammarAccess.getAssignmentAccess().getAssignmentAction_0(),
+            					current);
+            			
+
+            }
+
+            otherlv_1=(Token)match(input,15,FOLLOW_2); 
+
+            			newLeafNode(otherlv_1, grammarAccess.getAssignmentAccess().getEqualsSignKeyword_1());
+            		
+
+            }
+
 
             }
 
@@ -1570,7 +1659,7 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleBranch"
-    // InternalElemental.g:587:1: entryRuleBranch returns [EObject current=null] : iv_ruleBranch= ruleBranch EOF ;
+    // InternalElemental.g:666:1: entryRuleBranch returns [EObject current=null] : iv_ruleBranch= ruleBranch EOF ;
     public final EObject entryRuleBranch() throws RecognitionException {
         EObject current = null;
 
@@ -1578,8 +1667,8 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalElemental.g:587:47: (iv_ruleBranch= ruleBranch EOF )
-            // InternalElemental.g:588:2: iv_ruleBranch= ruleBranch EOF
+            // InternalElemental.g:666:47: (iv_ruleBranch= ruleBranch EOF )
+            // InternalElemental.g:667:2: iv_ruleBranch= ruleBranch EOF
             {
              newCompositeNode(grammarAccess.getBranchRule()); 
             pushFollow(FOLLOW_1);
@@ -1606,7 +1695,7 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleBranch"
-    // InternalElemental.g:594:1: ruleBranch returns [EObject current=null] : ( () otherlv_1= '(' ( (lv_body_2_0= ruleBlock ) ) otherlv_3= ')' ) ;
+    // InternalElemental.g:673:1: ruleBranch returns [EObject current=null] : ( () otherlv_1= '(' ( (lv_body_2_0= ruleBlock ) ) otherlv_3= ')' ) ;
     public final EObject ruleBranch() throws RecognitionException {
         EObject current = null;
 
@@ -1619,14 +1708,14 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalElemental.g:600:2: ( ( () otherlv_1= '(' ( (lv_body_2_0= ruleBlock ) ) otherlv_3= ')' ) )
-            // InternalElemental.g:601:2: ( () otherlv_1= '(' ( (lv_body_2_0= ruleBlock ) ) otherlv_3= ')' )
+            // InternalElemental.g:679:2: ( ( () otherlv_1= '(' ( (lv_body_2_0= ruleBlock ) ) otherlv_3= ')' ) )
+            // InternalElemental.g:680:2: ( () otherlv_1= '(' ( (lv_body_2_0= ruleBlock ) ) otherlv_3= ')' )
             {
-            // InternalElemental.g:601:2: ( () otherlv_1= '(' ( (lv_body_2_0= ruleBlock ) ) otherlv_3= ')' )
-            // InternalElemental.g:602:3: () otherlv_1= '(' ( (lv_body_2_0= ruleBlock ) ) otherlv_3= ')'
+            // InternalElemental.g:680:2: ( () otherlv_1= '(' ( (lv_body_2_0= ruleBlock ) ) otherlv_3= ')' )
+            // InternalElemental.g:681:3: () otherlv_1= '(' ( (lv_body_2_0= ruleBlock ) ) otherlv_3= ')'
             {
-            // InternalElemental.g:602:3: ()
-            // InternalElemental.g:603:4: 
+            // InternalElemental.g:681:3: ()
+            // InternalElemental.g:682:4: 
             {
 
             				current = forceCreateModelElement(
@@ -1640,11 +1729,11 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_1, grammarAccess.getBranchAccess().getLeftParenthesisKeyword_1());
             		
-            // InternalElemental.g:613:3: ( (lv_body_2_0= ruleBlock ) )
-            // InternalElemental.g:614:4: (lv_body_2_0= ruleBlock )
+            // InternalElemental.g:692:3: ( (lv_body_2_0= ruleBlock ) )
+            // InternalElemental.g:693:4: (lv_body_2_0= ruleBlock )
             {
-            // InternalElemental.g:614:4: (lv_body_2_0= ruleBlock )
-            // InternalElemental.g:615:5: lv_body_2_0= ruleBlock
+            // InternalElemental.g:693:4: (lv_body_2_0= ruleBlock )
+            // InternalElemental.g:694:5: lv_body_2_0= ruleBlock
             {
 
             					newCompositeNode(grammarAccess.getBranchAccess().getBodyBlockParserRuleCall_2_0());
@@ -1698,7 +1787,7 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleLoop"
-    // InternalElemental.g:640:1: entryRuleLoop returns [EObject current=null] : iv_ruleLoop= ruleLoop EOF ;
+    // InternalElemental.g:719:1: entryRuleLoop returns [EObject current=null] : iv_ruleLoop= ruleLoop EOF ;
     public final EObject entryRuleLoop() throws RecognitionException {
         EObject current = null;
 
@@ -1706,8 +1795,8 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalElemental.g:640:45: (iv_ruleLoop= ruleLoop EOF )
-            // InternalElemental.g:641:2: iv_ruleLoop= ruleLoop EOF
+            // InternalElemental.g:719:45: (iv_ruleLoop= ruleLoop EOF )
+            // InternalElemental.g:720:2: iv_ruleLoop= ruleLoop EOF
             {
              newCompositeNode(grammarAccess.getLoopRule()); 
             pushFollow(FOLLOW_1);
@@ -1734,7 +1823,7 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleLoop"
-    // InternalElemental.g:647:1: ruleLoop returns [EObject current=null] : ( () otherlv_1= '[' ( (lv_body_2_0= ruleBlock ) ) otherlv_3= ']' ) ;
+    // InternalElemental.g:726:1: ruleLoop returns [EObject current=null] : ( () otherlv_1= '[' ( (lv_body_2_0= ruleBlock ) ) otherlv_3= ']' ) ;
     public final EObject ruleLoop() throws RecognitionException {
         EObject current = null;
 
@@ -1747,14 +1836,14 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalElemental.g:653:2: ( ( () otherlv_1= '[' ( (lv_body_2_0= ruleBlock ) ) otherlv_3= ']' ) )
-            // InternalElemental.g:654:2: ( () otherlv_1= '[' ( (lv_body_2_0= ruleBlock ) ) otherlv_3= ']' )
+            // InternalElemental.g:732:2: ( ( () otherlv_1= '[' ( (lv_body_2_0= ruleBlock ) ) otherlv_3= ']' ) )
+            // InternalElemental.g:733:2: ( () otherlv_1= '[' ( (lv_body_2_0= ruleBlock ) ) otherlv_3= ']' )
             {
-            // InternalElemental.g:654:2: ( () otherlv_1= '[' ( (lv_body_2_0= ruleBlock ) ) otherlv_3= ']' )
-            // InternalElemental.g:655:3: () otherlv_1= '[' ( (lv_body_2_0= ruleBlock ) ) otherlv_3= ']'
+            // InternalElemental.g:733:2: ( () otherlv_1= '[' ( (lv_body_2_0= ruleBlock ) ) otherlv_3= ']' )
+            // InternalElemental.g:734:3: () otherlv_1= '[' ( (lv_body_2_0= ruleBlock ) ) otherlv_3= ']'
             {
-            // InternalElemental.g:655:3: ()
-            // InternalElemental.g:656:4: 
+            // InternalElemental.g:734:3: ()
+            // InternalElemental.g:735:4: 
             {
 
             				current = forceCreateModelElement(
@@ -1768,11 +1857,11 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_1, grammarAccess.getLoopAccess().getLeftSquareBracketKeyword_1());
             		
-            // InternalElemental.g:666:3: ( (lv_body_2_0= ruleBlock ) )
-            // InternalElemental.g:667:4: (lv_body_2_0= ruleBlock )
+            // InternalElemental.g:745:3: ( (lv_body_2_0= ruleBlock ) )
+            // InternalElemental.g:746:4: (lv_body_2_0= ruleBlock )
             {
-            // InternalElemental.g:667:4: (lv_body_2_0= ruleBlock )
-            // InternalElemental.g:668:5: lv_body_2_0= ruleBlock
+            // InternalElemental.g:746:4: (lv_body_2_0= ruleBlock )
+            // InternalElemental.g:747:5: lv_body_2_0= ruleBlock
             {
 
             					newCompositeNode(grammarAccess.getLoopAccess().getBodyBlockParserRuleCall_2_0());
@@ -1826,7 +1915,7 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleGOTO"
-    // InternalElemental.g:693:1: entryRuleGOTO returns [EObject current=null] : iv_ruleGOTO= ruleGOTO EOF ;
+    // InternalElemental.g:772:1: entryRuleGOTO returns [EObject current=null] : iv_ruleGOTO= ruleGOTO EOF ;
     public final EObject entryRuleGOTO() throws RecognitionException {
         EObject current = null;
 
@@ -1834,8 +1923,8 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalElemental.g:693:45: (iv_ruleGOTO= ruleGOTO EOF )
-            // InternalElemental.g:694:2: iv_ruleGOTO= ruleGOTO EOF
+            // InternalElemental.g:772:45: (iv_ruleGOTO= ruleGOTO EOF )
+            // InternalElemental.g:773:2: iv_ruleGOTO= ruleGOTO EOF
             {
              newCompositeNode(grammarAccess.getGOTORule()); 
             pushFollow(FOLLOW_1);
@@ -1862,42 +1951,53 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleGOTO"
-    // InternalElemental.g:700:1: ruleGOTO returns [EObject current=null] : (otherlv_0= '\\'' ( (otherlv_1= RULE_ID ) ) otherlv_2= '\\'' ) ;
+    // InternalElemental.g:779:1: ruleGOTO returns [EObject current=null] : ( () otherlv_1= '\\'' ( (otherlv_2= RULE_ID ) ) otherlv_3= '\\'' ) ;
     public final EObject ruleGOTO() throws RecognitionException {
         EObject current = null;
 
-        Token otherlv_0=null;
         Token otherlv_1=null;
         Token otherlv_2=null;
+        Token otherlv_3=null;
 
 
         	enterRule();
 
         try {
-            // InternalElemental.g:706:2: ( (otherlv_0= '\\'' ( (otherlv_1= RULE_ID ) ) otherlv_2= '\\'' ) )
-            // InternalElemental.g:707:2: (otherlv_0= '\\'' ( (otherlv_1= RULE_ID ) ) otherlv_2= '\\'' )
+            // InternalElemental.g:785:2: ( ( () otherlv_1= '\\'' ( (otherlv_2= RULE_ID ) ) otherlv_3= '\\'' ) )
+            // InternalElemental.g:786:2: ( () otherlv_1= '\\'' ( (otherlv_2= RULE_ID ) ) otherlv_3= '\\'' )
             {
-            // InternalElemental.g:707:2: (otherlv_0= '\\'' ( (otherlv_1= RULE_ID ) ) otherlv_2= '\\'' )
-            // InternalElemental.g:708:3: otherlv_0= '\\'' ( (otherlv_1= RULE_ID ) ) otherlv_2= '\\''
+            // InternalElemental.g:786:2: ( () otherlv_1= '\\'' ( (otherlv_2= RULE_ID ) ) otherlv_3= '\\'' )
+            // InternalElemental.g:787:3: () otherlv_1= '\\'' ( (otherlv_2= RULE_ID ) ) otherlv_3= '\\''
             {
-            otherlv_0=(Token)match(input,20,FOLLOW_9); 
+            // InternalElemental.g:787:3: ()
+            // InternalElemental.g:788:4: 
+            {
 
-            			newLeafNode(otherlv_0, grammarAccess.getGOTOAccess().getApostropheKeyword_0());
+            				current = forceCreateModelElement(
+            					grammarAccess.getGOTOAccess().getGOTOAction_0(),
+            					current);
+            			
+
+            }
+
+            otherlv_1=(Token)match(input,20,FOLLOW_9); 
+
+            			newLeafNode(otherlv_1, grammarAccess.getGOTOAccess().getApostropheKeyword_1());
             		
-            // InternalElemental.g:712:3: ( (otherlv_1= RULE_ID ) )
-            // InternalElemental.g:713:4: (otherlv_1= RULE_ID )
+            // InternalElemental.g:798:3: ( (otherlv_2= RULE_ID ) )
+            // InternalElemental.g:799:4: (otherlv_2= RULE_ID )
             {
-            // InternalElemental.g:713:4: (otherlv_1= RULE_ID )
-            // InternalElemental.g:714:5: otherlv_1= RULE_ID
+            // InternalElemental.g:799:4: (otherlv_2= RULE_ID )
+            // InternalElemental.g:800:5: otherlv_2= RULE_ID
             {
 
             					if (current==null) {
             						current = createModelElement(grammarAccess.getGOTORule());
             					}
             				
-            otherlv_1=(Token)match(input,RULE_ID,FOLLOW_10); 
+            otherlv_2=(Token)match(input,RULE_ID,FOLLOW_10); 
 
-            					newLeafNode(otherlv_1, grammarAccess.getGOTOAccess().getLabelLabelCrossReference_1_0());
+            					newLeafNode(otherlv_2, grammarAccess.getGOTOAccess().getLabelLabelCrossReference_2_0());
             				
 
             }
@@ -1905,9 +2005,9 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,20,FOLLOW_2); 
+            otherlv_3=(Token)match(input,20,FOLLOW_2); 
 
-            			newLeafNode(otherlv_2, grammarAccess.getGOTOAccess().getApostropheKeyword_2());
+            			newLeafNode(otherlv_3, grammarAccess.getGOTOAccess().getApostropheKeyword_3());
             		
 
             }
@@ -1932,16 +2032,16 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleComputedGOTO"
-    // InternalElemental.g:733:1: entryRuleComputedGOTO returns [String current=null] : iv_ruleComputedGOTO= ruleComputedGOTO EOF ;
-    public final String entryRuleComputedGOTO() throws RecognitionException {
-        String current = null;
+    // InternalElemental.g:819:1: entryRuleComputedGOTO returns [EObject current=null] : iv_ruleComputedGOTO= ruleComputedGOTO EOF ;
+    public final EObject entryRuleComputedGOTO() throws RecognitionException {
+        EObject current = null;
 
-        AntlrDatatypeRuleToken iv_ruleComputedGOTO = null;
+        EObject iv_ruleComputedGOTO = null;
 
 
         try {
-            // InternalElemental.g:733:52: (iv_ruleComputedGOTO= ruleComputedGOTO EOF )
-            // InternalElemental.g:734:2: iv_ruleComputedGOTO= ruleComputedGOTO EOF
+            // InternalElemental.g:819:53: (iv_ruleComputedGOTO= ruleComputedGOTO EOF )
+            // InternalElemental.g:820:2: iv_ruleComputedGOTO= ruleComputedGOTO EOF
             {
              newCompositeNode(grammarAccess.getComputedGOTORule()); 
             pushFollow(FOLLOW_1);
@@ -1949,7 +2049,7 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
             state._fsp--;
 
-             current =iv_ruleComputedGOTO.getText(); 
+             current =iv_ruleComputedGOTO; 
             match(input,EOF,FOLLOW_2); 
 
             }
@@ -1968,24 +2068,40 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleComputedGOTO"
-    // InternalElemental.g:740:1: ruleComputedGOTO returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : kw= '&' ;
-    public final AntlrDatatypeRuleToken ruleComputedGOTO() throws RecognitionException {
-        AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
+    // InternalElemental.g:826:1: ruleComputedGOTO returns [EObject current=null] : ( () otherlv_1= '&' ) ;
+    public final EObject ruleComputedGOTO() throws RecognitionException {
+        EObject current = null;
 
-        Token kw=null;
+        Token otherlv_1=null;
 
 
         	enterRule();
 
         try {
-            // InternalElemental.g:746:2: (kw= '&' )
-            // InternalElemental.g:747:2: kw= '&'
+            // InternalElemental.g:832:2: ( ( () otherlv_1= '&' ) )
+            // InternalElemental.g:833:2: ( () otherlv_1= '&' )
             {
-            kw=(Token)match(input,21,FOLLOW_2); 
+            // InternalElemental.g:833:2: ( () otherlv_1= '&' )
+            // InternalElemental.g:834:3: () otherlv_1= '&'
+            {
+            // InternalElemental.g:834:3: ()
+            // InternalElemental.g:835:4: 
+            {
 
-            		current.merge(kw);
-            		newLeafNode(kw, grammarAccess.getComputedGOTOAccess().getAmpersandKeyword());
-            	
+            				current = forceCreateModelElement(
+            					grammarAccess.getComputedGOTOAccess().getComputedGOTOAction_0(),
+            					current);
+            			
+
+            }
+
+            otherlv_1=(Token)match(input,21,FOLLOW_2); 
+
+            			newLeafNode(otherlv_1, grammarAccess.getComputedGOTOAccess().getAmpersandKeyword_1());
+            		
+
+            }
+
 
             }
 
@@ -2006,7 +2122,7 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleStaticDispatch"
-    // InternalElemental.g:755:1: entryRuleStaticDispatch returns [EObject current=null] : iv_ruleStaticDispatch= ruleStaticDispatch EOF ;
+    // InternalElemental.g:849:1: entryRuleStaticDispatch returns [EObject current=null] : iv_ruleStaticDispatch= ruleStaticDispatch EOF ;
     public final EObject entryRuleStaticDispatch() throws RecognitionException {
         EObject current = null;
 
@@ -2014,8 +2130,8 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalElemental.g:755:55: (iv_ruleStaticDispatch= ruleStaticDispatch EOF )
-            // InternalElemental.g:756:2: iv_ruleStaticDispatch= ruleStaticDispatch EOF
+            // InternalElemental.g:849:55: (iv_ruleStaticDispatch= ruleStaticDispatch EOF )
+            // InternalElemental.g:850:2: iv_ruleStaticDispatch= ruleStaticDispatch EOF
             {
              newCompositeNode(grammarAccess.getStaticDispatchRule()); 
             pushFollow(FOLLOW_1);
@@ -2042,42 +2158,53 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleStaticDispatch"
-    // InternalElemental.g:762:1: ruleStaticDispatch returns [EObject current=null] : (otherlv_0= '{' ( (otherlv_1= RULE_ID ) ) otherlv_2= '}' ) ;
+    // InternalElemental.g:856:1: ruleStaticDispatch returns [EObject current=null] : ( () otherlv_1= '{' ( (otherlv_2= RULE_ID ) ) otherlv_3= '}' ) ;
     public final EObject ruleStaticDispatch() throws RecognitionException {
         EObject current = null;
 
-        Token otherlv_0=null;
         Token otherlv_1=null;
         Token otherlv_2=null;
+        Token otherlv_3=null;
 
 
         	enterRule();
 
         try {
-            // InternalElemental.g:768:2: ( (otherlv_0= '{' ( (otherlv_1= RULE_ID ) ) otherlv_2= '}' ) )
-            // InternalElemental.g:769:2: (otherlv_0= '{' ( (otherlv_1= RULE_ID ) ) otherlv_2= '}' )
+            // InternalElemental.g:862:2: ( ( () otherlv_1= '{' ( (otherlv_2= RULE_ID ) ) otherlv_3= '}' ) )
+            // InternalElemental.g:863:2: ( () otherlv_1= '{' ( (otherlv_2= RULE_ID ) ) otherlv_3= '}' )
             {
-            // InternalElemental.g:769:2: (otherlv_0= '{' ( (otherlv_1= RULE_ID ) ) otherlv_2= '}' )
-            // InternalElemental.g:770:3: otherlv_0= '{' ( (otherlv_1= RULE_ID ) ) otherlv_2= '}'
+            // InternalElemental.g:863:2: ( () otherlv_1= '{' ( (otherlv_2= RULE_ID ) ) otherlv_3= '}' )
+            // InternalElemental.g:864:3: () otherlv_1= '{' ( (otherlv_2= RULE_ID ) ) otherlv_3= '}'
             {
-            otherlv_0=(Token)match(input,22,FOLLOW_9); 
+            // InternalElemental.g:864:3: ()
+            // InternalElemental.g:865:4: 
+            {
 
-            			newLeafNode(otherlv_0, grammarAccess.getStaticDispatchAccess().getLeftCurlyBracketKeyword_0());
+            				current = forceCreateModelElement(
+            					grammarAccess.getStaticDispatchAccess().getStaticDispatchAction_0(),
+            					current);
+            			
+
+            }
+
+            otherlv_1=(Token)match(input,22,FOLLOW_9); 
+
+            			newLeafNode(otherlv_1, grammarAccess.getStaticDispatchAccess().getLeftCurlyBracketKeyword_1());
             		
-            // InternalElemental.g:774:3: ( (otherlv_1= RULE_ID ) )
-            // InternalElemental.g:775:4: (otherlv_1= RULE_ID )
+            // InternalElemental.g:875:3: ( (otherlv_2= RULE_ID ) )
+            // InternalElemental.g:876:4: (otherlv_2= RULE_ID )
             {
-            // InternalElemental.g:775:4: (otherlv_1= RULE_ID )
-            // InternalElemental.g:776:5: otherlv_1= RULE_ID
+            // InternalElemental.g:876:4: (otherlv_2= RULE_ID )
+            // InternalElemental.g:877:5: otherlv_2= RULE_ID
             {
 
             					if (current==null) {
             						current = createModelElement(grammarAccess.getStaticDispatchRule());
             					}
             				
-            otherlv_1=(Token)match(input,RULE_ID,FOLLOW_11); 
+            otherlv_2=(Token)match(input,RULE_ID,FOLLOW_11); 
 
-            					newLeafNode(otherlv_1, grammarAccess.getStaticDispatchAccess().getTargetFunctionCrossReference_1_0());
+            					newLeafNode(otherlv_2, grammarAccess.getStaticDispatchAccess().getTargetFunctionCrossReference_2_0());
             				
 
             }
@@ -2085,9 +2212,9 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,23,FOLLOW_2); 
+            otherlv_3=(Token)match(input,23,FOLLOW_2); 
 
-            			newLeafNode(otherlv_2, grammarAccess.getStaticDispatchAccess().getRightCurlyBracketKeyword_2());
+            			newLeafNode(otherlv_3, grammarAccess.getStaticDispatchAccess().getRightCurlyBracketKeyword_3());
             		
 
             }
@@ -2112,16 +2239,16 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleDynamicDispatch"
-    // InternalElemental.g:795:1: entryRuleDynamicDispatch returns [String current=null] : iv_ruleDynamicDispatch= ruleDynamicDispatch EOF ;
-    public final String entryRuleDynamicDispatch() throws RecognitionException {
-        String current = null;
+    // InternalElemental.g:896:1: entryRuleDynamicDispatch returns [EObject current=null] : iv_ruleDynamicDispatch= ruleDynamicDispatch EOF ;
+    public final EObject entryRuleDynamicDispatch() throws RecognitionException {
+        EObject current = null;
 
-        AntlrDatatypeRuleToken iv_ruleDynamicDispatch = null;
+        EObject iv_ruleDynamicDispatch = null;
 
 
         try {
-            // InternalElemental.g:795:55: (iv_ruleDynamicDispatch= ruleDynamicDispatch EOF )
-            // InternalElemental.g:796:2: iv_ruleDynamicDispatch= ruleDynamicDispatch EOF
+            // InternalElemental.g:896:56: (iv_ruleDynamicDispatch= ruleDynamicDispatch EOF )
+            // InternalElemental.g:897:2: iv_ruleDynamicDispatch= ruleDynamicDispatch EOF
             {
              newCompositeNode(grammarAccess.getDynamicDispatchRule()); 
             pushFollow(FOLLOW_1);
@@ -2129,7 +2256,7 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
             state._fsp--;
 
-             current =iv_ruleDynamicDispatch.getText(); 
+             current =iv_ruleDynamicDispatch; 
             match(input,EOF,FOLLOW_2); 
 
             }
@@ -2148,24 +2275,40 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleDynamicDispatch"
-    // InternalElemental.g:802:1: ruleDynamicDispatch returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : kw= '?' ;
-    public final AntlrDatatypeRuleToken ruleDynamicDispatch() throws RecognitionException {
-        AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
+    // InternalElemental.g:903:1: ruleDynamicDispatch returns [EObject current=null] : ( () otherlv_1= '?' ) ;
+    public final EObject ruleDynamicDispatch() throws RecognitionException {
+        EObject current = null;
 
-        Token kw=null;
+        Token otherlv_1=null;
 
 
         	enterRule();
 
         try {
-            // InternalElemental.g:808:2: (kw= '?' )
-            // InternalElemental.g:809:2: kw= '?'
+            // InternalElemental.g:909:2: ( ( () otherlv_1= '?' ) )
+            // InternalElemental.g:910:2: ( () otherlv_1= '?' )
             {
-            kw=(Token)match(input,24,FOLLOW_2); 
+            // InternalElemental.g:910:2: ( () otherlv_1= '?' )
+            // InternalElemental.g:911:3: () otherlv_1= '?'
+            {
+            // InternalElemental.g:911:3: ()
+            // InternalElemental.g:912:4: 
+            {
 
-            		current.merge(kw);
-            		newLeafNode(kw, grammarAccess.getDynamicDispatchAccess().getQuestionMarkKeyword());
-            	
+            				current = forceCreateModelElement(
+            					grammarAccess.getDynamicDispatchAccess().getDynamicDispatchAction_0(),
+            					current);
+            			
+
+            }
+
+            otherlv_1=(Token)match(input,24,FOLLOW_2); 
+
+            			newLeafNode(otherlv_1, grammarAccess.getDynamicDispatchAccess().getQuestionMarkKeyword_1());
+            		
+
+            }
+
 
             }
 

@@ -3,10 +3,12 @@
  */
 package com.benjholla.elemental.generator
 
+import com.benjholla.elemental.elemental.Model
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
+import com.benjholla.elemental.elemental.Instruction
 
 /**
  * Generates code from your model files on save.
@@ -16,10 +18,37 @@ import org.eclipse.xtext.generator.IGeneratorContext
 class ElementalGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-//		fsa.generateFile('greetings.txt', 'People to greet: ' + 
-//			resource.allContents
-//				.filter(Greeting)
-//				.map[name]
-//				.join(', '))
+		for (Model model : resource.allContents.toIterable.filter(Model)) {
+			val name = "Test";
+			val pkg = "com.test";
+			fsa.generateFile(name + ".java", compile(pkg, name, model))
+		}
+	}
+	
+	def String compile(String pkg, String name, Model model) {
+		return '''
+		package «pkg»;
+		
+		public class «name» {
+			public static void main(String[] args){
+				«FOR instruction : model.implicitFunction.instructions»
+				«compile(instruction)»();
+		        «ENDFOR»
+			}
+		
+			«FOR function : model.explicitFunctions»
+			private static void function_«function.name»(){
+				«FOR instruction : function.body.instructions»
+				«compile(instruction)»();
+				«ENDFOR»
+			}
+	        «ENDFOR»
+		}
+		''';
+	}
+	
+	def String compile(Instruction instruction){
+		// instruction.type.class.getSimpleName()
+		return "TODO";
 	}
 }

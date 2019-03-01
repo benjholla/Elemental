@@ -393,10 +393,10 @@ public class InternalElementalLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalElemental.g:816:9: ( ( '0' .. '9' )* )
-            // InternalElemental.g:816:11: ( '0' .. '9' )*
+            // InternalElemental.g:925:9: ( ( '0' .. '9' )* )
+            // InternalElemental.g:925:11: ( '0' .. '9' )*
             {
-            // InternalElemental.g:816:11: ( '0' .. '9' )*
+            // InternalElemental.g:925:11: ( '0' .. '9' )*
             loop1:
             do {
                 int alt1=2;
@@ -409,7 +409,7 @@ public class InternalElementalLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // InternalElemental.g:816:12: '0' .. '9'
+            	    // InternalElemental.g:925:12: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -437,11 +437,11 @@ public class InternalElementalLexer extends Lexer {
         try {
             int _type = RULE_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalElemental.g:818:14: ( '#' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // InternalElemental.g:818:16: '#' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // InternalElemental.g:927:14: ( '#' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // InternalElemental.g:927:16: '#' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match('#'); 
-            // InternalElemental.g:818:20: (~ ( ( '\\n' | '\\r' ) ) )*
+            // InternalElemental.g:927:20: (~ ( ( '\\n' | '\\r' ) ) )*
             loop2:
             do {
                 int alt2=2;
@@ -454,7 +454,7 @@ public class InternalElementalLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // InternalElemental.g:818:20: ~ ( ( '\\n' | '\\r' ) )
+            	    // InternalElemental.g:927:20: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -474,7 +474,7 @@ public class InternalElementalLexer extends Lexer {
                 }
             } while (true);
 
-            // InternalElemental.g:818:36: ( ( '\\r' )? '\\n' )?
+            // InternalElemental.g:927:36: ( ( '\\r' )? '\\n' )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -483,9 +483,9 @@ public class InternalElementalLexer extends Lexer {
             }
             switch (alt4) {
                 case 1 :
-                    // InternalElemental.g:818:37: ( '\\r' )? '\\n'
+                    // InternalElemental.g:927:37: ( '\\r' )? '\\n'
                     {
-                    // InternalElemental.g:818:37: ( '\\r' )?
+                    // InternalElemental.g:927:37: ( '\\r' )?
                     int alt3=2;
                     int LA3_0 = input.LA(1);
 
@@ -494,7 +494,7 @@ public class InternalElementalLexer extends Lexer {
                     }
                     switch (alt3) {
                         case 1 :
-                            // InternalElemental.g:818:37: '\\r'
+                            // InternalElemental.g:927:37: '\\r'
                             {
                             match('\r'); 
 
@@ -526,10 +526,10 @@ public class InternalElementalLexer extends Lexer {
         try {
             int _type = RULE_WHITESPACE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalElemental.g:820:17: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // InternalElemental.g:820:19: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalElemental.g:929:17: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // InternalElemental.g:929:19: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // InternalElemental.g:820:19: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalElemental.g:929:19: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt5=0;
             loop5:
             do {
@@ -583,8 +583,8 @@ public class InternalElementalLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalElemental.g:822:16: ( . )
-            // InternalElemental.g:822:18: .
+            // InternalElemental.g:931:16: ( . )
+            // InternalElemental.g:931:18: .
             {
             matchAny(); 
 

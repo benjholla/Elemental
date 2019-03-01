@@ -70,10 +70,19 @@ public class ElementalFactoryImpl extends EFactoryImpl implements ElementalFacto
       case ElementalPackage.LABEL: return createLabel();
       case ElementalPackage.FUNCTION: return createFunction();
       case ElementalPackage.INSTRUCTION: return createInstruction();
+      case ElementalPackage.INCREMENT: return createIncrement();
+      case ElementalPackage.DECREMENT: return createDecrement();
+      case ElementalPackage.MOVE_LEFT: return createMoveLeft();
+      case ElementalPackage.MOVE_RIGHT: return createMoveRight();
+      case ElementalPackage.STORE: return createStore();
+      case ElementalPackage.RECALL: return createRecall();
+      case ElementalPackage.ASSIGNMENT: return createAssignment();
       case ElementalPackage.BRANCH: return createBranch();
       case ElementalPackage.LOOP: return createLoop();
       case ElementalPackage.GOTO: return createGOTO();
+      case ElementalPackage.COMPUTED_GOTO: return createComputedGOTO();
       case ElementalPackage.STATIC_DISPATCH: return createStaticDispatch();
+      case ElementalPackage.DYNAMIC_DISPATCH: return createDynamicDispatch();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -145,6 +154,90 @@ public class ElementalFactoryImpl extends EFactoryImpl implements ElementalFacto
    * @generated
    */
   @Override
+  public Increment createIncrement()
+  {
+    IncrementImpl increment = new IncrementImpl();
+    return increment;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Decrement createDecrement()
+  {
+    DecrementImpl decrement = new DecrementImpl();
+    return decrement;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public MoveLeft createMoveLeft()
+  {
+    MoveLeftImpl moveLeft = new MoveLeftImpl();
+    return moveLeft;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public MoveRight createMoveRight()
+  {
+    MoveRightImpl moveRight = new MoveRightImpl();
+    return moveRight;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Store createStore()
+  {
+    StoreImpl store = new StoreImpl();
+    return store;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Recall createRecall()
+  {
+    RecallImpl recall = new RecallImpl();
+    return recall;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Assignment createAssignment()
+  {
+    AssignmentImpl assignment = new AssignmentImpl();
+    return assignment;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Branch createBranch()
   {
     BranchImpl branch = new BranchImpl();
@@ -181,10 +274,34 @@ public class ElementalFactoryImpl extends EFactoryImpl implements ElementalFacto
    * @generated
    */
   @Override
+  public ComputedGOTO createComputedGOTO()
+  {
+    ComputedGOTOImpl computedGOTO = new ComputedGOTOImpl();
+    return computedGOTO;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public StaticDispatch createStaticDispatch()
   {
     StaticDispatchImpl staticDispatch = new StaticDispatchImpl();
     return staticDispatch;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public DynamicDispatch createDynamicDispatch()
+  {
+    DynamicDispatchImpl dynamicDispatch = new DynamicDispatchImpl();
+    return dynamicDispatch;
   }
 
   /**

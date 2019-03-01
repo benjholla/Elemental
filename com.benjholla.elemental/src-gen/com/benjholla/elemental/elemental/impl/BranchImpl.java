@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,7 +29,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class BranchImpl extends InstructionImpl implements Branch
+public class BranchImpl extends MinimalEObjectImpl.Container implements Branch
 {
   /**
    * The cached value of the '{@link #getBody() <em>Body</em>}' containment reference.

@@ -20,19 +20,31 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//Block"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Instruction"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Branch" eSuperTypes="#//Instruction">
+  <eClassifiers xsi:type="ecore:EClass" name="Instruction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Increment"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Decrement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MoveLeft"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MoveRight"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Store"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Recall"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Assignment"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Branch">
     <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//Block"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Loop" eSuperTypes="#//Instruction">
+  <eClassifiers xsi:type="ecore:EClass" name="Loop">
     <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//Block"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="GOTO" eSuperTypes="#//Instruction">
+  <eClassifiers xsi:type="ecore:EClass" name="GOTO">
     <eStructuralFeatures xsi:type="ecore:EReference" name="label" eType="#//Label"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StaticDispatch" eSuperTypes="#//Instruction">
+  <eClassifiers xsi:type="ecore:EClass" name="ComputedGOTO"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StaticDispatch">
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//Function"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DynamicDispatch"/>
 </ecore:EPackage>

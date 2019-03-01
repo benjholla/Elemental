@@ -101,6 +101,41 @@ public class ElementalAdapterFactory extends AdapterFactoryImpl
         return createInstructionAdapter();
       }
       @Override
+      public Adapter caseIncrement(Increment object)
+      {
+        return createIncrementAdapter();
+      }
+      @Override
+      public Adapter caseDecrement(Decrement object)
+      {
+        return createDecrementAdapter();
+      }
+      @Override
+      public Adapter caseMoveLeft(MoveLeft object)
+      {
+        return createMoveLeftAdapter();
+      }
+      @Override
+      public Adapter caseMoveRight(MoveRight object)
+      {
+        return createMoveRightAdapter();
+      }
+      @Override
+      public Adapter caseStore(Store object)
+      {
+        return createStoreAdapter();
+      }
+      @Override
+      public Adapter caseRecall(Recall object)
+      {
+        return createRecallAdapter();
+      }
+      @Override
+      public Adapter caseAssignment(Assignment object)
+      {
+        return createAssignmentAdapter();
+      }
+      @Override
       public Adapter caseBranch(Branch object)
       {
         return createBranchAdapter();
@@ -116,9 +151,19 @@ public class ElementalAdapterFactory extends AdapterFactoryImpl
         return createGOTOAdapter();
       }
       @Override
+      public Adapter caseComputedGOTO(ComputedGOTO object)
+      {
+        return createComputedGOTOAdapter();
+      }
+      @Override
       public Adapter caseStaticDispatch(StaticDispatch object)
       {
         return createStaticDispatchAdapter();
+      }
+      @Override
+      public Adapter caseDynamicDispatch(DynamicDispatch object)
+      {
+        return createDynamicDispatchAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -218,6 +263,111 @@ public class ElementalAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link com.benjholla.elemental.elemental.Increment <em>Increment</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.benjholla.elemental.elemental.Increment
+   * @generated
+   */
+  public Adapter createIncrementAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.benjholla.elemental.elemental.Decrement <em>Decrement</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.benjholla.elemental.elemental.Decrement
+   * @generated
+   */
+  public Adapter createDecrementAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.benjholla.elemental.elemental.MoveLeft <em>Move Left</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.benjholla.elemental.elemental.MoveLeft
+   * @generated
+   */
+  public Adapter createMoveLeftAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.benjholla.elemental.elemental.MoveRight <em>Move Right</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.benjholla.elemental.elemental.MoveRight
+   * @generated
+   */
+  public Adapter createMoveRightAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.benjholla.elemental.elemental.Store <em>Store</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.benjholla.elemental.elemental.Store
+   * @generated
+   */
+  public Adapter createStoreAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.benjholla.elemental.elemental.Recall <em>Recall</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.benjholla.elemental.elemental.Recall
+   * @generated
+   */
+  public Adapter createRecallAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.benjholla.elemental.elemental.Assignment <em>Assignment</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.benjholla.elemental.elemental.Assignment
+   * @generated
+   */
+  public Adapter createAssignmentAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link com.benjholla.elemental.elemental.Branch <em>Branch</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -263,6 +413,21 @@ public class ElementalAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link com.benjholla.elemental.elemental.ComputedGOTO <em>Computed GOTO</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.benjholla.elemental.elemental.ComputedGOTO
+   * @generated
+   */
+  public Adapter createComputedGOTOAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link com.benjholla.elemental.elemental.StaticDispatch <em>Static Dispatch</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -273,6 +438,21 @@ public class ElementalAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createStaticDispatchAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.benjholla.elemental.elemental.DynamicDispatch <em>Dynamic Dispatch</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.benjholla.elemental.elemental.DynamicDispatch
+   * @generated
+   */
+  public Adapter createDynamicDispatchAdapter()
   {
     return null;
   }

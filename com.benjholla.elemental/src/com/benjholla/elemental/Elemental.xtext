@@ -18,40 +18,42 @@ Function:
 	name=ID ':' body=Block;
 
 Instruction: 
-	{Instruction} Increment
-	| {Instruction} Decrement
-	| {Instruction} MoveLeft
-	| {Instruction} MoveRight
-	| {Instruction} Store
-	| {Instruction} Recall
-	| {Instruction} Assignment
-	| Branch
-	| Loop
-	| GOTO
-	| {Instruction} ComputedGOTO
-	| StaticDispatch
-	| {Instruction} DynamicDispatch;
+	type=(
+		Increment
+		| Decrement
+		| MoveLeft
+		| MoveRight
+		| Store
+		| Recall
+		| Assignment
+		| Branch
+		| Loop
+		| GOTO
+		| ComputedGOTO
+		| StaticDispatch
+		| DynamicDispatch
+		);
 
 Increment:
-	'+';
+	{Increment} '+';
 
 Decrement:
-	'-';
+	{Decrement} '-';
 	
 MoveLeft:
-	'<';
+	{MoveLeft} '<';
 
 MoveRight:
-	'>';
+	{MoveRight} '>';
 	
 Store:
-	',';
+	{Store} ',';
 	
 Recall:
-	'.';
+	{Recall} '.';
 	
 Assignment:
-	'=';	
+	{Assignment} '=';	
 
 Branch:
 	{Branch} '(' body=Block ')';
@@ -60,21 +62,21 @@ Loop:
 	{Loop} '[' body=Block ']';
 	
 GOTO:
-	'\'' label=[Label] '\'';
+	{GOTO} '\'' label=[Label] '\'';
 	
 ComputedGOTO:
-	'&';
+	{ComputedGOTO} '&';
 
 StaticDispatch:
-	'{' target=[Function] '}';
+	{StaticDispatch} '{' target=[Function] '}';
 	
 DynamicDispatch:
-	'?';
+	{DynamicDispatch} '?';
 
 terminal ID: ('0'..'9')*;
 
 terminal COMMENT : '#' !('\n'|'\r')* ('\r'? '\n')?;
 
-terminal WHITESPACE         : (' '|'\t'|'\r'|'\n')+;
+terminal WHITESPACE : (' '|'\t'|'\r'|'\n')+;
 
 terminal ANY_OTHER: .;

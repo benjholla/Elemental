@@ -134,229 +134,217 @@ public class ElementalGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	public class InstructionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.benjholla.elemental.Elemental.Instruction");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Action cInstructionAction_0_0 = (Action)cGroup_0.eContents().get(0);
-		private final RuleCall cIncrementParserRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
-		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Action cInstructionAction_1_0 = (Action)cGroup_1.eContents().get(0);
-		private final RuleCall cDecrementParserRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
-		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
-		private final Action cInstructionAction_2_0 = (Action)cGroup_2.eContents().get(0);
-		private final RuleCall cMoveLeftParserRuleCall_2_1 = (RuleCall)cGroup_2.eContents().get(1);
-		private final Group cGroup_3 = (Group)cAlternatives.eContents().get(3);
-		private final Action cInstructionAction_3_0 = (Action)cGroup_3.eContents().get(0);
-		private final RuleCall cMoveRightParserRuleCall_3_1 = (RuleCall)cGroup_3.eContents().get(1);
-		private final Group cGroup_4 = (Group)cAlternatives.eContents().get(4);
-		private final Action cInstructionAction_4_0 = (Action)cGroup_4.eContents().get(0);
-		private final RuleCall cStoreParserRuleCall_4_1 = (RuleCall)cGroup_4.eContents().get(1);
-		private final Group cGroup_5 = (Group)cAlternatives.eContents().get(5);
-		private final Action cInstructionAction_5_0 = (Action)cGroup_5.eContents().get(0);
-		private final RuleCall cRecallParserRuleCall_5_1 = (RuleCall)cGroup_5.eContents().get(1);
-		private final Group cGroup_6 = (Group)cAlternatives.eContents().get(6);
-		private final Action cInstructionAction_6_0 = (Action)cGroup_6.eContents().get(0);
-		private final RuleCall cAssignmentParserRuleCall_6_1 = (RuleCall)cGroup_6.eContents().get(1);
-		private final RuleCall cBranchParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
-		private final RuleCall cLoopParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
-		private final RuleCall cGOTOParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
-		private final Group cGroup_10 = (Group)cAlternatives.eContents().get(10);
-		private final Action cInstructionAction_10_0 = (Action)cGroup_10.eContents().get(0);
-		private final RuleCall cComputedGOTOParserRuleCall_10_1 = (RuleCall)cGroup_10.eContents().get(1);
-		private final RuleCall cStaticDispatchParserRuleCall_11 = (RuleCall)cAlternatives.eContents().get(11);
-		private final Group cGroup_12 = (Group)cAlternatives.eContents().get(12);
-		private final Action cInstructionAction_12_0 = (Action)cGroup_12.eContents().get(0);
-		private final RuleCall cDynamicDispatchParserRuleCall_12_1 = (RuleCall)cGroup_12.eContents().get(1);
+		private final Assignment cTypeAssignment = (Assignment)rule.eContents().get(1);
+		private final Alternatives cTypeAlternatives_0 = (Alternatives)cTypeAssignment.eContents().get(0);
+		private final RuleCall cTypeIncrementParserRuleCall_0_0 = (RuleCall)cTypeAlternatives_0.eContents().get(0);
+		private final RuleCall cTypeDecrementParserRuleCall_0_1 = (RuleCall)cTypeAlternatives_0.eContents().get(1);
+		private final RuleCall cTypeMoveLeftParserRuleCall_0_2 = (RuleCall)cTypeAlternatives_0.eContents().get(2);
+		private final RuleCall cTypeMoveRightParserRuleCall_0_3 = (RuleCall)cTypeAlternatives_0.eContents().get(3);
+		private final RuleCall cTypeStoreParserRuleCall_0_4 = (RuleCall)cTypeAlternatives_0.eContents().get(4);
+		private final RuleCall cTypeRecallParserRuleCall_0_5 = (RuleCall)cTypeAlternatives_0.eContents().get(5);
+		private final RuleCall cTypeAssignmentParserRuleCall_0_6 = (RuleCall)cTypeAlternatives_0.eContents().get(6);
+		private final RuleCall cTypeBranchParserRuleCall_0_7 = (RuleCall)cTypeAlternatives_0.eContents().get(7);
+		private final RuleCall cTypeLoopParserRuleCall_0_8 = (RuleCall)cTypeAlternatives_0.eContents().get(8);
+		private final RuleCall cTypeGOTOParserRuleCall_0_9 = (RuleCall)cTypeAlternatives_0.eContents().get(9);
+		private final RuleCall cTypeComputedGOTOParserRuleCall_0_10 = (RuleCall)cTypeAlternatives_0.eContents().get(10);
+		private final RuleCall cTypeStaticDispatchParserRuleCall_0_11 = (RuleCall)cTypeAlternatives_0.eContents().get(11);
+		private final RuleCall cTypeDynamicDispatchParserRuleCall_0_12 = (RuleCall)cTypeAlternatives_0.eContents().get(12);
 		
 		//Instruction:
-		//	{Instruction} Increment
-		//	| {Instruction} Decrement
-		//	| {Instruction} MoveLeft
-		//	| {Instruction} MoveRight
-		//	| {Instruction} Store
-		//	| {Instruction} Recall
-		//	| {Instruction} Assignment
+		//	type=(Increment
+		//	| Decrement
+		//	| MoveLeft
+		//	| MoveRight
+		//	| Store
+		//	| Recall
+		//	| Assignment
 		//	| Branch
 		//	| Loop
 		//	| GOTO
-		//	| {Instruction} ComputedGOTO
+		//	| ComputedGOTO
 		//	| StaticDispatch
-		//	| {Instruction} DynamicDispatch;
+		//	| DynamicDispatch);
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{Instruction} Increment | {Instruction} Decrement | {Instruction} MoveLeft | {Instruction} MoveRight | {Instruction}
-		//Store | {Instruction} Recall | {Instruction} Assignment | Branch | Loop | GOTO | {Instruction} ComputedGOTO |
-		//StaticDispatch | {Instruction} DynamicDispatch
-		public Alternatives getAlternatives() { return cAlternatives; }
+		//type=(Increment | Decrement | MoveLeft | MoveRight | Store | Recall | Assignment | Branch | Loop | GOTO | ComputedGOTO |
+		//StaticDispatch | DynamicDispatch)
+		public Assignment getTypeAssignment() { return cTypeAssignment; }
 		
-		//{Instruction} Increment
-		public Group getGroup_0() { return cGroup_0; }
-		
-		//{Instruction}
-		public Action getInstructionAction_0_0() { return cInstructionAction_0_0; }
+		//(Increment | Decrement | MoveLeft | MoveRight | Store | Recall | Assignment | Branch | Loop | GOTO | ComputedGOTO |
+		//StaticDispatch | DynamicDispatch)
+		public Alternatives getTypeAlternatives_0() { return cTypeAlternatives_0; }
 		
 		//Increment
-		public RuleCall getIncrementParserRuleCall_0_1() { return cIncrementParserRuleCall_0_1; }
-		
-		//{Instruction} Decrement
-		public Group getGroup_1() { return cGroup_1; }
-		
-		//{Instruction}
-		public Action getInstructionAction_1_0() { return cInstructionAction_1_0; }
+		public RuleCall getTypeIncrementParserRuleCall_0_0() { return cTypeIncrementParserRuleCall_0_0; }
 		
 		//Decrement
-		public RuleCall getDecrementParserRuleCall_1_1() { return cDecrementParserRuleCall_1_1; }
-		
-		//{Instruction} MoveLeft
-		public Group getGroup_2() { return cGroup_2; }
-		
-		//{Instruction}
-		public Action getInstructionAction_2_0() { return cInstructionAction_2_0; }
+		public RuleCall getTypeDecrementParserRuleCall_0_1() { return cTypeDecrementParserRuleCall_0_1; }
 		
 		//MoveLeft
-		public RuleCall getMoveLeftParserRuleCall_2_1() { return cMoveLeftParserRuleCall_2_1; }
-		
-		//{Instruction} MoveRight
-		public Group getGroup_3() { return cGroup_3; }
-		
-		//{Instruction}
-		public Action getInstructionAction_3_0() { return cInstructionAction_3_0; }
+		public RuleCall getTypeMoveLeftParserRuleCall_0_2() { return cTypeMoveLeftParserRuleCall_0_2; }
 		
 		//MoveRight
-		public RuleCall getMoveRightParserRuleCall_3_1() { return cMoveRightParserRuleCall_3_1; }
-		
-		//{Instruction} Store
-		public Group getGroup_4() { return cGroup_4; }
-		
-		//{Instruction}
-		public Action getInstructionAction_4_0() { return cInstructionAction_4_0; }
+		public RuleCall getTypeMoveRightParserRuleCall_0_3() { return cTypeMoveRightParserRuleCall_0_3; }
 		
 		//Store
-		public RuleCall getStoreParserRuleCall_4_1() { return cStoreParserRuleCall_4_1; }
-		
-		//{Instruction} Recall
-		public Group getGroup_5() { return cGroup_5; }
-		
-		//{Instruction}
-		public Action getInstructionAction_5_0() { return cInstructionAction_5_0; }
+		public RuleCall getTypeStoreParserRuleCall_0_4() { return cTypeStoreParserRuleCall_0_4; }
 		
 		//Recall
-		public RuleCall getRecallParserRuleCall_5_1() { return cRecallParserRuleCall_5_1; }
-		
-		//{Instruction} Assignment
-		public Group getGroup_6() { return cGroup_6; }
-		
-		//{Instruction}
-		public Action getInstructionAction_6_0() { return cInstructionAction_6_0; }
+		public RuleCall getTypeRecallParserRuleCall_0_5() { return cTypeRecallParserRuleCall_0_5; }
 		
 		//Assignment
-		public RuleCall getAssignmentParserRuleCall_6_1() { return cAssignmentParserRuleCall_6_1; }
+		public RuleCall getTypeAssignmentParserRuleCall_0_6() { return cTypeAssignmentParserRuleCall_0_6; }
 		
 		//Branch
-		public RuleCall getBranchParserRuleCall_7() { return cBranchParserRuleCall_7; }
+		public RuleCall getTypeBranchParserRuleCall_0_7() { return cTypeBranchParserRuleCall_0_7; }
 		
 		//Loop
-		public RuleCall getLoopParserRuleCall_8() { return cLoopParserRuleCall_8; }
+		public RuleCall getTypeLoopParserRuleCall_0_8() { return cTypeLoopParserRuleCall_0_8; }
 		
 		//GOTO
-		public RuleCall getGOTOParserRuleCall_9() { return cGOTOParserRuleCall_9; }
-		
-		//{Instruction} ComputedGOTO
-		public Group getGroup_10() { return cGroup_10; }
-		
-		//{Instruction}
-		public Action getInstructionAction_10_0() { return cInstructionAction_10_0; }
+		public RuleCall getTypeGOTOParserRuleCall_0_9() { return cTypeGOTOParserRuleCall_0_9; }
 		
 		//ComputedGOTO
-		public RuleCall getComputedGOTOParserRuleCall_10_1() { return cComputedGOTOParserRuleCall_10_1; }
+		public RuleCall getTypeComputedGOTOParserRuleCall_0_10() { return cTypeComputedGOTOParserRuleCall_0_10; }
 		
 		//StaticDispatch
-		public RuleCall getStaticDispatchParserRuleCall_11() { return cStaticDispatchParserRuleCall_11; }
-		
-		//{Instruction} DynamicDispatch
-		public Group getGroup_12() { return cGroup_12; }
-		
-		//{Instruction}
-		public Action getInstructionAction_12_0() { return cInstructionAction_12_0; }
+		public RuleCall getTypeStaticDispatchParserRuleCall_0_11() { return cTypeStaticDispatchParserRuleCall_0_11; }
 		
 		//DynamicDispatch
-		public RuleCall getDynamicDispatchParserRuleCall_12_1() { return cDynamicDispatchParserRuleCall_12_1; }
+		public RuleCall getTypeDynamicDispatchParserRuleCall_0_12() { return cTypeDynamicDispatchParserRuleCall_0_12; }
 	}
 	public class IncrementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.benjholla.elemental.Elemental.Increment");
-		private final Keyword cPlusSignKeyword = (Keyword)rule.eContents().get(1);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cIncrementAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cPlusSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		//Increment:
-		//	'+';
+		//	{Increment} '+';
 		@Override public ParserRule getRule() { return rule; }
 		
+		//{Increment} '+'
+		public Group getGroup() { return cGroup; }
+		
+		//{Increment}
+		public Action getIncrementAction_0() { return cIncrementAction_0; }
+		
 		//'+'
-		public Keyword getPlusSignKeyword() { return cPlusSignKeyword; }
+		public Keyword getPlusSignKeyword_1() { return cPlusSignKeyword_1; }
 	}
 	public class DecrementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.benjholla.elemental.Elemental.Decrement");
-		private final Keyword cHyphenMinusKeyword = (Keyword)rule.eContents().get(1);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cDecrementAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cHyphenMinusKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		//Decrement:
-		//	'-';
+		//	{Decrement} '-';
 		@Override public ParserRule getRule() { return rule; }
 		
+		//{Decrement} '-'
+		public Group getGroup() { return cGroup; }
+		
+		//{Decrement}
+		public Action getDecrementAction_0() { return cDecrementAction_0; }
+		
 		//'-'
-		public Keyword getHyphenMinusKeyword() { return cHyphenMinusKeyword; }
+		public Keyword getHyphenMinusKeyword_1() { return cHyphenMinusKeyword_1; }
 	}
 	public class MoveLeftElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.benjholla.elemental.Elemental.MoveLeft");
-		private final Keyword cLessThanSignKeyword = (Keyword)rule.eContents().get(1);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cMoveLeftAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cLessThanSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		//MoveLeft:
-		//	'<';
+		//	{MoveLeft} '<';
 		@Override public ParserRule getRule() { return rule; }
 		
+		//{MoveLeft} '<'
+		public Group getGroup() { return cGroup; }
+		
+		//{MoveLeft}
+		public Action getMoveLeftAction_0() { return cMoveLeftAction_0; }
+		
 		//'<'
-		public Keyword getLessThanSignKeyword() { return cLessThanSignKeyword; }
+		public Keyword getLessThanSignKeyword_1() { return cLessThanSignKeyword_1; }
 	}
 	public class MoveRightElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.benjholla.elemental.Elemental.MoveRight");
-		private final Keyword cGreaterThanSignKeyword = (Keyword)rule.eContents().get(1);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cMoveRightAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cGreaterThanSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		//MoveRight:
-		//	'>';
+		//	{MoveRight} '>';
 		@Override public ParserRule getRule() { return rule; }
 		
+		//{MoveRight} '>'
+		public Group getGroup() { return cGroup; }
+		
+		//{MoveRight}
+		public Action getMoveRightAction_0() { return cMoveRightAction_0; }
+		
 		//'>'
-		public Keyword getGreaterThanSignKeyword() { return cGreaterThanSignKeyword; }
+		public Keyword getGreaterThanSignKeyword_1() { return cGreaterThanSignKeyword_1; }
 	}
 	public class StoreElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.benjholla.elemental.Elemental.Store");
-		private final Keyword cCommaKeyword = (Keyword)rule.eContents().get(1);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cStoreAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cCommaKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		//Store:
-		//	',';
+		//	{Store} ',';
 		@Override public ParserRule getRule() { return rule; }
 		
+		//{Store} ','
+		public Group getGroup() { return cGroup; }
+		
+		//{Store}
+		public Action getStoreAction_0() { return cStoreAction_0; }
+		
 		//','
-		public Keyword getCommaKeyword() { return cCommaKeyword; }
+		public Keyword getCommaKeyword_1() { return cCommaKeyword_1; }
 	}
 	public class RecallElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.benjholla.elemental.Elemental.Recall");
-		private final Keyword cFullStopKeyword = (Keyword)rule.eContents().get(1);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cRecallAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cFullStopKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		//Recall:
-		//	'.';
+		//	{Recall} '.';
 		@Override public ParserRule getRule() { return rule; }
 		
+		//{Recall} '.'
+		public Group getGroup() { return cGroup; }
+		
+		//{Recall}
+		public Action getRecallAction_0() { return cRecallAction_0; }
+		
 		//'.'
-		public Keyword getFullStopKeyword() { return cFullStopKeyword; }
+		public Keyword getFullStopKeyword_1() { return cFullStopKeyword_1; }
 	}
 	public class AssignmentElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.benjholla.elemental.Elemental.Assignment");
-		private final Keyword cEqualsSignKeyword = (Keyword)rule.eContents().get(1);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cAssignmentAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		//Assignment:
-		//	'=';
+		//	{Assignment} '=';
 		@Override public ParserRule getRule() { return rule; }
 		
+		//{Assignment} '='
+		public Group getGroup() { return cGroup; }
+		
+		//{Assignment}
+		public Action getAssignmentAction_0() { return cAssignmentAction_0; }
+		
 		//'='
-		public Keyword getEqualsSignKeyword() { return cEqualsSignKeyword; }
+		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
 	}
 	public class BranchElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.benjholla.elemental.Elemental.Branch");
@@ -423,86 +411,110 @@ public class ElementalGrammarAccess extends AbstractGrammarElementFinder {
 	public class GOTOElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.benjholla.elemental.Elemental.GOTO");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cApostropheKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cLabelAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cLabelLabelCrossReference_1_0 = (CrossReference)cLabelAssignment_1.eContents().get(0);
-		private final RuleCall cLabelLabelIDTerminalRuleCall_1_0_1 = (RuleCall)cLabelLabelCrossReference_1_0.eContents().get(1);
-		private final Keyword cApostropheKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Action cGOTOAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cApostropheKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cLabelAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final CrossReference cLabelLabelCrossReference_2_0 = (CrossReference)cLabelAssignment_2.eContents().get(0);
+		private final RuleCall cLabelLabelIDTerminalRuleCall_2_0_1 = (RuleCall)cLabelLabelCrossReference_2_0.eContents().get(1);
+		private final Keyword cApostropheKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//GOTO:
-		//	'\'' label=[Label] '\'';
+		//	{GOTO} '\'' label=[Label] '\'';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'\'' label=[Label] '\''
+		//{GOTO} '\'' label=[Label] '\''
 		public Group getGroup() { return cGroup; }
 		
+		//{GOTO}
+		public Action getGOTOAction_0() { return cGOTOAction_0; }
+		
 		//'\''
-		public Keyword getApostropheKeyword_0() { return cApostropheKeyword_0; }
+		public Keyword getApostropheKeyword_1() { return cApostropheKeyword_1; }
 		
 		//label=[Label]
-		public Assignment getLabelAssignment_1() { return cLabelAssignment_1; }
+		public Assignment getLabelAssignment_2() { return cLabelAssignment_2; }
 		
 		//[Label]
-		public CrossReference getLabelLabelCrossReference_1_0() { return cLabelLabelCrossReference_1_0; }
+		public CrossReference getLabelLabelCrossReference_2_0() { return cLabelLabelCrossReference_2_0; }
 		
 		//ID
-		public RuleCall getLabelLabelIDTerminalRuleCall_1_0_1() { return cLabelLabelIDTerminalRuleCall_1_0_1; }
+		public RuleCall getLabelLabelIDTerminalRuleCall_2_0_1() { return cLabelLabelIDTerminalRuleCall_2_0_1; }
 		
 		//'\''
-		public Keyword getApostropheKeyword_2() { return cApostropheKeyword_2; }
+		public Keyword getApostropheKeyword_3() { return cApostropheKeyword_3; }
 	}
 	public class ComputedGOTOElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.benjholla.elemental.Elemental.ComputedGOTO");
-		private final Keyword cAmpersandKeyword = (Keyword)rule.eContents().get(1);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cComputedGOTOAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cAmpersandKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		//ComputedGOTO:
-		//	'&';
+		//	{ComputedGOTO} '&';
 		@Override public ParserRule getRule() { return rule; }
 		
+		//{ComputedGOTO} '&'
+		public Group getGroup() { return cGroup; }
+		
+		//{ComputedGOTO}
+		public Action getComputedGOTOAction_0() { return cComputedGOTOAction_0; }
+		
 		//'&'
-		public Keyword getAmpersandKeyword() { return cAmpersandKeyword; }
+		public Keyword getAmpersandKeyword_1() { return cAmpersandKeyword_1; }
 	}
 	public class StaticDispatchElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.benjholla.elemental.Elemental.StaticDispatch");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cLeftCurlyBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cTargetAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cTargetFunctionCrossReference_1_0 = (CrossReference)cTargetAssignment_1.eContents().get(0);
-		private final RuleCall cTargetFunctionIDTerminalRuleCall_1_0_1 = (RuleCall)cTargetFunctionCrossReference_1_0.eContents().get(1);
-		private final Keyword cRightCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Action cStaticDispatchAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cTargetAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final CrossReference cTargetFunctionCrossReference_2_0 = (CrossReference)cTargetAssignment_2.eContents().get(0);
+		private final RuleCall cTargetFunctionIDTerminalRuleCall_2_0_1 = (RuleCall)cTargetFunctionCrossReference_2_0.eContents().get(1);
+		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//StaticDispatch:
-		//	'{' target=[Function] '}';
+		//	{StaticDispatch} '{' target=[Function] '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'{' target=[Function] '}'
+		//{StaticDispatch} '{' target=[Function] '}'
 		public Group getGroup() { return cGroup; }
 		
+		//{StaticDispatch}
+		public Action getStaticDispatchAction_0() { return cStaticDispatchAction_0; }
+		
 		//'{'
-		public Keyword getLeftCurlyBracketKeyword_0() { return cLeftCurlyBracketKeyword_0; }
+		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
 		
 		//target=[Function]
-		public Assignment getTargetAssignment_1() { return cTargetAssignment_1; }
+		public Assignment getTargetAssignment_2() { return cTargetAssignment_2; }
 		
 		//[Function]
-		public CrossReference getTargetFunctionCrossReference_1_0() { return cTargetFunctionCrossReference_1_0; }
+		public CrossReference getTargetFunctionCrossReference_2_0() { return cTargetFunctionCrossReference_2_0; }
 		
 		//ID
-		public RuleCall getTargetFunctionIDTerminalRuleCall_1_0_1() { return cTargetFunctionIDTerminalRuleCall_1_0_1; }
+		public RuleCall getTargetFunctionIDTerminalRuleCall_2_0_1() { return cTargetFunctionIDTerminalRuleCall_2_0_1; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_2() { return cRightCurlyBracketKeyword_2; }
+		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
 	}
 	public class DynamicDispatchElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.benjholla.elemental.Elemental.DynamicDispatch");
-		private final Keyword cQuestionMarkKeyword = (Keyword)rule.eContents().get(1);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cDynamicDispatchAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cQuestionMarkKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		//DynamicDispatch:
-		//	'?';
+		//	{DynamicDispatch} '?';
 		@Override public ParserRule getRule() { return rule; }
 		
+		//{DynamicDispatch} '?'
+		public Group getGroup() { return cGroup; }
+		
+		//{DynamicDispatch}
+		public Action getDynamicDispatchAction_0() { return cDynamicDispatchAction_0; }
+		
 		//'?'
-		public Keyword getQuestionMarkKeyword() { return cQuestionMarkKeyword; }
+		public Keyword getQuestionMarkKeyword_1() { return cQuestionMarkKeyword_1; }
 	}
 	
 	
@@ -623,19 +635,19 @@ public class ElementalGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Instruction:
-	//	{Instruction} Increment
-	//	| {Instruction} Decrement
-	//	| {Instruction} MoveLeft
-	//	| {Instruction} MoveRight
-	//	| {Instruction} Store
-	//	| {Instruction} Recall
-	//	| {Instruction} Assignment
+	//	type=(Increment
+	//	| Decrement
+	//	| MoveLeft
+	//	| MoveRight
+	//	| Store
+	//	| Recall
+	//	| Assignment
 	//	| Branch
 	//	| Loop
 	//	| GOTO
-	//	| {Instruction} ComputedGOTO
+	//	| ComputedGOTO
 	//	| StaticDispatch
-	//	| {Instruction} DynamicDispatch;
+	//	| DynamicDispatch);
 	public InstructionElements getInstructionAccess() {
 		return pInstruction;
 	}
@@ -645,7 +657,7 @@ public class ElementalGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Increment:
-	//	'+';
+	//	{Increment} '+';
 	public IncrementElements getIncrementAccess() {
 		return pIncrement;
 	}
@@ -655,7 +667,7 @@ public class ElementalGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Decrement:
-	//	'-';
+	//	{Decrement} '-';
 	public DecrementElements getDecrementAccess() {
 		return pDecrement;
 	}
@@ -665,7 +677,7 @@ public class ElementalGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//MoveLeft:
-	//	'<';
+	//	{MoveLeft} '<';
 	public MoveLeftElements getMoveLeftAccess() {
 		return pMoveLeft;
 	}
@@ -675,7 +687,7 @@ public class ElementalGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//MoveRight:
-	//	'>';
+	//	{MoveRight} '>';
 	public MoveRightElements getMoveRightAccess() {
 		return pMoveRight;
 	}
@@ -685,7 +697,7 @@ public class ElementalGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Store:
-	//	',';
+	//	{Store} ',';
 	public StoreElements getStoreAccess() {
 		return pStore;
 	}
@@ -695,7 +707,7 @@ public class ElementalGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Recall:
-	//	'.';
+	//	{Recall} '.';
 	public RecallElements getRecallAccess() {
 		return pRecall;
 	}
@@ -705,7 +717,7 @@ public class ElementalGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Assignment:
-	//	'=';
+	//	{Assignment} '=';
 	public AssignmentElements getAssignmentAccess() {
 		return pAssignment;
 	}
@@ -735,7 +747,7 @@ public class ElementalGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//GOTO:
-	//	'\'' label=[Label] '\'';
+	//	{GOTO} '\'' label=[Label] '\'';
 	public GOTOElements getGOTOAccess() {
 		return pGOTO;
 	}
@@ -745,7 +757,7 @@ public class ElementalGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ComputedGOTO:
-	//	'&';
+	//	{ComputedGOTO} '&';
 	public ComputedGOTOElements getComputedGOTOAccess() {
 		return pComputedGOTO;
 	}
@@ -755,7 +767,7 @@ public class ElementalGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//StaticDispatch:
-	//	'{' target=[Function] '}';
+	//	{StaticDispatch} '{' target=[Function] '}';
 	public StaticDispatchElements getStaticDispatchAccess() {
 		return pStaticDispatch;
 	}
@@ -765,7 +777,7 @@ public class ElementalGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//DynamicDispatch:
-	//	'?';
+	//	{DynamicDispatch} '?';
 	public DynamicDispatchElements getDynamicDispatchAccess() {
 		return pDynamicDispatch;
 	}

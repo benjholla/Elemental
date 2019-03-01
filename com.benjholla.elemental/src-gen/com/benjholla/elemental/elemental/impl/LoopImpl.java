@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,7 +29,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class LoopImpl extends InstructionImpl implements Loop
+public class LoopImpl extends MinimalEObjectImpl.Container implements Loop
 {
   /**
    * The cached value of the '{@link #getBody() <em>Body</em>}' containment reference.

@@ -3,6 +3,7 @@
  */
 package com.benjholla.elemental.elemental;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,7 +21,7 @@ package com.benjholla.elemental.elemental;
  * @model
  * @generated
  */
-public interface StaticDispatch extends Instruction
+public interface StaticDispatch extends EObject
 {
   /**
    * Returns the value of the '<em><b>Target</b></em>' reference.

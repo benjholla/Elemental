@@ -3,16 +3,25 @@
  */
 package com.benjholla.elemental.elemental.impl;
 
+import com.benjholla.elemental.elemental.Assignment;
 import com.benjholla.elemental.elemental.Block;
 import com.benjholla.elemental.elemental.Branch;
+import com.benjholla.elemental.elemental.ComputedGOTO;
+import com.benjholla.elemental.elemental.Decrement;
+import com.benjholla.elemental.elemental.DynamicDispatch;
 import com.benjholla.elemental.elemental.ElementalFactory;
 import com.benjholla.elemental.elemental.ElementalPackage;
 import com.benjholla.elemental.elemental.Function;
+import com.benjholla.elemental.elemental.Increment;
 import com.benjholla.elemental.elemental.Instruction;
 import com.benjholla.elemental.elemental.Label;
 import com.benjholla.elemental.elemental.Loop;
 import com.benjholla.elemental.elemental.Model;
+import com.benjholla.elemental.elemental.MoveLeft;
+import com.benjholla.elemental.elemental.MoveRight;
+import com.benjholla.elemental.elemental.Recall;
 import com.benjholla.elemental.elemental.StaticDispatch;
+import com.benjholla.elemental.elemental.Store;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -69,6 +78,55 @@ public class ElementalPackageImpl extends EPackageImpl implements ElementalPacka
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass incrementEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass decrementEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass moveLeftEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass moveRightEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass storeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass recallEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass assignmentEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass branchEClass = null;
 
   /**
@@ -90,7 +148,21 @@ public class ElementalPackageImpl extends EPackageImpl implements ElementalPacka
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass computedGOTOEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass staticDispatchEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass dynamicDispatchEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -282,6 +354,94 @@ public class ElementalPackageImpl extends EPackageImpl implements ElementalPacka
    * @generated
    */
   @Override
+  public EReference getInstruction_Type()
+  {
+    return (EReference)instructionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getIncrement()
+  {
+    return incrementEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getDecrement()
+  {
+    return decrementEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getMoveLeft()
+  {
+    return moveLeftEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getMoveRight()
+  {
+    return moveRightEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getStore()
+  {
+    return storeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getRecall()
+  {
+    return recallEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getAssignment()
+  {
+    return assignmentEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getBranch()
   {
     return branchEClass;
@@ -348,6 +508,17 @@ public class ElementalPackageImpl extends EPackageImpl implements ElementalPacka
    * @generated
    */
   @Override
+  public EClass getComputedGOTO()
+  {
+    return computedGOTOEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getStaticDispatch()
   {
     return staticDispatchEClass;
@@ -362,6 +533,17 @@ public class ElementalPackageImpl extends EPackageImpl implements ElementalPacka
   public EReference getStaticDispatch_Target()
   {
     return (EReference)staticDispatchEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getDynamicDispatch()
+  {
+    return dynamicDispatchEClass;
   }
 
   /**
@@ -410,6 +592,21 @@ public class ElementalPackageImpl extends EPackageImpl implements ElementalPacka
     createEReference(functionEClass, FUNCTION__BODY);
 
     instructionEClass = createEClass(INSTRUCTION);
+    createEReference(instructionEClass, INSTRUCTION__TYPE);
+
+    incrementEClass = createEClass(INCREMENT);
+
+    decrementEClass = createEClass(DECREMENT);
+
+    moveLeftEClass = createEClass(MOVE_LEFT);
+
+    moveRightEClass = createEClass(MOVE_RIGHT);
+
+    storeEClass = createEClass(STORE);
+
+    recallEClass = createEClass(RECALL);
+
+    assignmentEClass = createEClass(ASSIGNMENT);
 
     branchEClass = createEClass(BRANCH);
     createEReference(branchEClass, BRANCH__BODY);
@@ -420,8 +617,12 @@ public class ElementalPackageImpl extends EPackageImpl implements ElementalPacka
     gotoEClass = createEClass(GOTO);
     createEReference(gotoEClass, GOTO__LABEL);
 
+    computedGOTOEClass = createEClass(COMPUTED_GOTO);
+
     staticDispatchEClass = createEClass(STATIC_DISPATCH);
     createEReference(staticDispatchEClass, STATIC_DISPATCH__TARGET);
+
+    dynamicDispatchEClass = createEClass(DYNAMIC_DISPATCH);
   }
 
   /**
@@ -453,10 +654,6 @@ public class ElementalPackageImpl extends EPackageImpl implements ElementalPacka
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    branchEClass.getESuperTypes().add(this.getInstruction());
-    loopEClass.getESuperTypes().add(this.getInstruction());
-    gotoEClass.getESuperTypes().add(this.getInstruction());
-    staticDispatchEClass.getESuperTypes().add(this.getInstruction());
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -474,6 +671,21 @@ public class ElementalPackageImpl extends EPackageImpl implements ElementalPacka
     initEReference(getFunction_Body(), this.getBlock(), null, "body", null, 0, 1, Function.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(instructionEClass, Instruction.class, "Instruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getInstruction_Type(), ecorePackage.getEObject(), null, "type", null, 0, 1, Instruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(incrementEClass, Increment.class, "Increment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(decrementEClass, Decrement.class, "Decrement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(moveLeftEClass, MoveLeft.class, "MoveLeft", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(moveRightEClass, MoveRight.class, "MoveRight", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(storeEClass, Store.class, "Store", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(recallEClass, Recall.class, "Recall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(assignmentEClass, Assignment.class, "Assignment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(branchEClass, Branch.class, "Branch", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getBranch_Body(), this.getBlock(), null, "body", null, 0, 1, Branch.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -484,8 +696,12 @@ public class ElementalPackageImpl extends EPackageImpl implements ElementalPacka
     initEClass(gotoEClass, com.benjholla.elemental.elemental.GOTO.class, "GOTO", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getGOTO_Label(), this.getLabel(), null, "label", null, 0, 1, com.benjholla.elemental.elemental.GOTO.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(computedGOTOEClass, ComputedGOTO.class, "ComputedGOTO", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
     initEClass(staticDispatchEClass, StaticDispatch.class, "StaticDispatch", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getStaticDispatch_Target(), this.getFunction(), null, "target", null, 0, 1, StaticDispatch.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(dynamicDispatchEClass, DynamicDispatch.class, "DynamicDispatch", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     // Create resource
     createResource(eNS_URI);

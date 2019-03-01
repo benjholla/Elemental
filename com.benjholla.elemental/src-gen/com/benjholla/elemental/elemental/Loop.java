@@ -3,6 +3,7 @@
  */
 package com.benjholla.elemental.elemental;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,7 +21,7 @@ package com.benjholla.elemental.elemental;
  * @model
  * @generated
  */
-public interface Loop extends Instruction
+public interface Loop extends EObject
 {
   /**
    * Returns the value of the '<em><b>Body</b></em>' containment reference.

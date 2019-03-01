@@ -69,6 +69,69 @@ public interface ElementalFactory extends EFactory
   Instruction createInstruction();
 
   /**
+   * Returns a new object of class '<em>Increment</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Increment</em>'.
+   * @generated
+   */
+  Increment createIncrement();
+
+  /**
+   * Returns a new object of class '<em>Decrement</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Decrement</em>'.
+   * @generated
+   */
+  Decrement createDecrement();
+
+  /**
+   * Returns a new object of class '<em>Move Left</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Move Left</em>'.
+   * @generated
+   */
+  MoveLeft createMoveLeft();
+
+  /**
+   * Returns a new object of class '<em>Move Right</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Move Right</em>'.
+   * @generated
+   */
+  MoveRight createMoveRight();
+
+  /**
+   * Returns a new object of class '<em>Store</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Store</em>'.
+   * @generated
+   */
+  Store createStore();
+
+  /**
+   * Returns a new object of class '<em>Recall</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Recall</em>'.
+   * @generated
+   */
+  Recall createRecall();
+
+  /**
+   * Returns a new object of class '<em>Assignment</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Assignment</em>'.
+   * @generated
+   */
+  Assignment createAssignment();
+
+  /**
    * Returns a new object of class '<em>Branch</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -96,6 +159,15 @@ public interface ElementalFactory extends EFactory
   GOTO createGOTO();
 
   /**
+   * Returns a new object of class '<em>Computed GOTO</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Computed GOTO</em>'.
+   * @generated
+   */
+  ComputedGOTO createComputedGOTO();
+
+  /**
    * Returns a new object of class '<em>Static Dispatch</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -103,6 +175,15 @@ public interface ElementalFactory extends EFactory
    * @generated
    */
   StaticDispatch createStaticDispatch();
+
+  /**
+   * Returns a new object of class '<em>Dynamic Dispatch</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Dynamic Dispatch</em>'.
+   * @generated
+   */
+  DynamicDispatch createDynamicDispatch();
 
   /**
    * Returns the package supported by this factory.

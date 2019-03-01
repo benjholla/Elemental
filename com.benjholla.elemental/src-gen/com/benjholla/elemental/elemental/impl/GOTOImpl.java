@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +28,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class GOTOImpl extends InstructionImpl implements GOTO
+public class GOTOImpl extends MinimalEObjectImpl.Container implements GOTO
 {
   /**
    * The cached value of the '{@link #getLabel() <em>Label</em>}' reference.

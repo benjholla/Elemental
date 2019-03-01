@@ -198,13 +198,155 @@ public interface ElementalPackage extends EPackage
   int INSTRUCTION = 4;
 
   /**
+   * The feature id for the '<em><b>Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INSTRUCTION__TYPE = 0;
+
+  /**
    * The number of structural features of the '<em>Instruction</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int INSTRUCTION_FEATURE_COUNT = 0;
+  int INSTRUCTION_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link com.benjholla.elemental.elemental.impl.IncrementImpl <em>Increment</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see com.benjholla.elemental.elemental.impl.IncrementImpl
+   * @see com.benjholla.elemental.elemental.impl.ElementalPackageImpl#getIncrement()
+   * @generated
+   */
+  int INCREMENT = 5;
+
+  /**
+   * The number of structural features of the '<em>Increment</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INCREMENT_FEATURE_COUNT = 0;
+
+  /**
+   * The meta object id for the '{@link com.benjholla.elemental.elemental.impl.DecrementImpl <em>Decrement</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see com.benjholla.elemental.elemental.impl.DecrementImpl
+   * @see com.benjholla.elemental.elemental.impl.ElementalPackageImpl#getDecrement()
+   * @generated
+   */
+  int DECREMENT = 6;
+
+  /**
+   * The number of structural features of the '<em>Decrement</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECREMENT_FEATURE_COUNT = 0;
+
+  /**
+   * The meta object id for the '{@link com.benjholla.elemental.elemental.impl.MoveLeftImpl <em>Move Left</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see com.benjholla.elemental.elemental.impl.MoveLeftImpl
+   * @see com.benjholla.elemental.elemental.impl.ElementalPackageImpl#getMoveLeft()
+   * @generated
+   */
+  int MOVE_LEFT = 7;
+
+  /**
+   * The number of structural features of the '<em>Move Left</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MOVE_LEFT_FEATURE_COUNT = 0;
+
+  /**
+   * The meta object id for the '{@link com.benjholla.elemental.elemental.impl.MoveRightImpl <em>Move Right</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see com.benjholla.elemental.elemental.impl.MoveRightImpl
+   * @see com.benjholla.elemental.elemental.impl.ElementalPackageImpl#getMoveRight()
+   * @generated
+   */
+  int MOVE_RIGHT = 8;
+
+  /**
+   * The number of structural features of the '<em>Move Right</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MOVE_RIGHT_FEATURE_COUNT = 0;
+
+  /**
+   * The meta object id for the '{@link com.benjholla.elemental.elemental.impl.StoreImpl <em>Store</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see com.benjholla.elemental.elemental.impl.StoreImpl
+   * @see com.benjholla.elemental.elemental.impl.ElementalPackageImpl#getStore()
+   * @generated
+   */
+  int STORE = 9;
+
+  /**
+   * The number of structural features of the '<em>Store</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STORE_FEATURE_COUNT = 0;
+
+  /**
+   * The meta object id for the '{@link com.benjholla.elemental.elemental.impl.RecallImpl <em>Recall</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see com.benjholla.elemental.elemental.impl.RecallImpl
+   * @see com.benjholla.elemental.elemental.impl.ElementalPackageImpl#getRecall()
+   * @generated
+   */
+  int RECALL = 10;
+
+  /**
+   * The number of structural features of the '<em>Recall</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RECALL_FEATURE_COUNT = 0;
+
+  /**
+   * The meta object id for the '{@link com.benjholla.elemental.elemental.impl.AssignmentImpl <em>Assignment</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see com.benjholla.elemental.elemental.impl.AssignmentImpl
+   * @see com.benjholla.elemental.elemental.impl.ElementalPackageImpl#getAssignment()
+   * @generated
+   */
+  int ASSIGNMENT = 11;
+
+  /**
+   * The number of structural features of the '<em>Assignment</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSIGNMENT_FEATURE_COUNT = 0;
 
   /**
    * The meta object id for the '{@link com.benjholla.elemental.elemental.impl.BranchImpl <em>Branch</em>}' class.
@@ -214,7 +356,7 @@ public interface ElementalPackage extends EPackage
    * @see com.benjholla.elemental.elemental.impl.ElementalPackageImpl#getBranch()
    * @generated
    */
-  int BRANCH = 5;
+  int BRANCH = 12;
 
   /**
    * The feature id for the '<em><b>Body</b></em>' containment reference.
@@ -223,7 +365,7 @@ public interface ElementalPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BRANCH__BODY = INSTRUCTION_FEATURE_COUNT + 0;
+  int BRANCH__BODY = 0;
 
   /**
    * The number of structural features of the '<em>Branch</em>' class.
@@ -232,7 +374,7 @@ public interface ElementalPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BRANCH_FEATURE_COUNT = INSTRUCTION_FEATURE_COUNT + 1;
+  int BRANCH_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link com.benjholla.elemental.elemental.impl.LoopImpl <em>Loop</em>}' class.
@@ -242,7 +384,7 @@ public interface ElementalPackage extends EPackage
    * @see com.benjholla.elemental.elemental.impl.ElementalPackageImpl#getLoop()
    * @generated
    */
-  int LOOP = 6;
+  int LOOP = 13;
 
   /**
    * The feature id for the '<em><b>Body</b></em>' containment reference.
@@ -251,7 +393,7 @@ public interface ElementalPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LOOP__BODY = INSTRUCTION_FEATURE_COUNT + 0;
+  int LOOP__BODY = 0;
 
   /**
    * The number of structural features of the '<em>Loop</em>' class.
@@ -260,7 +402,7 @@ public interface ElementalPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LOOP_FEATURE_COUNT = INSTRUCTION_FEATURE_COUNT + 1;
+  int LOOP_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link com.benjholla.elemental.elemental.impl.GOTOImpl <em>GOTO</em>}' class.
@@ -270,7 +412,7 @@ public interface ElementalPackage extends EPackage
    * @see com.benjholla.elemental.elemental.impl.ElementalPackageImpl#getGOTO()
    * @generated
    */
-  int GOTO = 7;
+  int GOTO = 14;
 
   /**
    * The feature id for the '<em><b>Label</b></em>' reference.
@@ -279,7 +421,7 @@ public interface ElementalPackage extends EPackage
    * @generated
    * @ordered
    */
-  int GOTO__LABEL = INSTRUCTION_FEATURE_COUNT + 0;
+  int GOTO__LABEL = 0;
 
   /**
    * The number of structural features of the '<em>GOTO</em>' class.
@@ -288,7 +430,26 @@ public interface ElementalPackage extends EPackage
    * @generated
    * @ordered
    */
-  int GOTO_FEATURE_COUNT = INSTRUCTION_FEATURE_COUNT + 1;
+  int GOTO_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link com.benjholla.elemental.elemental.impl.ComputedGOTOImpl <em>Computed GOTO</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see com.benjholla.elemental.elemental.impl.ComputedGOTOImpl
+   * @see com.benjholla.elemental.elemental.impl.ElementalPackageImpl#getComputedGOTO()
+   * @generated
+   */
+  int COMPUTED_GOTO = 15;
+
+  /**
+   * The number of structural features of the '<em>Computed GOTO</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMPUTED_GOTO_FEATURE_COUNT = 0;
 
   /**
    * The meta object id for the '{@link com.benjholla.elemental.elemental.impl.StaticDispatchImpl <em>Static Dispatch</em>}' class.
@@ -298,7 +459,7 @@ public interface ElementalPackage extends EPackage
    * @see com.benjholla.elemental.elemental.impl.ElementalPackageImpl#getStaticDispatch()
    * @generated
    */
-  int STATIC_DISPATCH = 8;
+  int STATIC_DISPATCH = 16;
 
   /**
    * The feature id for the '<em><b>Target</b></em>' reference.
@@ -307,7 +468,7 @@ public interface ElementalPackage extends EPackage
    * @generated
    * @ordered
    */
-  int STATIC_DISPATCH__TARGET = INSTRUCTION_FEATURE_COUNT + 0;
+  int STATIC_DISPATCH__TARGET = 0;
 
   /**
    * The number of structural features of the '<em>Static Dispatch</em>' class.
@@ -316,7 +477,26 @@ public interface ElementalPackage extends EPackage
    * @generated
    * @ordered
    */
-  int STATIC_DISPATCH_FEATURE_COUNT = INSTRUCTION_FEATURE_COUNT + 1;
+  int STATIC_DISPATCH_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link com.benjholla.elemental.elemental.impl.DynamicDispatchImpl <em>Dynamic Dispatch</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see com.benjholla.elemental.elemental.impl.DynamicDispatchImpl
+   * @see com.benjholla.elemental.elemental.impl.ElementalPackageImpl#getDynamicDispatch()
+   * @generated
+   */
+  int DYNAMIC_DISPATCH = 17;
+
+  /**
+   * The number of structural features of the '<em>Dynamic Dispatch</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DYNAMIC_DISPATCH_FEATURE_COUNT = 0;
 
 
   /**
@@ -436,6 +616,87 @@ public interface ElementalPackage extends EPackage
   EClass getInstruction();
 
   /**
+   * Returns the meta object for the containment reference '{@link com.benjholla.elemental.elemental.Instruction#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Type</em>'.
+   * @see com.benjholla.elemental.elemental.Instruction#getType()
+   * @see #getInstruction()
+   * @generated
+   */
+  EReference getInstruction_Type();
+
+  /**
+   * Returns the meta object for class '{@link com.benjholla.elemental.elemental.Increment <em>Increment</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Increment</em>'.
+   * @see com.benjholla.elemental.elemental.Increment
+   * @generated
+   */
+  EClass getIncrement();
+
+  /**
+   * Returns the meta object for class '{@link com.benjholla.elemental.elemental.Decrement <em>Decrement</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Decrement</em>'.
+   * @see com.benjholla.elemental.elemental.Decrement
+   * @generated
+   */
+  EClass getDecrement();
+
+  /**
+   * Returns the meta object for class '{@link com.benjholla.elemental.elemental.MoveLeft <em>Move Left</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Move Left</em>'.
+   * @see com.benjholla.elemental.elemental.MoveLeft
+   * @generated
+   */
+  EClass getMoveLeft();
+
+  /**
+   * Returns the meta object for class '{@link com.benjholla.elemental.elemental.MoveRight <em>Move Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Move Right</em>'.
+   * @see com.benjholla.elemental.elemental.MoveRight
+   * @generated
+   */
+  EClass getMoveRight();
+
+  /**
+   * Returns the meta object for class '{@link com.benjholla.elemental.elemental.Store <em>Store</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Store</em>'.
+   * @see com.benjholla.elemental.elemental.Store
+   * @generated
+   */
+  EClass getStore();
+
+  /**
+   * Returns the meta object for class '{@link com.benjholla.elemental.elemental.Recall <em>Recall</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Recall</em>'.
+   * @see com.benjholla.elemental.elemental.Recall
+   * @generated
+   */
+  EClass getRecall();
+
+  /**
+   * Returns the meta object for class '{@link com.benjholla.elemental.elemental.Assignment <em>Assignment</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Assignment</em>'.
+   * @see com.benjholla.elemental.elemental.Assignment
+   * @generated
+   */
+  EClass getAssignment();
+
+  /**
    * Returns the meta object for class '{@link com.benjholla.elemental.elemental.Branch <em>Branch</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -499,6 +760,16 @@ public interface ElementalPackage extends EPackage
   EReference getGOTO_Label();
 
   /**
+   * Returns the meta object for class '{@link com.benjholla.elemental.elemental.ComputedGOTO <em>Computed GOTO</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Computed GOTO</em>'.
+   * @see com.benjholla.elemental.elemental.ComputedGOTO
+   * @generated
+   */
+  EClass getComputedGOTO();
+
+  /**
    * Returns the meta object for class '{@link com.benjholla.elemental.elemental.StaticDispatch <em>Static Dispatch</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -518,6 +789,16 @@ public interface ElementalPackage extends EPackage
    * @generated
    */
   EReference getStaticDispatch_Target();
+
+  /**
+   * Returns the meta object for class '{@link com.benjholla.elemental.elemental.DynamicDispatch <em>Dynamic Dispatch</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Dynamic Dispatch</em>'.
+   * @see com.benjholla.elemental.elemental.DynamicDispatch
+   * @generated
+   */
+  EClass getDynamicDispatch();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -641,6 +922,84 @@ public interface ElementalPackage extends EPackage
     EClass INSTRUCTION = eINSTANCE.getInstruction();
 
     /**
+     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference INSTRUCTION__TYPE = eINSTANCE.getInstruction_Type();
+
+    /**
+     * The meta object literal for the '{@link com.benjholla.elemental.elemental.impl.IncrementImpl <em>Increment</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.benjholla.elemental.elemental.impl.IncrementImpl
+     * @see com.benjholla.elemental.elemental.impl.ElementalPackageImpl#getIncrement()
+     * @generated
+     */
+    EClass INCREMENT = eINSTANCE.getIncrement();
+
+    /**
+     * The meta object literal for the '{@link com.benjholla.elemental.elemental.impl.DecrementImpl <em>Decrement</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.benjholla.elemental.elemental.impl.DecrementImpl
+     * @see com.benjholla.elemental.elemental.impl.ElementalPackageImpl#getDecrement()
+     * @generated
+     */
+    EClass DECREMENT = eINSTANCE.getDecrement();
+
+    /**
+     * The meta object literal for the '{@link com.benjholla.elemental.elemental.impl.MoveLeftImpl <em>Move Left</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.benjholla.elemental.elemental.impl.MoveLeftImpl
+     * @see com.benjholla.elemental.elemental.impl.ElementalPackageImpl#getMoveLeft()
+     * @generated
+     */
+    EClass MOVE_LEFT = eINSTANCE.getMoveLeft();
+
+    /**
+     * The meta object literal for the '{@link com.benjholla.elemental.elemental.impl.MoveRightImpl <em>Move Right</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.benjholla.elemental.elemental.impl.MoveRightImpl
+     * @see com.benjholla.elemental.elemental.impl.ElementalPackageImpl#getMoveRight()
+     * @generated
+     */
+    EClass MOVE_RIGHT = eINSTANCE.getMoveRight();
+
+    /**
+     * The meta object literal for the '{@link com.benjholla.elemental.elemental.impl.StoreImpl <em>Store</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.benjholla.elemental.elemental.impl.StoreImpl
+     * @see com.benjholla.elemental.elemental.impl.ElementalPackageImpl#getStore()
+     * @generated
+     */
+    EClass STORE = eINSTANCE.getStore();
+
+    /**
+     * The meta object literal for the '{@link com.benjholla.elemental.elemental.impl.RecallImpl <em>Recall</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.benjholla.elemental.elemental.impl.RecallImpl
+     * @see com.benjholla.elemental.elemental.impl.ElementalPackageImpl#getRecall()
+     * @generated
+     */
+    EClass RECALL = eINSTANCE.getRecall();
+
+    /**
+     * The meta object literal for the '{@link com.benjholla.elemental.elemental.impl.AssignmentImpl <em>Assignment</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.benjholla.elemental.elemental.impl.AssignmentImpl
+     * @see com.benjholla.elemental.elemental.impl.ElementalPackageImpl#getAssignment()
+     * @generated
+     */
+    EClass ASSIGNMENT = eINSTANCE.getAssignment();
+
+    /**
      * The meta object literal for the '{@link com.benjholla.elemental.elemental.impl.BranchImpl <em>Branch</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -695,6 +1054,16 @@ public interface ElementalPackage extends EPackage
     EReference GOTO__LABEL = eINSTANCE.getGOTO_Label();
 
     /**
+     * The meta object literal for the '{@link com.benjholla.elemental.elemental.impl.ComputedGOTOImpl <em>Computed GOTO</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.benjholla.elemental.elemental.impl.ComputedGOTOImpl
+     * @see com.benjholla.elemental.elemental.impl.ElementalPackageImpl#getComputedGOTO()
+     * @generated
+     */
+    EClass COMPUTED_GOTO = eINSTANCE.getComputedGOTO();
+
+    /**
      * The meta object literal for the '{@link com.benjholla.elemental.elemental.impl.StaticDispatchImpl <em>Static Dispatch</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -711,6 +1080,16 @@ public interface ElementalPackage extends EPackage
      * @generated
      */
     EReference STATIC_DISPATCH__TARGET = eINSTANCE.getStaticDispatch_Target();
+
+    /**
+     * The meta object literal for the '{@link com.benjholla.elemental.elemental.impl.DynamicDispatchImpl <em>Dynamic Dispatch</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.benjholla.elemental.elemental.impl.DynamicDispatchImpl
+     * @see com.benjholla.elemental.elemental.impl.ElementalPackageImpl#getDynamicDispatch()
+     * @generated
+     */
+    EClass DYNAMIC_DISPATCH = eINSTANCE.getDynamicDispatch();
 
   }
 

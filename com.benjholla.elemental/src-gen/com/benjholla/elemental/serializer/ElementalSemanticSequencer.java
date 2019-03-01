@@ -3,16 +3,25 @@
  */
 package com.benjholla.elemental.serializer;
 
+import com.benjholla.elemental.elemental.Assignment;
 import com.benjholla.elemental.elemental.Block;
 import com.benjholla.elemental.elemental.Branch;
+import com.benjholla.elemental.elemental.ComputedGOTO;
+import com.benjholla.elemental.elemental.Decrement;
+import com.benjholla.elemental.elemental.DynamicDispatch;
 import com.benjholla.elemental.elemental.ElementalPackage;
 import com.benjholla.elemental.elemental.Function;
 import com.benjholla.elemental.elemental.GOTO;
+import com.benjholla.elemental.elemental.Increment;
 import com.benjholla.elemental.elemental.Instruction;
 import com.benjholla.elemental.elemental.Label;
 import com.benjholla.elemental.elemental.Loop;
 import com.benjholla.elemental.elemental.Model;
+import com.benjholla.elemental.elemental.MoveLeft;
+import com.benjholla.elemental.elemental.MoveRight;
+import com.benjholla.elemental.elemental.Recall;
 import com.benjholla.elemental.elemental.StaticDispatch;
+import com.benjholla.elemental.elemental.Store;
 import com.benjholla.elemental.services.ElementalGrammarAccess;
 import com.google.inject.Inject;
 import java.util.Set;
@@ -40,17 +49,32 @@ public class ElementalSemanticSequencer extends AbstractDelegatingSemanticSequen
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == ElementalPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
+			case ElementalPackage.ASSIGNMENT:
+				sequence_Assignment(context, (Assignment) semanticObject); 
+				return; 
 			case ElementalPackage.BLOCK:
 				sequence_Block(context, (Block) semanticObject); 
 				return; 
 			case ElementalPackage.BRANCH:
 				sequence_Branch(context, (Branch) semanticObject); 
 				return; 
+			case ElementalPackage.COMPUTED_GOTO:
+				sequence_ComputedGOTO(context, (ComputedGOTO) semanticObject); 
+				return; 
+			case ElementalPackage.DECREMENT:
+				sequence_Decrement(context, (Decrement) semanticObject); 
+				return; 
+			case ElementalPackage.DYNAMIC_DISPATCH:
+				sequence_DynamicDispatch(context, (DynamicDispatch) semanticObject); 
+				return; 
 			case ElementalPackage.FUNCTION:
 				sequence_Function(context, (Function) semanticObject); 
 				return; 
 			case ElementalPackage.GOTO:
 				sequence_GOTO(context, (GOTO) semanticObject); 
+				return; 
+			case ElementalPackage.INCREMENT:
+				sequence_Increment(context, (Increment) semanticObject); 
 				return; 
 			case ElementalPackage.INSTRUCTION:
 				sequence_Instruction(context, (Instruction) semanticObject); 
@@ -64,13 +88,37 @@ public class ElementalSemanticSequencer extends AbstractDelegatingSemanticSequen
 			case ElementalPackage.MODEL:
 				sequence_Model(context, (Model) semanticObject); 
 				return; 
+			case ElementalPackage.MOVE_LEFT:
+				sequence_MoveLeft(context, (MoveLeft) semanticObject); 
+				return; 
+			case ElementalPackage.MOVE_RIGHT:
+				sequence_MoveRight(context, (MoveRight) semanticObject); 
+				return; 
+			case ElementalPackage.RECALL:
+				sequence_Recall(context, (Recall) semanticObject); 
+				return; 
 			case ElementalPackage.STATIC_DISPATCH:
 				sequence_StaticDispatch(context, (StaticDispatch) semanticObject); 
+				return; 
+			case ElementalPackage.STORE:
+				sequence_Store(context, (Store) semanticObject); 
 				return; 
 			}
 		if (errorAcceptor != null)
 			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
 	}
+	
+	/**
+	 * Contexts:
+	 *     Assignment returns Assignment
+	 *
+	 * Constraint:
+	 *     {Assignment}
+	 */
+	protected void sequence_Assignment(ISerializationContext context, Assignment semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
 	
 	/**
 	 * Contexts:
@@ -86,7 +134,6 @@ public class ElementalSemanticSequencer extends AbstractDelegatingSemanticSequen
 	
 	/**
 	 * Contexts:
-	 *     Instruction returns Branch
 	 *     Branch returns Branch
 	 *
 	 * Constraint:
@@ -100,6 +147,42 @@ public class ElementalSemanticSequencer extends AbstractDelegatingSemanticSequen
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getBranchAccess().getBodyBlockParserRuleCall_2_0(), semanticObject.getBody());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ComputedGOTO returns ComputedGOTO
+	 *
+	 * Constraint:
+	 *     {ComputedGOTO}
+	 */
+	protected void sequence_ComputedGOTO(ISerializationContext context, ComputedGOTO semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Decrement returns Decrement
+	 *
+	 * Constraint:
+	 *     {Decrement}
+	 */
+	protected void sequence_Decrement(ISerializationContext context, Decrement semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     DynamicDispatch returns DynamicDispatch
+	 *
+	 * Constraint:
+	 *     {DynamicDispatch}
+	 */
+	protected void sequence_DynamicDispatch(ISerializationContext context, DynamicDispatch semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -126,7 +209,6 @@ public class ElementalSemanticSequencer extends AbstractDelegatingSemanticSequen
 	
 	/**
 	 * Contexts:
-	 *     Instruction returns GOTO
 	 *     GOTO returns GOTO
 	 *
 	 * Constraint:
@@ -138,8 +220,20 @@ public class ElementalSemanticSequencer extends AbstractDelegatingSemanticSequen
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ElementalPackage.Literals.GOTO__LABEL));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getGOTOAccess().getLabelLabelIDTerminalRuleCall_1_0_1(), semanticObject.eGet(ElementalPackage.Literals.GOTO__LABEL, false));
+		feeder.accept(grammarAccess.getGOTOAccess().getLabelLabelIDTerminalRuleCall_2_0_1(), semanticObject.eGet(ElementalPackage.Literals.GOTO__LABEL, false));
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Increment returns Increment
+	 *
+	 * Constraint:
+	 *     {Increment}
+	 */
+	protected void sequence_Increment(ISerializationContext context, Increment semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -148,7 +242,21 @@ public class ElementalSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Instruction returns Instruction
 	 *
 	 * Constraint:
-	 *     {Instruction}
+	 *     (
+	 *         type=Increment | 
+	 *         type=Decrement | 
+	 *         type=MoveLeft | 
+	 *         type=MoveRight | 
+	 *         type=Store | 
+	 *         type=Recall | 
+	 *         type=Assignment | 
+	 *         type=Branch | 
+	 *         type=Loop | 
+	 *         type=GOTO | 
+	 *         type=ComputedGOTO | 
+	 *         type=StaticDispatch | 
+	 *         type=DynamicDispatch
+	 *     )
 	 */
 	protected void sequence_Instruction(ISerializationContext context, Instruction semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -175,7 +283,6 @@ public class ElementalSemanticSequencer extends AbstractDelegatingSemanticSequen
 	
 	/**
 	 * Contexts:
-	 *     Instruction returns Loop
 	 *     Loop returns Loop
 	 *
 	 * Constraint:
@@ -206,7 +313,42 @@ public class ElementalSemanticSequencer extends AbstractDelegatingSemanticSequen
 	
 	/**
 	 * Contexts:
-	 *     Instruction returns StaticDispatch
+	 *     MoveLeft returns MoveLeft
+	 *
+	 * Constraint:
+	 *     {MoveLeft}
+	 */
+	protected void sequence_MoveLeft(ISerializationContext context, MoveLeft semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     MoveRight returns MoveRight
+	 *
+	 * Constraint:
+	 *     {MoveRight}
+	 */
+	protected void sequence_MoveRight(ISerializationContext context, MoveRight semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Recall returns Recall
+	 *
+	 * Constraint:
+	 *     {Recall}
+	 */
+	protected void sequence_Recall(ISerializationContext context, Recall semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     StaticDispatch returns StaticDispatch
 	 *
 	 * Constraint:
@@ -218,8 +360,20 @@ public class ElementalSemanticSequencer extends AbstractDelegatingSemanticSequen
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ElementalPackage.Literals.STATIC_DISPATCH__TARGET));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getStaticDispatchAccess().getTargetFunctionIDTerminalRuleCall_1_0_1(), semanticObject.eGet(ElementalPackage.Literals.STATIC_DISPATCH__TARGET, false));
+		feeder.accept(grammarAccess.getStaticDispatchAccess().getTargetFunctionIDTerminalRuleCall_2_0_1(), semanticObject.eGet(ElementalPackage.Literals.STATIC_DISPATCH__TARGET, false));
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Store returns Store
+	 *
+	 * Constraint:
+	 *     {Store}
+	 */
+	protected void sequence_Store(ISerializationContext context, Store semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
