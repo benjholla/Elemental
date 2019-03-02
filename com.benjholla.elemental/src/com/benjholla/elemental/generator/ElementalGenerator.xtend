@@ -3,12 +3,33 @@
  */
 package com.benjholla.elemental.generator
 
+import com.benjholla.elemental.elemental.Assignment
+import com.benjholla.elemental.elemental.Branch
+import com.benjholla.elemental.elemental.ComputedGOTO
+import com.benjholla.elemental.elemental.Decrement
+import com.benjholla.elemental.elemental.DynamicDispatch
+import com.benjholla.elemental.elemental.GOTO
+import com.benjholla.elemental.elemental.Increment
+import com.benjholla.elemental.elemental.Instruction
+import com.benjholla.elemental.elemental.Loop
 import com.benjholla.elemental.elemental.Model
+import com.benjholla.elemental.elemental.MoveLeft
+import com.benjholla.elemental.elemental.MoveRight
+import com.benjholla.elemental.elemental.Recall
+import com.benjholla.elemental.elemental.StaticDispatch
+import com.benjholla.elemental.elemental.Store
+import java.io.File
+import java.net.URI
+import org.eclipse.core.filesystem.EFS
+import org.eclipse.core.resources.IFile
+import org.eclipse.core.resources.ResourcesPlugin
+import org.eclipse.core.runtime.CoreException
+import org.eclipse.core.runtime.NullProgressMonitor
+import org.eclipse.core.runtime.Path
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
-import com.benjholla.elemental.elemental.Instruction
 
 /**
  * Generates code from your model files on save.
@@ -17,29 +38,46 @@ import com.benjholla.elemental.elemental.Instruction
  */
 class ElementalGenerator extends AbstractGenerator {
 
+	val EXTENSION = ".e";
+
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		for (Model model : resource.allContents.toIterable.filter(Model)) {
-			val name = "Test";
-			val pkg = "com.test";
-			fsa.generateFile(name + ".java", compile(pkg, name, model))
+			if (model.eResource.URI.isPlatform) {
+			  val relativePath = model.eResource.URI.toPlatformString(true);
+			  val platformRoot = ResourcesPlugin.getWorkspace().getRoot();
+			  val iFile = platformRoot.getFile(new Path(relativePath));
+			  val projectRoot = iFile.getProject().getFolder("/src").getLocation().toFile();
+			  val modelFile = getFile(iFile);
+			  val name = modelFile.getName().substring(0,modelFile.getName().length()-EXTENSION.length());
+			  val namespaceDirectoryPath = modelFile.getParentFile().getAbsolutePath();
+			  var namespace = namespaceDirectoryPath.substring(projectRoot.getAbsolutePath().length()).replace(File.separator, ".");
+			  if(namespace.startsWith(".")){
+			  	namespace = namespace.substring(1);
+			  }
+			  fsa.generateFile(name + ".java", compile(namespace, name, model));
+			} else {
+			  throw new RuntimeException("Unsupported platform!")
+			}
 		}
 	}
 	
-	def String compile(String pkg, String name, Model model) {
-		return '''
-		package «pkg»;
-		
+	def String compile(String namespace, String name, Model model) {
+		var pkg = "";
+		if(!namespace.isEmpty()){
+			pkg = "package " + namespace + ";\n\n";
+		}
+		return  pkg + '''
 		public class «name» {
 			public static void main(String[] args){
 				«FOR instruction : model.implicitFunction.instructions»
-				«compile(instruction)»();
+				«compile(instruction, 0)»
 		        «ENDFOR»
 			}
 		
 			«FOR function : model.explicitFunctions»
 			private static void function_«function.name»(){
 				«FOR instruction : function.body.instructions»
-				«compile(instruction)»();
+				«compile(instruction, 0)»
 				«ENDFOR»
 			}
 	        «ENDFOR»
@@ -47,8 +85,88 @@ class ElementalGenerator extends AbstractGenerator {
 		''';
 	}
 	
-	def String compile(Instruction instruction){
-		// instruction.type.class.getSimpleName()
-		return "TODO";
+	def String compile(Instruction instruction, int indentation){
+		if(instruction.type instanceof Increment){
+			return getIndentation(indentation) + "increment();\n";
+		} else if(instruction.type instanceof Decrement){
+			return getIndentation(indentation) + "decrement();\n";
+		} else if(instruction.type instanceof MoveLeft){
+			return getIndentation(indentation) + "moveLeft();\n";
+		} else if(instruction.type instanceof MoveRight){
+			return getIndentation(indentation) + "moveRight();\n";
+		} else if(instruction.type instanceof Store){
+			return getIndentation(indentation) + "store();\n";
+		} else if(instruction.type instanceof Recall){
+			return getIndentation(indentation) + "recall();\n";
+		} else if(instruction.type instanceof Assignment){
+			return getIndentation(indentation) + "assignment();\n";
+		} else if(instruction.type instanceof Branch){
+			val branchInstruction = instruction.type as Branch;
+			var branch = getIndentation(indentation) + "if(branchCondition()){\n";
+			for(Instruction branchChild : branchInstruction.body.instructions){
+				branch += compile(branchChild, indentation+1);
+			}
+			branch += getIndentation(indentation) + "}\n";
+			return branch;
+		} else if(instruction.type instanceof Loop){
+			val loopInstruction = instruction.type as Loop;
+			var loop = getIndentation(indentation) + "while(loopCondition()){\n";
+			for(Instruction loopChild : loopInstruction.body.instructions){
+				loop += compile(loopChild, indentation+1);
+			}
+			loop += getIndentation(indentation) + "}\n";
+			return loop;
+		} else if(instruction.type instanceof GOTO){
+			val goto = instruction.type as GOTO;
+			return getIndentation(indentation) + "GOTO(" + goto.label.name + ");\n";
+		} else if(instruction.type instanceof ComputedGOTO){
+			return getIndentation(indentation) + "computedGOTO();\n";
+		} else if(instruction.type instanceof StaticDispatch){
+			val staticDispatch = instruction.type as StaticDispatch;
+			return getIndentation(indentation) + "function_" + staticDispatch.target.name + "();\n";
+		} else if(instruction.type instanceof DynamicDispatch){
+			return getIndentation(indentation) + "dynamicDispatch();\n";
+		} else {
+			return getIndentation(indentation) + "throw new RuntimeException(\"Instruction Not Implemented!\");\n";
+		}
+	}
+	
+	final static String INDENTATION_WHITESPACE = "   ";
+	
+	def String getIndentation(int level){
+		var whitespace = "";
+		for(var i=0; i<level; i++){
+			whitespace += INDENTATION_WHITESPACE;
+		}
+		return whitespace;
+	}
+	
+	/**
+	 * Converts an IFile to a Java File
+	 * 
+	 * @param file
+	 * @return
+	 * @throws CoreException 
+	 */
+	def private static File getFile(IFile iFile) throws CoreException {
+	  var uri = null as URI; 
+	
+	  // get the file uri, accound for symbolic links
+	  if(!iFile.isLinked()){
+	    uri = iFile.getLocationURI();
+	  } else {
+	    uri = iFile.getRawLocationURI();
+	  }
+	
+	  // get the native file using Eclipse File System
+	  var file = null as File;
+	  if(uri !== null){
+	    file = EFS.getStore(uri).toLocalFile(0, new NullProgressMonitor());
+	  } else {
+	    // Eclipse is weird...this last resort should work
+	    file = new File(iFile.getFullPath().toOSString());
+	  }
+	  
+	  return file;
 	}
 }
