@@ -67,7 +67,9 @@ class ElementalGenerator extends AbstractGenerator {
 			pkg = "package " + namespace + ";\n\n";
 		}
 		return  pkg + '''
-		import elemental.Runtime;
+		import com.benjholla.elemental.runtime.Program;
+		
+		private static Program program = new Program();
 		
 		public class «name» {
 			public static void main(String[] args){
@@ -89,22 +91,22 @@ class ElementalGenerator extends AbstractGenerator {
 	
 	def String compile(Instruction instruction, int indentation){
 		if(instruction.type instanceof Increment){
-			return getIndentation(indentation) + "increment();\n";
+			return getIndentation(indentation) + "program.increment();\n";
 		} else if(instruction.type instanceof Decrement){
-			return getIndentation(indentation) + "decrement();\n";
+			return getIndentation(indentation) + "program.decrement();\n";
 		} else if(instruction.type instanceof MoveLeft){
-			return getIndentation(indentation) + "moveLeft();\n";
+			return getIndentation(indentation) + "program.moveLeft();\n";
 		} else if(instruction.type instanceof MoveRight){
-			return getIndentation(indentation) + "moveRight();\n";
+			return getIndentation(indentation) + "program.moveRight();\n";
 		} else if(instruction.type instanceof Store){
-			return getIndentation(indentation) + "store();\n";
+			return getIndentation(indentation) + "program.store();\n";
 		} else if(instruction.type instanceof Recall){
-			return getIndentation(indentation) + "recall();\n";
+			return getIndentation(indentation) + "program.recall();\n";
 		} else if(instruction.type instanceof Assignment){
-			return getIndentation(indentation) + "assignment();\n";
+			return getIndentation(indentation) + "program.assignment();\n";
 		} else if(instruction.type instanceof Branch){
 			val branchInstruction = instruction.type as Branch;
-			var branch = getIndentation(indentation) + "if(branchCondition()){\n";
+			var branch = getIndentation(indentation) + "if(program.branchCondition()){\n";
 			for(Instruction branchChild : branchInstruction.body.instructions){
 				branch += compile(branchChild, indentation+1);
 			}
@@ -112,7 +114,7 @@ class ElementalGenerator extends AbstractGenerator {
 			return branch;
 		} else if(instruction.type instanceof Loop){
 			val loopInstruction = instruction.type as Loop;
-			var loop = getIndentation(indentation) + "while(loopCondition()){\n";
+			var loop = getIndentation(indentation) + "while(program.loopCondition()){\n";
 			for(Instruction loopChild : loopInstruction.body.instructions){
 				loop += compile(loopChild, indentation+1);
 			}
@@ -120,9 +122,9 @@ class ElementalGenerator extends AbstractGenerator {
 			return loop;
 		} else if(instruction.type instanceof GOTO){
 			val goto = instruction.type as GOTO;
-			return getIndentation(indentation) + "GOTO(" + goto.label.name + ");\n";
+			return getIndentation(indentation) + "program.GOTO(" + goto.label.name + ");\n";
 		} else if(instruction.type instanceof ComputedGOTO){
-			return getIndentation(indentation) + "computedGOTO();\n";
+			return getIndentation(indentation) + "program.computedGOTO();\n";
 		} else if(instruction.type instanceof StaticDispatch){
 			val staticDispatch = instruction.type as StaticDispatch;
 			return getIndentation(indentation) + "function_" + staticDispatch.target.name + "();\n";
@@ -153,7 +155,7 @@ class ElementalGenerator extends AbstractGenerator {
 	def private static File getFile(IFile iFile) throws CoreException {
 	  var uri = null as URI; 
 	
-	  // get the file uri, accound for symbolic links
+	  // get the file uri, account for symbolic links
 	  if(!iFile.isLinked()){
 	    uri = iFile.getLocationURI();
 	  } else {
