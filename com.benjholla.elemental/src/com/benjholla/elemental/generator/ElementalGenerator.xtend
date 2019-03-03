@@ -67,6 +67,8 @@ class ElementalGenerator extends AbstractGenerator {
 			pkg = "package " + namespace + ";\n\n";
 		}
 		return  pkg + '''
+		import elemental.Runtime;
+		
 		public class «name» {
 			public static void main(String[] args){
 				«FOR instruction : model.implicitFunction.instructions»
