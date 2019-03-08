@@ -28,6 +28,7 @@ Instruction:
 		| Assignment
 		| Branch
 		| Loop
+		| Label
 		| GOTO
 		| ComputedGOTO
 		| StaticDispatch

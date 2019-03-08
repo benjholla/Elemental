@@ -1,13 +1,16 @@
 package com.benjholla.elemental.runtime;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public abstract class Instruction {
 
+	protected Program program;
 	protected Function function;
 	
 	public Instruction(Function function) {
 		this.function = function;
+		this.program = function.getProgram();
 	}
 	
 	public abstract void execute();
@@ -19,7 +22,6 @@ public abstract class Instruction {
 
 		@Override
 		public void execute() {
-			Program program = function.getProgram();
 			ArrayList<Byte> memory = program.getMemory();
 			int mp = program.getMemoryPointer();
 			byte incrementValue = memory.remove(mp);
@@ -34,7 +36,6 @@ public abstract class Instruction {
 
 		@Override
 		public void execute() {
-			Program program = function.getProgram();
 			ArrayList<Byte> memory = program.getMemory();
 			int mp = program.getMemoryPointer();
 			byte decrementValue = memory.remove(mp);
@@ -49,7 +50,11 @@ public abstract class Instruction {
 
 		@Override
 		public void execute() {
-			// TODO: implement
+			program.setMemoryPointer(program.getMemoryPointer() + 1);
+			if(program.getMemoryPointer() == program.getMemory().size()){
+				// we have reached the end of the tape, grow by one cell
+				program.getMemory().add((byte)0x00);
+			}
 		}
 	}
 	
@@ -60,7 +65,8 @@ public abstract class Instruction {
 
 		@Override
 		public void execute() {
-			// TODO: implement
+			int currentMemoryPointer = program.getMemoryPointer();
+			program.setMemoryPointer((currentMemoryPointer>0) ? currentMemoryPointer-1 : 0);
 		}
 	}
 	
@@ -71,7 +77,16 @@ public abstract class Instruction {
 
 		@Override
 		public void execute() {
-			// TODO: implement
+			program.getMemory().remove(program.getMemoryPointer());
+			byte[] bytes = new byte[1];
+			if(program.getStdin() != null) {
+				try {
+					program.getStdin().read(bytes);
+				} catch (IOException e) {
+					throw new RuntimeException(e);
+				}
+			}
+			program.getMemory().add(program.getMemoryPointer(), bytes[0]);
 		}
 	}
 	
@@ -82,7 +97,11 @@ public abstract class Instruction {
 
 		@Override
 		public void execute() {
-			// TODO: implement
+			try {
+				program.getStdout().write(new byte[] {program.getMemory().get(program.getMemoryPointer())});
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
 		}
 	}
 	
@@ -104,7 +123,82 @@ public abstract class Instruction {
 
 		@Override
 		public void execute() {
+			if (program.getMemory().get(program.getMemoryPointer()) != 0) {
+				
+			} else {
+				// TODO: branch successor
+			}
+		}
+	}
+	
+	public static class Loop extends Instruction {
+		public Loop(Function function, Instruction... instructions) {
+			super(function);
+		}
+
+		@Override
+		public void execute() {
+			while (program.getMemory().get(program.getMemoryPointer()) != 0) {
+				
+			}
+			// TODO: loop successor
+		}
+	}
+	
+	public static class Label extends Instruction {
+		public Label(Function function, byte label) {
+			super(function);
+		}
+
+		@Override
+		public void execute() {
+			function.setInstructionPointer(function.getInstructionPointer()+1);
+		}
+	}
+	
+	public static class GOTO extends Instruction {
+		public GOTO(Function function, byte label) {
+			super(function);
+		}
+
+		@Override
+		public void execute() {
 			// TODO: implement
+		}
+	}
+	
+	public static class ComputedGOTO extends Instruction {
+		public ComputedGOTO(Function function) {
+			super(function);
+		}
+
+		@Override
+		public void execute() {
+			// TODO: implement
+		}
+	}
+	
+	public static class StaticDispatch extends Instruction {
+		private byte target;
+		public StaticDispatch(Function function, byte target) {
+			super(function);
+			this.target = target;
+		}
+
+		@Override
+		public void execute() {
+			program.staticDispatch(target);
+		}
+	}
+	
+	public static class DynamicDispatch extends Instruction {
+		public DynamicDispatch(Function function) {
+			super(function);
+		}
+
+		@Override
+		public void execute() {
+			program.dynamicDispatch();
 		}
 	}
 	

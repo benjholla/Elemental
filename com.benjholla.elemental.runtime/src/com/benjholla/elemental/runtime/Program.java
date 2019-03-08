@@ -1,5 +1,7 @@
 package com.benjholla.elemental.runtime;
 
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +26,12 @@ public class Program {
 	private Map<Byte,Function> functionTable;
 	private int mp;
 	
-	public Program(Function... functions) {
+	private InputStream stdin;
+	private OutputStream stdout;
+	
+	public Program(InputStream stdin, OutputStream stdout, Function... functions) {
+		this.stdin = stdin;
+		this.stdout = stdout;
 		this.functionTable = new HashMap<Byte,Function>();
 		if(functions != null) {
 			for(Function function : functions) {
@@ -46,9 +53,17 @@ public class Program {
 		memory.add((byte)0x00);
 		
 		// initialize the memory pointer (index into memory)
-		int mp = 0;
+		mp = 0;
 	}
 	
+	public InputStream getStdin() {
+		return stdin;
+	}
+
+	public OutputStream getStdout() {
+		return stdout;
+	}
+
 	public ArrayList<Byte> getMemory(){
 		return memory;
 	}

@@ -252,6 +252,7 @@ public class ElementalSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *         type=Assignment | 
 	 *         type=Branch | 
 	 *         type=Loop | 
+	 *         type=Label | 
 	 *         type=GOTO | 
 	 *         type=ComputedGOTO | 
 	 *         type=StaticDispatch | 

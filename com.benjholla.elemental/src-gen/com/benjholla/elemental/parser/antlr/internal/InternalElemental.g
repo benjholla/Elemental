@@ -162,6 +162,51 @@ ruleBlock returns [EObject current=null]
 	)
 ;
 
+// Entry rule entryRuleLabel
+entryRuleLabel returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getLabelRule()); }
+	iv_ruleLabel=ruleLabel
+	{ $current=$iv_ruleLabel.current; }
+	EOF;
+
+// Rule Label
+ruleLabel returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='"'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getLabelAccess().getQuotationMarkKeyword_0());
+		}
+		(
+			(
+				lv_name_1_0=RULE_ID
+				{
+					newLeafNode(lv_name_1_0, grammarAccess.getLabelAccess().getNameIDTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getLabelRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_1_0,
+						"com.benjholla.elemental.Elemental.ID");
+				}
+			)
+		)
+		otherlv_2='"'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getLabelAccess().getQuotationMarkKeyword_2());
+		}
+	)
+;
+
 // Entry rule entryRuleFunction
 entryRuleFunction returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getFunctionRule()); }
@@ -385,9 +430,9 @@ ruleInstruction returns [EObject current=null]
 				}
 				    |
 				{
-					newCompositeNode(grammarAccess.getInstructionAccess().getTypeGOTOParserRuleCall_0_9());
+					newCompositeNode(grammarAccess.getInstructionAccess().getTypeLabelParserRuleCall_0_9());
 				}
-				lv_type_0_10=ruleGOTO
+				lv_type_0_10=ruleLabel
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getInstructionRule());
@@ -396,14 +441,14 @@ ruleInstruction returns [EObject current=null]
 						$current,
 						"type",
 						lv_type_0_10,
-						"com.benjholla.elemental.Elemental.GOTO");
+						"com.benjholla.elemental.Elemental.Label");
 					afterParserOrEnumRuleCall();
 				}
 				    |
 				{
-					newCompositeNode(grammarAccess.getInstructionAccess().getTypeComputedGOTOParserRuleCall_0_10());
+					newCompositeNode(grammarAccess.getInstructionAccess().getTypeGOTOParserRuleCall_0_10());
 				}
-				lv_type_0_11=ruleComputedGOTO
+				lv_type_0_11=ruleGOTO
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getInstructionRule());
@@ -412,14 +457,14 @@ ruleInstruction returns [EObject current=null]
 						$current,
 						"type",
 						lv_type_0_11,
-						"com.benjholla.elemental.Elemental.ComputedGOTO");
+						"com.benjholla.elemental.Elemental.GOTO");
 					afterParserOrEnumRuleCall();
 				}
 				    |
 				{
-					newCompositeNode(grammarAccess.getInstructionAccess().getTypeStaticDispatchParserRuleCall_0_11());
+					newCompositeNode(grammarAccess.getInstructionAccess().getTypeComputedGOTOParserRuleCall_0_11());
 				}
-				lv_type_0_12=ruleStaticDispatch
+				lv_type_0_12=ruleComputedGOTO
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getInstructionRule());
@@ -428,14 +473,14 @@ ruleInstruction returns [EObject current=null]
 						$current,
 						"type",
 						lv_type_0_12,
-						"com.benjholla.elemental.Elemental.StaticDispatch");
+						"com.benjholla.elemental.Elemental.ComputedGOTO");
 					afterParserOrEnumRuleCall();
 				}
 				    |
 				{
-					newCompositeNode(grammarAccess.getInstructionAccess().getTypeDynamicDispatchParserRuleCall_0_12());
+					newCompositeNode(grammarAccess.getInstructionAccess().getTypeStaticDispatchParserRuleCall_0_12());
 				}
-				lv_type_0_13=ruleDynamicDispatch
+				lv_type_0_13=ruleStaticDispatch
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getInstructionRule());
@@ -444,6 +489,22 @@ ruleInstruction returns [EObject current=null]
 						$current,
 						"type",
 						lv_type_0_13,
+						"com.benjholla.elemental.Elemental.StaticDispatch");
+					afterParserOrEnumRuleCall();
+				}
+				    |
+				{
+					newCompositeNode(grammarAccess.getInstructionAccess().getTypeDynamicDispatchParserRuleCall_0_13());
+				}
+				lv_type_0_14=ruleDynamicDispatch
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getInstructionRule());
+					}
+					set(
+						$current,
+						"type",
+						lv_type_0_14,
 						"com.benjholla.elemental.Elemental.DynamicDispatch");
 					afterParserOrEnumRuleCall();
 				}

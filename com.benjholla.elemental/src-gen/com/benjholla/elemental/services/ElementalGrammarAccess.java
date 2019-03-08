@@ -145,10 +145,11 @@ public class ElementalGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTypeAssignmentParserRuleCall_0_6 = (RuleCall)cTypeAlternatives_0.eContents().get(6);
 		private final RuleCall cTypeBranchParserRuleCall_0_7 = (RuleCall)cTypeAlternatives_0.eContents().get(7);
 		private final RuleCall cTypeLoopParserRuleCall_0_8 = (RuleCall)cTypeAlternatives_0.eContents().get(8);
-		private final RuleCall cTypeGOTOParserRuleCall_0_9 = (RuleCall)cTypeAlternatives_0.eContents().get(9);
-		private final RuleCall cTypeComputedGOTOParserRuleCall_0_10 = (RuleCall)cTypeAlternatives_0.eContents().get(10);
-		private final RuleCall cTypeStaticDispatchParserRuleCall_0_11 = (RuleCall)cTypeAlternatives_0.eContents().get(11);
-		private final RuleCall cTypeDynamicDispatchParserRuleCall_0_12 = (RuleCall)cTypeAlternatives_0.eContents().get(12);
+		private final RuleCall cTypeLabelParserRuleCall_0_9 = (RuleCall)cTypeAlternatives_0.eContents().get(9);
+		private final RuleCall cTypeGOTOParserRuleCall_0_10 = (RuleCall)cTypeAlternatives_0.eContents().get(10);
+		private final RuleCall cTypeComputedGOTOParserRuleCall_0_11 = (RuleCall)cTypeAlternatives_0.eContents().get(11);
+		private final RuleCall cTypeStaticDispatchParserRuleCall_0_12 = (RuleCall)cTypeAlternatives_0.eContents().get(12);
+		private final RuleCall cTypeDynamicDispatchParserRuleCall_0_13 = (RuleCall)cTypeAlternatives_0.eContents().get(13);
 		
 		//Instruction:
 		//	type=(Increment
@@ -160,18 +161,19 @@ public class ElementalGrammarAccess extends AbstractGrammarElementFinder {
 		//	| Assignment
 		//	| Branch
 		//	| Loop
+		//	| Label
 		//	| GOTO
 		//	| ComputedGOTO
 		//	| StaticDispatch
 		//	| DynamicDispatch);
 		@Override public ParserRule getRule() { return rule; }
 		
-		//type=(Increment | Decrement | MoveLeft | MoveRight | Store | Recall | Assignment | Branch | Loop | GOTO | ComputedGOTO |
-		//StaticDispatch | DynamicDispatch)
+		//type=(Increment | Decrement | MoveLeft | MoveRight | Store | Recall | Assignment | Branch | Loop | Label | GOTO |
+		//ComputedGOTO | StaticDispatch | DynamicDispatch)
 		public Assignment getTypeAssignment() { return cTypeAssignment; }
 		
-		//(Increment | Decrement | MoveLeft | MoveRight | Store | Recall | Assignment | Branch | Loop | GOTO | ComputedGOTO |
-		//StaticDispatch | DynamicDispatch)
+		//(Increment | Decrement | MoveLeft | MoveRight | Store | Recall | Assignment | Branch | Loop | Label | GOTO |
+		//ComputedGOTO | StaticDispatch | DynamicDispatch)
 		public Alternatives getTypeAlternatives_0() { return cTypeAlternatives_0; }
 		
 		//Increment
@@ -201,17 +203,20 @@ public class ElementalGrammarAccess extends AbstractGrammarElementFinder {
 		//Loop
 		public RuleCall getTypeLoopParserRuleCall_0_8() { return cTypeLoopParserRuleCall_0_8; }
 		
+		//Label
+		public RuleCall getTypeLabelParserRuleCall_0_9() { return cTypeLabelParserRuleCall_0_9; }
+		
 		//GOTO
-		public RuleCall getTypeGOTOParserRuleCall_0_9() { return cTypeGOTOParserRuleCall_0_9; }
+		public RuleCall getTypeGOTOParserRuleCall_0_10() { return cTypeGOTOParserRuleCall_0_10; }
 		
 		//ComputedGOTO
-		public RuleCall getTypeComputedGOTOParserRuleCall_0_10() { return cTypeComputedGOTOParserRuleCall_0_10; }
+		public RuleCall getTypeComputedGOTOParserRuleCall_0_11() { return cTypeComputedGOTOParserRuleCall_0_11; }
 		
 		//StaticDispatch
-		public RuleCall getTypeStaticDispatchParserRuleCall_0_11() { return cTypeStaticDispatchParserRuleCall_0_11; }
+		public RuleCall getTypeStaticDispatchParserRuleCall_0_12() { return cTypeStaticDispatchParserRuleCall_0_12; }
 		
 		//DynamicDispatch
-		public RuleCall getTypeDynamicDispatchParserRuleCall_0_12() { return cTypeDynamicDispatchParserRuleCall_0_12; }
+		public RuleCall getTypeDynamicDispatchParserRuleCall_0_13() { return cTypeDynamicDispatchParserRuleCall_0_13; }
 	}
 	public class IncrementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.benjholla.elemental.Elemental.Increment");
@@ -644,6 +649,7 @@ public class ElementalGrammarAccess extends AbstractGrammarElementFinder {
 	//	| Assignment
 	//	| Branch
 	//	| Loop
+	//	| Label
 	//	| GOTO
 	//	| ComputedGOTO
 	//	| StaticDispatch
