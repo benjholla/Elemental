@@ -22,7 +22,6 @@ public class Program {
 
 	private static final byte MAIN_FUNCTION = (byte) 0x00;
 	private Map<Byte,Function> functionTable;
-	
 	private Stack<Function> callStack = new Stack<Function>();
 	
 	private ArrayList<Byte> memory;
@@ -76,6 +75,10 @@ public class Program {
 	
 	public void setMemoryPointer(int mp) {
 		this.memoryPointer = mp;;
+	}
+	
+	public Stack<Function> getCallStack(){
+		return callStack;
 	}
 	
 	public void execute() {
