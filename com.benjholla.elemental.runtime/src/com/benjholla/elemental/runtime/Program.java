@@ -5,6 +5,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
 
 /**
  * A Element program interpreter
@@ -20,11 +21,12 @@ import java.util.Map;
 public class Program {
 
 	private static final byte MAIN_FUNCTION = (byte) 0x00;
+	private Map<Byte,Function> functionTable;
+	
+	private Stack<Function> callStack = new Stack<Function>();
 	
 	private ArrayList<Byte> memory;
-	
-	private Map<Byte,Function> functionTable;
-	private int mp;
+	private int memoryPointer;
 	
 	private InputStream stdin;
 	private OutputStream stdout;
@@ -53,7 +55,7 @@ public class Program {
 		memory.add((byte)0x00);
 		
 		// initialize the memory pointer (index into memory)
-		mp = 0;
+		memoryPointer = 0;
 	}
 	
 	public InputStream getStdin() {
@@ -69,11 +71,11 @@ public class Program {
 	}
 	
 	public int getMemoryPointer() {
-		return mp;
+		return memoryPointer;
 	}
 	
 	public void setMemoryPointer(int mp) {
-		this.mp = mp;;
+		this.memoryPointer = mp;;
 	}
 	
 	public void execute() {
@@ -85,7 +87,7 @@ public class Program {
 	}
 	
 	public void dynamicDispatch() {
-		Byte target = memory.get(mp);
+		Byte target = memory.get(memoryPointer);
 		invoke(target);
 	}
 	

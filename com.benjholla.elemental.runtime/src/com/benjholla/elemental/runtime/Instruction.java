@@ -15,7 +15,22 @@ public abstract class Instruction {
 	
 	public abstract void execute();
 	
-	public static class Increment extends Instruction {
+	public static interface NonBranchingInstruction {}
+	
+	public static interface BranchingInstruction {}
+	
+	public static class ImplicitReturn extends Instruction implements NonBranchingInstruction {
+		public ImplicitReturn(Function function) {
+			super(function);
+		}
+
+		@Override
+		public void execute() {
+			// TODO: implement
+		}
+	}
+	
+	public static class Increment extends Instruction implements NonBranchingInstruction {
 		public Increment(Function function) {
 			super(function);
 		}
@@ -29,7 +44,7 @@ public abstract class Instruction {
 		}
 	}
 	
-	public static class Decrement extends Instruction {
+	public static class Decrement extends Instruction implements NonBranchingInstruction {
 		public Decrement(Function function) {
 			super(function);
 		}
@@ -43,7 +58,7 @@ public abstract class Instruction {
 		}
 	}
 	
-	public static class MoveLeft extends Instruction {
+	public static class MoveLeft extends Instruction implements NonBranchingInstruction {
 		public MoveLeft(Function function) {
 			super(function);
 		}
@@ -58,7 +73,7 @@ public abstract class Instruction {
 		}
 	}
 	
-	public static class MoveRight extends Instruction {
+	public static class MoveRight extends Instruction implements NonBranchingInstruction {
 		public MoveRight(Function function) {
 			super(function);
 		}
@@ -70,7 +85,7 @@ public abstract class Instruction {
 		}
 	}
 	
-	public static class Store extends Instruction {
+	public static class Store extends Instruction implements NonBranchingInstruction {
 		public Store(Function function) {
 			super(function);
 		}
@@ -90,7 +105,7 @@ public abstract class Instruction {
 		}
 	}
 	
-	public static class Recall extends Instruction {
+	public static class Recall extends Instruction implements NonBranchingInstruction {
 		public Recall(Function function) {
 			super(function);
 		}
@@ -105,7 +120,7 @@ public abstract class Instruction {
 		}
 	}
 	
-	public static class Assignment extends Instruction {
+	public static class Assignment extends Instruction implements NonBranchingInstruction {
 		public Assignment(Function function) {
 			super(function);
 		}
@@ -116,9 +131,20 @@ public abstract class Instruction {
 		}
 	}
 	
-	public static class Branch extends Instruction {
+	public static class Branch extends Instruction implements BranchingInstruction {
+		private Instruction[] body;
+		
 		public Branch(Function function, Instruction... instructions) {
 			super(function);
+			if(instructions != null) {
+				body = instructions;
+			} else {
+				body = new Instruction[] {};
+			}
+		}
+		
+		public Instruction[] getBody() {
+			return body;
 		}
 
 		@Override
@@ -131,9 +157,21 @@ public abstract class Instruction {
 		}
 	}
 	
-	public static class Loop extends Instruction {
+	public static class Loop extends Instruction implements BranchingInstruction {
+		
+		private Instruction[] body;
+		
 		public Loop(Function function, Instruction... instructions) {
 			super(function);
+			if(instructions != null) {
+				body = instructions;
+			} else {
+				body = new Instruction[] {};
+			}
+		}
+		
+		public Instruction[] getBody() {
+			return body;
 		}
 
 		@Override
@@ -145,9 +183,15 @@ public abstract class Instruction {
 		}
 	}
 	
-	public static class Label extends Instruction {
+	public static class Label extends Instruction implements NonBranchingInstruction {
+		Byte label;
 		public Label(Function function, byte label) {
 			super(function);
+			this.label = label;
+		}
+		
+		public Byte getName() {
+			return label;
 		}
 
 		@Override
@@ -156,9 +200,17 @@ public abstract class Instruction {
 		}
 	}
 	
-	public static class GOTO extends Instruction {
-		public GOTO(Function function, byte label) {
+	public static class GOTO extends Instruction implements NonBranchingInstruction {
+		
+		private Byte label;
+		
+		public GOTO(Function function, Byte label) {
 			super(function);
+			this.label = label;
+		}
+		
+		public Byte getLabelName() {
+			return label;
 		}
 
 		@Override
@@ -167,7 +219,7 @@ public abstract class Instruction {
 		}
 	}
 	
-	public static class ComputedGOTO extends Instruction {
+	public static class ComputedGOTO extends Instruction implements NonBranchingInstruction {
 		public ComputedGOTO(Function function) {
 			super(function);
 		}
@@ -178,7 +230,7 @@ public abstract class Instruction {
 		}
 	}
 	
-	public static class StaticDispatch extends Instruction {
+	public static class StaticDispatch extends Instruction implements NonBranchingInstruction {
 		private byte target;
 		public StaticDispatch(Function function, byte target) {
 			super(function);
@@ -191,7 +243,7 @@ public abstract class Instruction {
 		}
 	}
 	
-	public static class DynamicDispatch extends Instruction {
+	public static class DynamicDispatch extends Instruction implements NonBranchingInstruction {
 		public DynamicDispatch(Function function) {
 			super(function);
 		}
