@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
+import org.eclipse.emf.common.util.EList
 
 /**
  * Generates code from your model files on save.
@@ -68,70 +69,54 @@ class ElementalGenerator extends AbstractGenerator {
 		}
 		return  pkg + '''
 		import com.benjholla.elemental.runtime.Program;
+		import com.benjholla.elemental.runtime.Function;
+		import com.benjholla.elemental.runtime.Instruction;
+		import com.benjholla.elemental.runtime.Instruction.*;
 		
-		private static Program program = new Program();
 		
 		public class «name» {
 			public static void main(String[] args){
-				«FOR instruction : model.implicitFunction.instructions»
-				«compile(instruction, 0)»
+				
+				Program program = new Program(System.in, System.out);
+				
+				«IF model.implicitFunction !== null»
+				program.addFunction(new Function(program, (byte) 0x00, buildFunction0()));
+		        «ENDIF»
+		        «FOR function : model.explicitFunctions»
+		        program.addFunction(new Function(program, (byte) 0x«Integer.toHexString(Integer.parseInt(function.name))», buildFunction«Integer.parseInt(function.name)»()));
 		        «ENDFOR»
+				
+				program.execute();
 			}
-		
-			«FOR function : model.explicitFunctions»
-			private static void function_«function.name»(){
-				«FOR instruction : function.body.instructions»
-				«compile(instruction, 0)»
+			
+			
+			«IF model.implicitFunction !== null»
+			private static void buildFunction0(){
+				Function function = new Function(program, (byte) 0x00);
+				«FOR instruction : model.implicitFunction.instructions»
+				function.addInstruction(«compileInstruction(instruction)»);
 				«ENDFOR»
+				return function;
+			}
+	        «ENDIF»
+	        «FOR function : model.explicitFunctions»
+			private static void buildFunction«Integer.parseInt(function.name)»(){
+				Function function = new Function(program, (byte) 0x«Integer.toHexString(Integer.parseInt(function.name))»);
+				«FOR instruction : function.body.instructions»
+				function.addInstruction(«compileInstruction(instruction)»);
+				«ENDFOR»
+				return function;
 			}
 	        «ENDFOR»
 		}
 		''';
 	}
 	
-	def String compile(Instruction instruction, int indentation){
-		if(instruction.type instanceof Increment){
-			return getIndentation(indentation) + "program.increment();\n";
-		} else if(instruction.type instanceof Decrement){
-			return getIndentation(indentation) + "program.decrement();\n";
-		} else if(instruction.type instanceof MoveLeft){
-			return getIndentation(indentation) + "program.moveLeft();\n";
-		} else if(instruction.type instanceof MoveRight){
-			return getIndentation(indentation) + "program.moveRight();\n";
-		} else if(instruction.type instanceof Store){
-			return getIndentation(indentation) + "program.store();\n";
-		} else if(instruction.type instanceof Recall){
-			return getIndentation(indentation) + "program.recall();\n";
-		} else if(instruction.type instanceof Assignment){
-			return getIndentation(indentation) + "program.assignment();\n";
-		} else if(instruction.type instanceof Branch){
-			val branchInstruction = instruction.type as Branch;
-			var branch = getIndentation(indentation) + "if(program.branchCondition()){\n";
-			for(Instruction branchChild : branchInstruction.body.instructions){
-				branch += compile(branchChild, indentation+1);
-			}
-			branch += getIndentation(indentation) + "}\n";
-			return branch;
-		} else if(instruction.type instanceof Loop){
-			val loopInstruction = instruction.type as Loop;
-			var loop = getIndentation(indentation) + "while(program.loopCondition()){\n";
-			for(Instruction loopChild : loopInstruction.body.instructions){
-				loop += compile(loopChild, indentation+1);
-			}
-			loop += getIndentation(indentation) + "}\n";
-			return loop;
-		} else if(instruction.type instanceof GOTO){
-			val goto = instruction.type as GOTO;
-			return getIndentation(indentation) + "program.GOTO(" + goto.label.name + ");\n";
-		} else if(instruction.type instanceof ComputedGOTO){
-			return getIndentation(indentation) + "program.computedGOTO();\n";
-		} else if(instruction.type instanceof StaticDispatch){
-			val staticDispatch = instruction.type as StaticDispatch;
-			return getIndentation(indentation) + "function_" + staticDispatch.target.name + "();\n";
-		} else if(instruction.type instanceof DynamicDispatch){
-			return getIndentation(indentation) + "dynamicDispatch();\n";
+	def String compileInstruction(Instruction instruction) {
+		if(instruction instanceof Increment){
+			return "new Increment(function)";
 		} else {
-			return getIndentation(indentation) + "throw new RuntimeException(\"Instruction Not Implemented!\");\n";
+			return "null";
 		}
 	}
 	

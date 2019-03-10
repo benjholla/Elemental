@@ -1,24 +1,43 @@
 package com.benjholla.elemental.runtime;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.benjholla.elemental.runtime.Instruction.ImplicitReturn;
+import com.benjholla.elemental.runtime.Instruction.Increment;
 
 public abstract class Function {
 	
 	private Byte name;
 	private Program program;
-	private Instruction[] instructions;
+	private List<Instruction> instructions;
+	private ImplicitReturn implicitReturn;
 	
-	public Function(Program program, Byte name, Instruction... instructions) {
+	public Function(Program program, Byte name) {
 		this.program = program;
 		this.name = name;
-		if(instructions == null) {
-			instructions = new Instruction[] {};
+		instructions = new ArrayList<Instruction>();
+		implicitReturn = new ImplicitReturn(this);
+		instructions.add(implicitReturn);
+	}
+	
+	public void addInstruction(Instruction instruction) {
+		Instruction previousInstruction = null;
+		if(instructions.size() >= 2) {
+			previousInstruction = instructions.get(instructions.size()-2);
 		}
-		instructions = new Instruction[instructions.length + 1];
-		for(int i=0; i<instructions.length; i++) {
-			this.instructions[i] = instructions[i];
+		instructions.set(instructions.size()-1, instruction);
+		instructions.add(implicitReturn);
+		if(previousInstruction != null) {
+			if(previousInstruction instanceof Increment) {
+				Increment i = (Increment) previousInstruction;
+				i.setSuccessor(instruction);
+			}
 		}
-		this.instructions[instructions.length] = new ImplicitReturn(this);
+	}
+	
+	public ImplicitReturn getImplicitReturn() {
+		return implicitReturn;
 	}
 	
 	public Program getProgram() {
@@ -31,8 +50,8 @@ public abstract class Function {
 	
 	public void execute() {
 		Instruction next = null;
-		if(instructions.length > 0) {
-			next = instructions[0];
+		if(instructions.size() > 0) {
+			next = instructions.get(0);
 		}
 		while(next != null) {
 			next = next.execute();

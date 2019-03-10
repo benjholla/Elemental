@@ -30,23 +30,10 @@ public class Program {
 	private InputStream stdin;
 	private OutputStream stdout;
 	
-	public Program(InputStream stdin, OutputStream stdout, Function... functions) {
+	public Program(InputStream stdin, OutputStream stdout) {
 		this.stdin = stdin;
 		this.stdout = stdout;
 		this.functionTable = new HashMap<Byte,Function>();
-		if(functions != null) {
-			for(Function function : functions) {
-				if(!this.functionTable.containsKey(function.getName())) {
-					this.functionTable.put(function.getName(), function);
-				} else {
-					if(function.getName() == MAIN_FUNCTION) {
-						throw new RuntimeException("Error building function table: A main function already exists");
-					} else {
-						throw new RuntimeException(String.format("Error building function table: A function with the name function_%d already exists", function.getName()));
-					}
-				}
-			}
-		}
 		
 		// initialize the tape to 1 cell with value 0
 		// memory is unbounded in this implementation
@@ -55,6 +42,18 @@ public class Program {
 		
 		// initialize the memory pointer (index into memory)
 		memoryPointer = 0;
+	}
+	
+	public void addFunction(Function function) {
+		if(!this.functionTable.containsKey(function.getName())) {
+			this.functionTable.put(function.getName(), function);
+		} else {
+			if(function.getName() == MAIN_FUNCTION) {
+				throw new RuntimeException("Error building function table: A main function already exists");
+			} else {
+				throw new RuntimeException(String.format("Error building function table: A function with the name function_%d already exists", function.getName()));
+			}
+		}
 	}
 	
 	public InputStream getStdin() {
