@@ -6,7 +6,7 @@ import java.util.List;
 import com.benjholla.elemental.runtime.Instruction.ImplicitReturn;
 import com.benjholla.elemental.runtime.Instruction.Increment;
 
-public abstract class Function {
+public class Function {
 	
 	private Byte name;
 	private Program program;

@@ -8,6 +8,7 @@ public abstract class Instruction {
 
 	protected Program program;
 	protected Function function;
+	protected Instruction successor = null;
 	
 	public Instruction(Function function) {
 		this.function = function;
@@ -15,6 +16,10 @@ public abstract class Instruction {
 	}
 	
 	public abstract Instruction execute();
+	
+	public void setSuccessor(Instruction successor) {
+		this.successor = successor;
+	}
 	
 	public static class ImplicitReturn extends Instruction {
 		public ImplicitReturn(Function function) {
@@ -29,19 +34,8 @@ public abstract class Instruction {
 	}
 	
 	public static class Increment extends Instruction {
-		private Instruction successor;
-		
 		public Increment(Function function) {
-			this(function, null);
-		}
-		
-		public void setSuccessor(Instruction successor) {
-			this.successor = successor;
-		}
-		
-		public Increment(Function function, Instruction successor) {
 			super(function);
-			this.successor = successor;
 		}
 
 		@Override
@@ -55,19 +49,8 @@ public abstract class Instruction {
 	}
 	
 	public static class Decrement extends Instruction {
-		private Instruction successor;
-		
 		public Decrement(Function function) {
-			this(function, null);
-		}
-		
-		public void setSuccessor(Instruction successor) {
-			this.successor = successor;
-		}
-		
-		public Decrement(Function function, Instruction successor) {
 			super(function);
-			this.successor = successor;
 		}
 
 		@Override
@@ -81,19 +64,8 @@ public abstract class Instruction {
 	}
 	
 	public static class MoveLeft extends Instruction {
-		private Instruction successor;
-		
 		public MoveLeft(Function function) {
-			this(function, null);
-		}
-		
-		public void setSuccessor(Instruction successor) {
-			this.successor = successor;
-		}
-		
-		public MoveLeft(Function function, Instruction successor) {
 			super(function);
-			this.successor = successor;
 		}
 
 		@Override
@@ -108,19 +80,8 @@ public abstract class Instruction {
 	}
 	
 	public static class MoveRight extends Instruction {
-		private Instruction successor;
-		
 		public MoveRight(Function function) {
-			this(function, null);
-		}
-		
-		public void setSuccessor(Instruction successor) {
-			this.successor = successor;
-		}
-		
-		public MoveRight(Function function, Instruction successor) {
 			super(function);
-			this.successor = successor;
 		}
 
 		@Override
@@ -132,19 +93,8 @@ public abstract class Instruction {
 	}
 	
 	public static class Store extends Instruction {
-		private Instruction successor;
-		
 		public Store(Function function) {
-			this(function, null);
-		}
-		
-		public void setSuccessor(Instruction successor) {
-			this.successor = successor;
-		}
-		
-		public Store(Function function, Instruction successor) {
 			super(function);
-			this.successor = successor;
 		}
 
 		@Override
@@ -164,19 +114,8 @@ public abstract class Instruction {
 	}
 	
 	public static class Recall extends Instruction {
-		private Instruction successor;
-		
 		public Recall(Function function) {
-			this(function, null);
-		}
-		
-		public void setSuccessor(Instruction successor) {
-			this.successor = successor;
-		}
-		
-		public Recall(Function function, Instruction successor) {
 			super(function);
-			this.successor = successor;
 		}
 
 		@Override
@@ -191,19 +130,8 @@ public abstract class Instruction {
 	}
 	
 	public static class Assignment extends Instruction {
-		private Instruction successor;
-		
 		public Assignment(Function function) {
-			this(function, null);
-		}
-		
-		public void setSuccessor(Instruction successor) {
-			this.successor = successor;
-		}
-		
-		public Assignment(Function function, Instruction successor) {
 			super(function);
-			this.successor = successor;
 		}
 
 		@Override
@@ -214,26 +142,17 @@ public abstract class Instruction {
 		}
 	}
 	
+	// TODO: branches should have an add instruction
 	public static class Branch extends Instruction {
 		private Instruction[] body;
-		private Instruction successor;
 		
 		public Branch(Function function, Instruction... instructions) {
-			this(function, null, instructions);
-		}
-		
-		public void setSuccessor(Instruction successor) {
-			this.successor = successor;
-		}
-		
-		public Branch(Function function, Instruction successor, Instruction... instructions) {
 			super(function);
 			if(instructions != null) {
 				body = instructions;
 			} else {
 				body = new Instruction[] {};
 			}
-			this.successor = successor;
 		}
 		
 		public Instruction[] getBody() {
@@ -273,19 +192,11 @@ public abstract class Instruction {
 		}
 	}
 	
+	// TODO: loops should have an add instruction
 	public static class Loop extends Instruction {
-		private Instruction successor;
 		private Instruction[] body;
 		
 		public Loop(Function function, Instruction... instructions) {
-			this(function, null, instructions);
-		}
-		
-		public void setSuccessor(Instruction successor) {
-			this.successor = successor;
-		}
-		
-		public Loop(Function function, Instruction successor, Instruction... instructions) {
 			super(function);
 			if(instructions == null) {
 				instructions = new Instruction[] {};
@@ -295,7 +206,6 @@ public abstract class Instruction {
 				body[i] = instructions[i];
 			}
 			body[instructions.length] = new LoopBack(function, this);
-			this.successor = successor;
 		}
 		
 		public Instruction[] getBody() {
@@ -319,20 +229,10 @@ public abstract class Instruction {
 	
 	public static class Label extends Instruction {
 		private Byte name;
-		private Instruction successor;
 		
 		public Label(Function function, Byte name) {
-			this(function, name, null);
-		}
-		
-		public void setSuccessor(Instruction successor) {
-			this.successor = successor;
-		}
-		
-		public Label(Function function, Byte name, Instruction successor) {
 			super(function);
 			this.name = name;
-			this.successor = successor;
 		}
 		
 		public Byte getName() {
@@ -380,20 +280,10 @@ public abstract class Instruction {
 	
 	public static class StaticDispatch extends Instruction {
 		private Byte target;
-		private Instruction successor;
 		
 		public StaticDispatch(Function function, Byte target) {
-			this(function, target, null);
-		}
-		
-		public void setSuccessor(Instruction successor) {
-			this.successor = successor;
-		}
-		
-		public StaticDispatch(Function function, Byte target, Instruction successor) {
 			super(function);
 			this.target = target;
-			this.successor = successor;
 		}
 
 		@Override
@@ -404,19 +294,8 @@ public abstract class Instruction {
 	}
 	
 	public static class DynamicDispatch extends Instruction {
-		private Instruction successor;
-		
 		public DynamicDispatch(Function function) {
-			this(function, null);
-		}
-		
-		public void setSuccessor(Instruction successor) {
-			this.successor = successor;
-		}
-		
-		public DynamicDispatch(Function function, Instruction successor) {
 			super(function);
-			this.successor = successor;
 		}
 
 		@Override
