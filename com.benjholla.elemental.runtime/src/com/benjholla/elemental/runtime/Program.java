@@ -96,6 +96,7 @@ public class Program {
 	private void invoke(Byte target) {
 		Function function = functionTable.get(target);
 		if(function != null) {
+			function.getProgram().getCallStack().push(function);
 			function.execute();
 		} else {
 			throw new RuntimeException(String.format("Dispatch target function_%d does not exist.", target));
