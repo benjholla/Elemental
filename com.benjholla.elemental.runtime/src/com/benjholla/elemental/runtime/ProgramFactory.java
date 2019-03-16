@@ -10,13 +10,16 @@ import com.benjholla.elemental.runtime.Instruction.Decrement;
 import com.benjholla.elemental.runtime.Instruction.ImplicitReturn;
 import com.benjholla.elemental.runtime.Instruction.Increment;
 import com.benjholla.elemental.runtime.Instruction.Loop;
+import com.benjholla.elemental.runtime.Instruction.LoopBack;
 import com.benjholla.elemental.runtime.Instruction.MoveLeft;
 import com.benjholla.elemental.runtime.Instruction.MoveRight;
 import com.benjholla.elemental.runtime.Instruction.Recall;
 import com.benjholla.elemental.runtime.Instruction.Store;
 
 public class ProgramFactory {
-
+	
+	public static final String INSTRUCTIONS_MUST_BE_CONTAINED_BY_A_FUNCTION = "Instructions must be contained by a function.";
+	
 	private Program program;
 	
 	public ProgramFactory(InputStream stdin, OutputStream stdout) {
@@ -40,11 +43,13 @@ public class ProgramFactory {
 			function.addInstruction(increment);
 			if(!lastNestedInstruction.isEmpty()) {
 				lastNestedInstruction.peek().setSuccessor(increment);
-				
+				if(!(lastNestedInstruction.peek() instanceof Branch || lastNestedInstruction.peek() instanceof Loop)) {
+					lastNestedInstruction.pop();
+				}
 			}
 			lastNestedInstruction.push(increment);
 		} else {
-			throw new IllegalStateException("Instructions must be contained by a function.");
+			throw new IllegalStateException(INSTRUCTIONS_MUST_BE_CONTAINED_BY_A_FUNCTION);
 		}
 	}
 	
@@ -54,11 +59,13 @@ public class ProgramFactory {
 			function.addInstruction(decrement);
 			if(!lastNestedInstruction.isEmpty()) {
 				lastNestedInstruction.peek().setSuccessor(decrement);
-				lastNestedInstruction.pop();
+				if(!(lastNestedInstruction.peek() instanceof Branch || lastNestedInstruction.peek() instanceof Loop)) {
+					lastNestedInstruction.pop();
+				}
 			}
 			lastNestedInstruction.push(decrement);
 		} else {
-			throw new IllegalStateException("Instructions must be contained by a function.");
+			throw new IllegalStateException(INSTRUCTIONS_MUST_BE_CONTAINED_BY_A_FUNCTION);
 		}
 	}
 	
@@ -68,11 +75,13 @@ public class ProgramFactory {
 			function.addInstruction(moveLeft);
 			if(!lastNestedInstruction.isEmpty()) {
 				lastNestedInstruction.peek().setSuccessor(moveLeft);
-				lastNestedInstruction.pop();
+				if(!(lastNestedInstruction.peek() instanceof Branch || lastNestedInstruction.peek() instanceof Loop)) {
+					lastNestedInstruction.pop();
+				}
 			}
 			lastNestedInstruction.push(moveLeft);
 		} else {
-			throw new IllegalStateException("Instructions must be contained by a function.");
+			throw new IllegalStateException(INSTRUCTIONS_MUST_BE_CONTAINED_BY_A_FUNCTION);
 		}
 	}
 	
@@ -82,11 +91,13 @@ public class ProgramFactory {
 			function.addInstruction(moveRight);
 			if(!lastNestedInstruction.isEmpty()) {
 				lastNestedInstruction.peek().setSuccessor(moveRight);
-				lastNestedInstruction.pop();
+				if(!(lastNestedInstruction.peek() instanceof Branch || lastNestedInstruction.peek() instanceof Loop)) {
+					lastNestedInstruction.pop();
+				}
 			}
 			lastNestedInstruction.push(moveRight);
 		} else {
-			throw new IllegalStateException("Instructions must be contained by a function.");
+			throw new IllegalStateException(INSTRUCTIONS_MUST_BE_CONTAINED_BY_A_FUNCTION);
 		}
 	}
 	
@@ -96,11 +107,13 @@ public class ProgramFactory {
 			function.addInstruction(store);
 			if(!lastNestedInstruction.isEmpty()) {
 				lastNestedInstruction.peek().setSuccessor(store);
-				lastNestedInstruction.pop();
+				if(!(lastNestedInstruction.peek() instanceof Branch || lastNestedInstruction.peek() instanceof Loop)) {
+					lastNestedInstruction.pop();
+				}
 			}
 			lastNestedInstruction.push(store);
 		} else {
-			throw new IllegalStateException("Instructions must be contained by a function.");
+			throw new IllegalStateException(INSTRUCTIONS_MUST_BE_CONTAINED_BY_A_FUNCTION);
 		}
 	}
 	
@@ -110,11 +123,13 @@ public class ProgramFactory {
 			function.addInstruction(recall);
 			if(!lastNestedInstruction.isEmpty()) {
 				lastNestedInstruction.peek().setSuccessor(recall);
-				lastNestedInstruction.pop();
+				if(!(lastNestedInstruction.peek() instanceof Branch || lastNestedInstruction.peek() instanceof Loop)) {
+					lastNestedInstruction.pop();
+				}
 			}
 			lastNestedInstruction.push(recall);
 		} else {
-			throw new IllegalStateException("Instructions must be contained by a function.");
+			throw new IllegalStateException(INSTRUCTIONS_MUST_BE_CONTAINED_BY_A_FUNCTION);
 		}
 	}
 	
@@ -124,11 +139,13 @@ public class ProgramFactory {
 			function.addInstruction(assignment);
 			if(!lastNestedInstruction.isEmpty()) {
 				lastNestedInstruction.peek().setSuccessor(assignment);
-				lastNestedInstruction.pop();
+				if(!(lastNestedInstruction.peek() instanceof Branch || lastNestedInstruction.peek() instanceof Loop)) {
+					lastNestedInstruction.pop();
+				}
 			}
 			lastNestedInstruction.push(assignment);
 		} else {
-			throw new IllegalStateException("Instructions must be contained by a function.");
+			throw new IllegalStateException(INSTRUCTIONS_MUST_BE_CONTAINED_BY_A_FUNCTION);
 		}
 	}
 	
@@ -138,21 +155,60 @@ public class ProgramFactory {
 			function.addInstruction(branch);
 			if(!lastNestedInstruction.isEmpty()) {
 				lastNestedInstruction.peek().setSuccessor(branch);
+				if(!(lastNestedInstruction.peek() instanceof Branch || lastNestedInstruction.peek() instanceof Loop)) {
+					lastNestedInstruction.pop();
+				}
 			}
 			lastNestedInstruction.push(branch);
 		} else {
-			throw new IllegalStateException("Instructions must be contained by a function.");
+			throw new IllegalStateException(INSTRUCTIONS_MUST_BE_CONTAINED_BY_A_FUNCTION);
 		}
 	}
 	
 	public void endBranchInstruction() {
 		if(function != null) {
-			lastNestedInstruction.pop();
-			if(!(lastNestedInstruction.peek() instanceof Branch)) {
+			if(!lastNestedInstruction.isEmpty()) {
+				lastNestedInstruction.pop();
+			}
+			if(lastNestedInstruction.isEmpty() || !(lastNestedInstruction.peek() instanceof Branch)) {
 				throw new IllegalStateException("No corresponding begin branch.");
+			} else {
+				lastNestedInstruction.pop();
 			}
 		} else {
-			throw new IllegalStateException("Instructions must be contained by a function.");
+			throw new IllegalStateException(INSTRUCTIONS_MUST_BE_CONTAINED_BY_A_FUNCTION);
+		}
+	}
+	
+	public void beginLoopInstruction() {
+		if(function != null) {
+			Branch branch = new Branch(function);
+			function.addInstruction(branch);
+			if(!lastNestedInstruction.isEmpty()) {
+				lastNestedInstruction.peek().setSuccessor(branch);
+				if(!(lastNestedInstruction.peek() instanceof Branch || lastNestedInstruction.peek() instanceof Loop)) {
+					lastNestedInstruction.pop();
+				}
+			}
+			lastNestedInstruction.push(branch);
+		} else {
+			throw new IllegalStateException(INSTRUCTIONS_MUST_BE_CONTAINED_BY_A_FUNCTION);
+		}
+	}
+	
+	public void endLoopInstruction() {
+		if(function != null) {
+			if(!lastNestedInstruction.isEmpty()) {
+				lastNestedInstruction.pop();
+			}
+			if(lastNestedInstruction.isEmpty() || !(lastNestedInstruction.peek() instanceof Loop)) {
+				throw new IllegalStateException("No corresponding begin loop.");
+			} else {
+				LoopBack loopBack = new LoopBack(function, (Loop) lastNestedInstruction.pop());
+				function.addInstruction(loopBack);
+			}
+		} else {
+			throw new IllegalStateException(INSTRUCTIONS_MUST_BE_CONTAINED_BY_A_FUNCTION);
 		}
 	}
 	
