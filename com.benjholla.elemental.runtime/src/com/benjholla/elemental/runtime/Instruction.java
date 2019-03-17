@@ -2,6 +2,7 @@ package com.benjholla.elemental.runtime;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public abstract class Instruction {
@@ -15,10 +16,23 @@ public abstract class Instruction {
 		this.program = function.getProgram();
 	}
 	
+	public Program getProgram() {
+		return program;
+	}
+	
+	public Function getFunction() {
+		return function;
+	}
+	
 	public abstract Instruction execute();
 	
 	public void setSuccessor(Instruction successor) {
 		this.successor = successor;
+	}
+	
+	@Override
+	public String toString() {
+		return this.getClass().getSimpleName();
 	}
 	
 	public static class ImplicitReturn extends Instruction {
@@ -142,28 +156,26 @@ public abstract class Instruction {
 		}
 	}
 	
-	// TODO: branches should have an add instruction
 	public static class Branch extends Instruction {
-		private Instruction[] body;
+		private List<Instruction> body = new ArrayList<Instruction>();
 		
-		public Branch(Function function, Instruction... instructions) {
+		public Branch(Function function) {
 			super(function);
-			if(instructions != null) {
-				body = instructions;
-			} else {
-				body = new Instruction[] {};
-			}
 		}
 		
-		public Instruction[] getBody() {
+		public List<Instruction> getBody() {
 			return body;
 		}
 
+		public void addInstruction(Instruction instruction) {
+			body.add(instruction);
+		}
+		
 		@Override
 		public Instruction execute() {
 			if (program.getMemory().get(program.getMemoryPointer()) != 0) {
-				if(body.length > 0) {
-					return body[0];
+				if(!body.isEmpty()) {
+					return body.get(0);
 				} else {
 					// empty branch body
 					return successor;
@@ -192,31 +204,27 @@ public abstract class Instruction {
 		}
 	}
 	
-	// TODO: loops should have an add instruction
 	public static class Loop extends Instruction {
-		private Instruction[] body;
+		private List<Instruction> body = new ArrayList<Instruction>();
 		
 		public Loop(Function function, Instruction... instructions) {
 			super(function);
-			if(instructions == null) {
-				instructions = new Instruction[] {};
-			}
-			body = new Instruction[instructions.length + 1];
-			for(int i=0; i<instructions.length; i++) {
-				body[i] = instructions[i];
-			}
-			body[instructions.length] = new LoopBack(function, this);
+			body.add(new LoopBack(function, this));
 		}
 		
-		public Instruction[] getBody() {
+		public List<Instruction> getBody() {
 			return body;
+		}
+		
+		public void addInstruction(Instruction instruction) {
+			body.add(instruction);
 		}
 
 		@Override
 		public Instruction execute() {
 			if (program.getMemory().get(program.getMemoryPointer()) != 0) {
-				if(body.length > 0) {
-					return body[0];
+				if(!body.isEmpty()) {
+					return body.get(0);
 				} else {
 					// empty branch body
 					return successor;
