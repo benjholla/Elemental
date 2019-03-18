@@ -9,6 +9,11 @@ public class Function {
 	private Program program;
 	private List<Instruction> body;
 	
+	@Override
+	public String toString() {
+		return body.toString();
+	}
+	
 	public Function(Program program, Byte name) {
 		this.program = program;
 		this.name = name;

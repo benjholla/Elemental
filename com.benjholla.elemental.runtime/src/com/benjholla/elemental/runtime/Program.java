@@ -44,6 +44,11 @@ public class Program {
 		memoryPointer = 0;
 	}
 	
+	@Override
+	public String toString() {
+		return functionTable.toString();
+	}
+	
 	public void addFunction(Function function) {
 		if(!this.functionTable.containsKey(function.getName())) {
 			this.functionTable.put(function.getName(), function);

@@ -7,6 +7,9 @@ import java.util.Map;
 
 public abstract class Instruction {
 
+	private static int ids = 0;
+	
+	protected int id;
 	protected Program program;
 	protected Function function;
 	protected Instruction successor = null;
@@ -14,6 +17,7 @@ public abstract class Instruction {
 	public Instruction(Function function) {
 		this.function = function;
 		this.program = function.getProgram();
+		id = ids++;
 	}
 	
 	public Program getProgram() {
@@ -32,7 +36,11 @@ public abstract class Instruction {
 	
 	@Override
 	public String toString() {
-		return this.getClass().getSimpleName();
+		if(successor != null) {
+			return "(" + id + ") " + this.getClass().getSimpleName() + " -> " + Integer.toString(successor.id);
+		} else {
+			return "(" + id + ") " + this.getClass().getSimpleName() + " -> null";
+		}
 	}
 	
 	public static class ImplicitReturn extends Instruction {
@@ -184,6 +192,15 @@ public abstract class Instruction {
 				return successor;
 			}
 		}
+		
+		@Override
+		public String toString() {
+			if(successor != null) {
+				return "(" + id + ") " + this.getClass().getSimpleName() + " -> " + Integer.toString(successor.id) + ", body: " + body.toString();
+			} else {
+				return "(" + id + ") " + this.getClass().getSimpleName() + " -> null" + ", body: " + body.toString();
+			}
+		}
 	}
 	
 	public static class LoopBack extends Instruction {
@@ -231,6 +248,15 @@ public abstract class Instruction {
 				}
 			} else {
 				return successor;
+			}
+		}
+		
+		@Override
+		public String toString() {
+			if(successor != null) {
+				return "(" + id + ") " + this.getClass().getSimpleName() + " -> " + Integer.toString(successor.id) + ", body: " + body.toString();
+			} else {
+				return "(" + id + ") " + this.getClass().getSimpleName() + " -> null" + ", body: " + body.toString();
 			}
 		}
 	}

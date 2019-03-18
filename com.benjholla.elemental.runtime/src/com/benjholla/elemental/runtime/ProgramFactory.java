@@ -18,7 +18,7 @@ import com.benjholla.elemental.runtime.Instruction.Store;
 
 public class ProgramFactory {
 	
-	private static final boolean DEBUG = true;
+	private static final boolean DEBUG = false;
 	
 	public static final String INCOMPLETE_PROGRAM = "Incomplete program";
 	public static final String INSTRUCTIONS_MUST_BE_CONTAINED_BY_A_FUNCTION = "Instructions must be contained by a function.";
@@ -44,6 +44,15 @@ public class ProgramFactory {
 		if(lastInstruction != null) {
 			if(DEBUG) System.out.println("Predecessor: " + lastInstruction + ", " + "Successor: " + instruction);
 			lastInstruction.setSuccessor(instruction);
+			if(lastInstruction instanceof Branch) {
+				Branch branch = (Branch) lastInstruction;
+				if(!branch.getBody().isEmpty()) {
+					Instruction lastBodyInstruction = branch.getBody().get(branch.getBody().size()-1);
+					if(lastBodyInstruction.id != instruction.id && lastBodyInstruction.successor == null) {
+						lastBodyInstruction.setSuccessor(instruction);
+					}
+				}
+			}
 		}
 		lastInstruction = instruction;
 	}
@@ -53,9 +62,11 @@ public class ProgramFactory {
 			function.addInstruction(instruction);
 		} else {
 			if(scope.peek() instanceof Branch) {
-				((Branch) scope.peek()).addInstruction(instruction);
+				Branch branch = ((Branch) scope.peek());
+				branch.addInstruction(instruction);
 			} else if(scope.peek() instanceof Loop) {
-				((Loop) scope.peek()).addInstruction(instruction);
+				Loop loop = ((Loop) scope.peek());
+				loop.addInstruction(instruction);
 			}
 		}
 		if(DEBUG) System.out.println("Added " + instruction + " instruction to function " + instruction.getFunction().getName() + ", Scope: " + scope.size());
