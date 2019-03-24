@@ -2,12 +2,14 @@ package com.benjholla.elemental.runtime;
 
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
-import com.benjholla.elemental.runtime.Instruction.ImplicitReturn;
 import com.benjholla.elemental.runtime.Instruction.Assignment;
 import com.benjholla.elemental.runtime.Instruction.Branch;
 import com.benjholla.elemental.runtime.Instruction.Decrement;
+import com.benjholla.elemental.runtime.Instruction.ImplicitReturn;
 import com.benjholla.elemental.runtime.Instruction.Increment;
 import com.benjholla.elemental.runtime.Instruction.Loop;
 import com.benjholla.elemental.runtime.Instruction.LoopBack;
@@ -39,25 +41,21 @@ public class ProgramFactory {
 	private Function function = null;
 	private Stack<Instruction> scope = new Stack<Instruction>();
 	private Instruction lastInstruction = null;
+	private List<Instruction> branchTerminals = new ArrayList<Instruction>();
 	
 	private void setPredecessor(Instruction instruction) {
 		if(lastInstruction != null) {
 			if(DEBUG) System.out.println("Predecessor: " + lastInstruction + ", " + "Successor: " + instruction);
 			lastInstruction.setSuccessor(instruction);
-			if(lastInstruction instanceof Branch) {
-				Branch branch = (Branch) lastInstruction;
-				if(!branch.getBody().isEmpty()) {
-					Instruction lastBodyInstruction = branch.getBody().get(branch.getBody().size()-1);
-					if(lastBodyInstruction.id != instruction.id && lastBodyInstruction.successor == null) {
-						lastBodyInstruction.setSuccessor(instruction);
-					}
-				}
-			}
 		}
 		lastInstruction = instruction;
 	}
 	
 	private void addInstruction(Instruction instruction) {
+		for(Instruction branchTerminal : branchTerminals) {
+			branchTerminal.setSuccessor(instruction);
+		}
+		branchTerminals.clear();
 		if(scope.isEmpty()) {
 			function.addInstruction(instruction);
 		} else {
@@ -157,6 +155,11 @@ public class ProgramFactory {
 				throw new IllegalStateException("No corresponding begin branch.");
 			} else {
 				lastInstruction = scope.pop();
+				Branch branch = (Branch) lastInstruction;
+				List<Instruction> body = branch.getBody();
+				if(!body.isEmpty()) {
+					branchTerminals.add(body.get(body.size()-1));
+				}
 			}
 		} else {
 			throw new IllegalStateException(INSTRUCTIONS_MUST_BE_CONTAINED_BY_A_FUNCTION);
