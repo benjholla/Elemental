@@ -36,6 +36,7 @@ public abstract class Instruction {
 	
 	@Override
 	public String toString() {
+//		return this.getClass().getSimpleName();
 		if(successor != null) {
 			return "(" + id + ") " + this.getClass().getSimpleName() + " -> " + Integer.toString(successor.id);
 		} else {

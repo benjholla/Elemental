@@ -245,4 +245,74 @@ class TestProgramFactory {
 		}
 	}
 	
+	@Test
+	void testWhileFalsePath() throws UnsupportedEncodingException {
+		ByteArrayOutputStream stdout = new ByteArrayOutputStream();
+		ProgramFactory programFactory = new ProgramFactory(System.in, stdout);
+		programFactory.beginFunction((byte)0);
+		
+		programFactory.beginLoopInstruction();
+		programFactory.addRecallInstruction();
+		programFactory.endLoopInstruction();
+		
+		programFactory.endFunction();
+		Program program = programFactory.create();
+		
+		System.out.println(program);
+		
+		program.execute();
+		if(stdout.toByteArray().length != 0) {
+			throw new RuntimeException("Unexpected output");
+		}
+	}
+	
+	@Test
+	void testWhile1IterationPath() throws UnsupportedEncodingException {
+		ByteArrayOutputStream stdout = new ByteArrayOutputStream();
+		ProgramFactory programFactory = new ProgramFactory(System.in, stdout);
+		programFactory.beginFunction((byte)0);
+		
+		programFactory.addIncrementInstruction();
+		
+		programFactory.beginLoopInstruction();
+		programFactory.addRecallInstruction();
+		programFactory.addDecrementInstruction();
+		programFactory.endLoopInstruction();
+		
+		programFactory.endFunction();
+		Program program = programFactory.create();
+		
+		System.out.println(program);
+		
+		program.execute();
+		if(stdout.toByteArray().length != 1) {
+			throw new RuntimeException("Unexpected output");
+		}
+	}
+	
+	@Test
+	void testWhile2IterationPath() throws UnsupportedEncodingException {
+		ByteArrayOutputStream stdout = new ByteArrayOutputStream();
+		ProgramFactory programFactory = new ProgramFactory(System.in, stdout);
+		programFactory.beginFunction((byte)0);
+		
+		programFactory.addIncrementInstruction();
+		programFactory.addIncrementInstruction();
+		
+		programFactory.beginLoopInstruction();
+		programFactory.addRecallInstruction();
+		programFactory.addDecrementInstruction();
+		programFactory.endLoopInstruction();
+		
+		programFactory.endFunction();
+		Program program = programFactory.create();
+		
+		System.out.println(program);
+		
+		program.execute();
+		if(stdout.toByteArray().length != 2) {
+			throw new RuntimeException("Unexpected output");
+		}
+	}
+	
 }
