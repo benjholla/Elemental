@@ -7,17 +7,13 @@ import java.util.Map;
 
 public abstract class Instruction {
 
-	private static int ids = 0;
-	
-	protected int id;
 	protected Program program;
 	protected Function function;
 	protected Instruction successor = null;
 	
-	public Instruction(Function function) {
+	protected Instruction(Function function) {
 		this.function = function;
 		this.program = function.getProgram();
-		id = ids++;
 	}
 	
 	public Program getProgram() {
@@ -30,22 +26,17 @@ public abstract class Instruction {
 	
 	public abstract Instruction execute();
 	
-	public void setSuccessor(Instruction successor) {
+	protected void setSuccessor(Instruction successor) {
 		this.successor = successor;
 	}
 	
 	@Override
 	public String toString() {
-//		return this.getClass().getSimpleName();
-		if(successor != null) {
-			return "(" + id + ") " + this.getClass().getSimpleName() + " -> " + Integer.toString(successor.id);
-		} else {
-			return "(" + id + ") " + this.getClass().getSimpleName() + " -> null";
-		}
+		return this.getClass().getSimpleName();
 	}
 	
 	public static class ImplicitReturn extends Instruction {
-		public ImplicitReturn(Function function) {
+		protected ImplicitReturn(Function function) {
 			super(function);
 		}
 
@@ -57,7 +48,7 @@ public abstract class Instruction {
 	}
 	
 	public static class Increment extends Instruction {
-		public Increment(Function function) {
+		protected Increment(Function function) {
 			super(function);
 		}
 
@@ -72,7 +63,7 @@ public abstract class Instruction {
 	}
 	
 	public static class Decrement extends Instruction {
-		public Decrement(Function function) {
+		protected Decrement(Function function) {
 			super(function);
 		}
 
@@ -87,7 +78,7 @@ public abstract class Instruction {
 	}
 	
 	public static class MoveLeft extends Instruction {
-		public MoveLeft(Function function) {
+		protected MoveLeft(Function function) {
 			super(function);
 		}
 
@@ -103,7 +94,7 @@ public abstract class Instruction {
 	}
 	
 	public static class MoveRight extends Instruction {
-		public MoveRight(Function function) {
+		protected MoveRight(Function function) {
 			super(function);
 		}
 
@@ -116,7 +107,7 @@ public abstract class Instruction {
 	}
 	
 	public static class Store extends Instruction {
-		public Store(Function function) {
+		protected Store(Function function) {
 			super(function);
 		}
 
@@ -137,7 +128,7 @@ public abstract class Instruction {
 	}
 	
 	public static class Recall extends Instruction {
-		public Recall(Function function) {
+		protected Recall(Function function) {
 			super(function);
 		}
 
@@ -153,7 +144,7 @@ public abstract class Instruction {
 	}
 	
 	public static class Assignment extends Instruction {
-		public Assignment(Function function) {
+		protected Assignment(Function function) {
 			super(function);
 		}
 
@@ -168,7 +159,7 @@ public abstract class Instruction {
 	public static class Branch extends Instruction {
 		private List<Instruction> body = new ArrayList<Instruction>();
 		
-		public Branch(Function function) {
+		protected Branch(Function function) {
 			super(function);
 		}
 		
@@ -176,7 +167,7 @@ public abstract class Instruction {
 			return body;
 		}
 
-		public void addInstruction(Instruction instruction) {
+		protected void addInstruction(Instruction instruction) {
 			body.add(instruction);
 		}
 		
@@ -193,48 +184,37 @@ public abstract class Instruction {
 				return successor;
 			}
 		}
-		
-		@Override
-		public String toString() {
-			if(successor != null) {
-				return "(" + id + ") " + this.getClass().getSimpleName() + " -> " + Integer.toString(successor.id) + ", body: " + body.toString();
-			} else {
-				return "(" + id + ") " + this.getClass().getSimpleName() + " -> null" + ", body: " + body.toString();
-			}
-		}
 	}
 	
 	public static class LoopBack extends Instruction {
-		private Loop header;
-		
+
 		public LoopBack(Function function, Loop header) {
 			super(function);
-			this.header = header;
+			this.successor = header;
 		}
 		
-		public Loop getHeader() {
-			return header;
+		protected Loop getHeader() {
+			return (Loop) successor;
 		}
 
 		@Override
 		public Instruction execute() {
-			return header;
+			return successor;
 		}
 	}
 	
 	public static class Loop extends Instruction {
 		private List<Instruction> body = new ArrayList<Instruction>();
 		
-		public Loop(Function function, Instruction... instructions) {
+		protected Loop(Function function, Instruction... instructions) {
 			super(function);
-			body.add(new LoopBack(function, this));
 		}
 		
 		public List<Instruction> getBody() {
 			return body;
 		}
 		
-		public void addInstruction(Instruction instruction) {
+		protected void addInstruction(Instruction instruction) {
 			body.add(instruction);
 		}
 
@@ -249,15 +229,6 @@ public abstract class Instruction {
 				}
 			} else {
 				return successor;
-			}
-		}
-		
-		@Override
-		public String toString() {
-			if(successor != null) {
-				return "(" + id + ") " + this.getClass().getSimpleName() + " -> " + Integer.toString(successor.id) + ", body: " + body.toString();
-			} else {
-				return "(" + id + ") " + this.getClass().getSimpleName() + " -> null" + ", body: " + body.toString();
 			}
 		}
 	}
@@ -265,7 +236,7 @@ public abstract class Instruction {
 	public static class Label extends Instruction {
 		private Byte name;
 		
-		public Label(Function function, Byte name) {
+		protected Label(Function function, Byte name) {
 			super(function);
 			this.name = name;
 		}
@@ -283,7 +254,7 @@ public abstract class Instruction {
 	public static class GOTO extends Instruction {
 		private Label label;
 		
-		public GOTO(Function function, Label label) {
+		protected GOTO(Function function, Label label) {
 			super(function);
 			this.label = label;
 		}
@@ -301,7 +272,7 @@ public abstract class Instruction {
 	public static class ComputedGOTO extends Instruction {
 		private Map<Byte,Label> labels;
 		
-		public ComputedGOTO(Function function, Map<Byte,Label> labels) {
+		protected ComputedGOTO(Function function, Map<Byte,Label> labels) {
 			super(function);
 			this.labels = labels;
 		}
@@ -316,7 +287,7 @@ public abstract class Instruction {
 	public static class StaticDispatch extends Instruction {
 		private Byte target;
 		
-		public StaticDispatch(Function function, Byte target) {
+		protected StaticDispatch(Function function, Byte target) {
 			super(function);
 			this.target = target;
 		}
@@ -329,7 +300,7 @@ public abstract class Instruction {
 	}
 	
 	public static class DynamicDispatch extends Instruction {
-		public DynamicDispatch(Function function) {
+		protected DynamicDispatch(Function function) {
 			super(function);
 		}
 

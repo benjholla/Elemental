@@ -3,21 +3,9 @@
  */
 package com.benjholla.elemental.generator
 
-import com.benjholla.elemental.elemental.Assignment
-import com.benjholla.elemental.elemental.Branch
-import com.benjholla.elemental.elemental.ComputedGOTO
-import com.benjholla.elemental.elemental.Decrement
-import com.benjholla.elemental.elemental.DynamicDispatch
-import com.benjholla.elemental.elemental.GOTO
 import com.benjholla.elemental.elemental.Increment
 import com.benjholla.elemental.elemental.Instruction
-import com.benjholla.elemental.elemental.Loop
 import com.benjholla.elemental.elemental.Model
-import com.benjholla.elemental.elemental.MoveLeft
-import com.benjholla.elemental.elemental.MoveRight
-import com.benjholla.elemental.elemental.Recall
-import com.benjholla.elemental.elemental.StaticDispatch
-import com.benjholla.elemental.elemental.Store
 import java.io.File
 import java.net.URI
 import org.eclipse.core.filesystem.EFS
@@ -30,7 +18,6 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
-import org.eclipse.emf.common.util.EList
 
 /**
  * Generates code from your model files on save.

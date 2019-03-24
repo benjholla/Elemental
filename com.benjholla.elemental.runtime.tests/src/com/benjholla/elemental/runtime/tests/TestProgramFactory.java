@@ -237,8 +237,6 @@ class TestProgramFactory {
 		programFactory.endFunction();
 		Program program = programFactory.create();
 		
-		System.out.println(program);
-		
 		program.execute();
 		if(stdout.toByteArray().length != 1) {
 			throw new RuntimeException("Unexpected output");
@@ -257,9 +255,7 @@ class TestProgramFactory {
 		
 		programFactory.endFunction();
 		Program program = programFactory.create();
-		
-		System.out.println(program);
-		
+
 		program.execute();
 		if(stdout.toByteArray().length != 0) {
 			throw new RuntimeException("Unexpected output");
@@ -281,9 +277,7 @@ class TestProgramFactory {
 		
 		programFactory.endFunction();
 		Program program = programFactory.create();
-		
-		System.out.println(program);
-		
+
 		program.execute();
 		if(stdout.toByteArray().length != 1) {
 			throw new RuntimeException("Unexpected output");
@@ -306,9 +300,7 @@ class TestProgramFactory {
 		
 		programFactory.endFunction();
 		Program program = programFactory.create();
-		
-		System.out.println(program);
-		
+
 		program.execute();
 		if(stdout.toByteArray().length != 2) {
 			throw new RuntimeException("Unexpected output");

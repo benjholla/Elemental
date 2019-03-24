@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
+import java.util.stream.Collectors;
 
 /**
  * A Element program interpreter
@@ -46,9 +47,25 @@ public class Program {
 	
 	@Override
 	public String toString() {
-		return functionTable.toString();
+		return "Program Memory Pointer: " + memoryPointer + " (value=" + memory.get(memoryPointer) + ")"
+				+ "\nProgram Memory: " + memory
+				+ "\nProgram Functions: " + functionTable.keySet().stream().sorted().collect(Collectors.toList())
+				+ "\nStack Trace:\n" + getStackTrace();
 	}
-	
+
+	public String getStackTrace() {
+		StringBuilder trace = new StringBuilder();
+		String prefix = "";
+		for(Function function : callStack) {
+			trace.append(prefix + function.getName());
+			prefix = "\n";
+		}
+		if(trace.length() == 0) {
+			trace.append("<empty>");
+		}
+		return trace.toString();
+	}
+
 	public void addFunction(Function function) {
 		if(!this.functionTable.containsKey(function.getName())) {
 			this.functionTable.put(function.getName(), function);

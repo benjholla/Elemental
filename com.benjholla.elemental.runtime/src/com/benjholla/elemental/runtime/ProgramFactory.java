@@ -20,8 +20,6 @@ import com.benjholla.elemental.runtime.Instruction.Store;
 
 public class ProgramFactory {
 	
-	private static final boolean DEBUG = false;
-	
 	public static final String INCOMPLETE_PROGRAM = "Incomplete program";
 	public static final String INSTRUCTIONS_MUST_BE_CONTAINED_BY_A_FUNCTION = "Instructions must be contained by a function.";
 	
@@ -45,7 +43,6 @@ public class ProgramFactory {
 	
 	private void setPredecessor(Instruction instruction) {
 		if(lastInstruction != null) {
-			if(DEBUG) System.out.println("Predecessor: " + lastInstruction + ", " + "Successor: " + instruction);
 			lastInstruction.setSuccessor(instruction);
 		}
 		lastInstruction = instruction;
@@ -67,7 +64,6 @@ public class ProgramFactory {
 				loop.addInstruction(instruction);
 			}
 		}
-		if(DEBUG) System.out.println("Added " + instruction + " instruction to function " + instruction.getFunction().getName() + ", Scope: " + scope.size());
 		setPredecessor(instruction);
 	}
 	
