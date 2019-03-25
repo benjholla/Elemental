@@ -3,25 +3,33 @@ package com.benjholla.elemental.runtime;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Stack;
 
 import com.benjholla.elemental.runtime.Instruction.Assignment;
 import com.benjholla.elemental.runtime.Instruction.Branch;
+import com.benjholla.elemental.runtime.Instruction.ComputedGOTO;
 import com.benjholla.elemental.runtime.Instruction.Decrement;
+import com.benjholla.elemental.runtime.Instruction.DynamicDispatch;
+import com.benjholla.elemental.runtime.Instruction.GOTO;
 import com.benjholla.elemental.runtime.Instruction.ImplicitReturn;
 import com.benjholla.elemental.runtime.Instruction.Increment;
+import com.benjholla.elemental.runtime.Instruction.Label;
 import com.benjholla.elemental.runtime.Instruction.Loop;
 import com.benjholla.elemental.runtime.Instruction.LoopBack;
 import com.benjholla.elemental.runtime.Instruction.MoveLeft;
 import com.benjholla.elemental.runtime.Instruction.MoveRight;
 import com.benjholla.elemental.runtime.Instruction.Recall;
+import com.benjholla.elemental.runtime.Instruction.StaticDispatch;
 import com.benjholla.elemental.runtime.Instruction.Store;
 
 public class ProgramFactory {
 	
 	public static final String INCOMPLETE_PROGRAM = "Incomplete program";
 	public static final String INSTRUCTIONS_MUST_BE_CONTAINED_BY_A_FUNCTION = "Instructions must be contained by a function.";
+	public static final String LABELS_WITHIN_FUNCTIONS_MUST_BE_UNIQUE = "Every label within a function must be unique.";
 	
 	private Program program;
 	
@@ -40,6 +48,8 @@ public class ProgramFactory {
 	private Stack<Instruction> scope = new Stack<Instruction>();
 	private Instruction lastInstruction = null;
 	private List<Instruction> branchTerminals = new ArrayList<Instruction>();
+	private Map<Byte,Label> labels = new HashMap<Byte,Label>();
+	private Map<Byte,Label> futureLabels = new HashMap<Byte,Label>();
 	
 	private void setPredecessor(Instruction instruction) {
 		if(lastInstruction != null) {
@@ -186,16 +196,79 @@ public class ProgramFactory {
 		}
 	}
 	
-	// TODO: add builder functions for remaining instruction types
+	public void addLabelInstruction(Byte labelName) {
+		if(function != null) {
+			if(!labels.containsKey(labelName)) {
+				Label label = futureLabels.remove(labelName);
+				if(label != null) {
+					label = new Label(function, labelName);
+				}
+				addInstruction(label);
+			} else {
+				throw new IllegalStateException(LABELS_WITHIN_FUNCTIONS_MUST_BE_UNIQUE);
+			}
+		} else {
+			throw new IllegalStateException(INSTRUCTIONS_MUST_BE_CONTAINED_BY_A_FUNCTION);
+		}
+	}
+	
+	public void addGOTOInstruction(Byte labelName) {
+		if(function != null) {
+			Label label = labels.get(labelName);
+			if(label == null) {
+				label = futureLabels.get(labelName);
+				if(label == null) {
+					label = new Label(function, labelName);
+					futureLabels.put(labelName, label);
+				}
+			}
+			GOTO GOTO = new GOTO(function, label);
+			addInstruction(GOTO);
+		} else {
+			throw new IllegalStateException(INSTRUCTIONS_MUST_BE_CONTAINED_BY_A_FUNCTION);
+		}
+	}
+	
+	public void addComputedGOTOInstruction() {
+		if(function != null) {
+			ComputedGOTO computedGOTO = new ComputedGOTO(function);
+			addInstruction(computedGOTO);
+		} else {
+			throw new IllegalStateException(INSTRUCTIONS_MUST_BE_CONTAINED_BY_A_FUNCTION);
+		}
+	}
+	
+	public void addStaticDispatchInstruction(Byte target) {
+		if(function != null) {
+			StaticDispatch staticDispatch = new StaticDispatch(function, target);
+			addInstruction(staticDispatch);
+		} else {
+			throw new IllegalStateException(INSTRUCTIONS_MUST_BE_CONTAINED_BY_A_FUNCTION);
+		}
+	}
+	
+	public void addDynamicDispatchInstruction() {
+		if(function != null) {
+			DynamicDispatch dynamicDispatch = new DynamicDispatch(function);
+			addInstruction(dynamicDispatch);
+		} else {
+			throw new IllegalStateException(INSTRUCTIONS_MUST_BE_CONTAINED_BY_A_FUNCTION);
+		}
+	}
 	
 	public void endFunction() {
 		if(function != null) {
 			if(!scope.isEmpty()) {
 				throw new IllegalStateException("Unclosed branches or loops");
 			} else {
-				Instruction implicitReturn = new ImplicitReturn(function);
-				addInstruction(implicitReturn);
-				function = null;
+				if(!futureLabels.isEmpty()) {
+					throw new IllegalStateException("Labels were referenced that do not exist");
+				} else {
+					Instruction implicitReturn = new ImplicitReturn(function);
+					addInstruction(implicitReturn);
+					labels.clear();
+					function = null;
+				}
 			}
 		} else {
 			throw new IllegalStateException("No function to end.");

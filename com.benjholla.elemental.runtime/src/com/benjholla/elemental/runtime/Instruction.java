@@ -3,7 +3,6 @@ package com.benjholla.elemental.runtime;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public abstract class Instruction {
 
@@ -187,11 +186,13 @@ public abstract class Instruction {
 	}
 	
 	public static class LoopBack extends Instruction {
-
 		public LoopBack(Function function, Loop header) {
 			super(function);
 			this.successor = header;
 		}
+		
+		@Override
+		protected void setSuccessor(Instruction successor) {}
 		
 		protected Loop getHeader() {
 			return (Loop) successor;
@@ -252,35 +253,38 @@ public abstract class Instruction {
 	}
 	
 	public static class GOTO extends Instruction {
-		private Label label;
-		
 		protected GOTO(Function function, Label label) {
 			super(function);
-			this.label = label;
+			this.successor = label;
 		}
 		
+		@Override
+		protected void setSuccessor(Instruction successor) {}
+
 		public Label getLabel() {
-			return label;
+			return (Label) successor;
 		}
 
 		@Override
 		public Instruction execute() {
-			return label;
+			return successor;
 		}
 	}
 	
 	public static class ComputedGOTO extends Instruction {
-		private Map<Byte,Label> labels;
-		
-		protected ComputedGOTO(Function function, Map<Byte,Label> labels) {
+		protected ComputedGOTO(Function function) {
 			super(function);
-			this.labels = labels;
 		}
 
 		@Override
 		public Instruction execute() {
 			Byte name = program.getMemory().get(program.getMemoryPointer());
-			return labels.get(name);
+			Label label = function.getLabel(name);
+			if(label != null) {
+				return label;
+			} else {
+				throw new RuntimeException("Computed GOTO resolved to a non-existent label");
+			}
 		}
 	}
 	
