@@ -11,7 +11,7 @@ public class Function {
 	
 	private Byte name;
 	private Program program;
-	private List<Instruction> body;
+	private List<Instruction> body = new ArrayList<Instruction>();
 	private Map<Byte,Label> labels = new HashMap<Byte,Label>();
 	
 	@Override
@@ -22,7 +22,6 @@ public class Function {
 	public Function(Program program, Byte name) {
 		this.program = program;
 		this.name = name;
-		body = new ArrayList<Instruction>();
 	}
 	
 	public List<Instruction> getInstructions() {
