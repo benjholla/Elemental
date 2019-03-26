@@ -3,9 +3,22 @@
  */
 package com.benjholla.elemental.generator
 
+import com.benjholla.elemental.elemental.Assignment
+import com.benjholla.elemental.elemental.Branch
+import com.benjholla.elemental.elemental.ComputedGOTO
+import com.benjholla.elemental.elemental.Decrement
+import com.benjholla.elemental.elemental.DynamicDispatch
+import com.benjholla.elemental.elemental.GOTO
 import com.benjholla.elemental.elemental.Increment
 import com.benjholla.elemental.elemental.Instruction
+import com.benjholla.elemental.elemental.Label
+import com.benjholla.elemental.elemental.Loop
 import com.benjholla.elemental.elemental.Model
+import com.benjholla.elemental.elemental.MoveLeft
+import com.benjholla.elemental.elemental.MoveRight
+import com.benjholla.elemental.elemental.Recall
+import com.benjholla.elemental.elemental.StaticDispatch
+import com.benjholla.elemental.elemental.Store
 import java.io.File
 import java.net.URI
 import org.eclipse.core.filesystem.EFS
@@ -64,57 +77,80 @@ class ElementalGenerator extends AbstractGenerator {
 		public class «name» {
 			public static void main(String[] args){
 				
-				Program program = new Program(System.in, System.out);
+				ProgramFactory factory = new ProgramFactory(System.in, System.out);
 				
 				«IF model.implicitFunction !== null»
-				program.addFunction(new Function(program, (byte) 0x00, buildFunction0()));
+				factory.beginFunction((byte) 0x00);
+				«FOR instruction : model.implicitFunction.instructions»
+				«compileInstruction(instruction, 1)»
+				«ENDFOR»
+				factory.endFunction();
 		        «ENDIF»
 		        «FOR function : model.explicitFunctions»
-		        program.addFunction(new Function(program, (byte) 0x«Integer.toHexString(Integer.parseInt(function.name))», buildFunction«Integer.parseInt(function.name)»()));
+		        factory.beginFunction((byte) 0x«Integer.toHexString(Integer.parseInt(function.name))»);
+		        «FOR instruction : function.body.instructions»
+		        «compileInstruction(instruction, 1)»
+		        «ENDFOR»
+		        factory.endFunction();
 		        «ENDFOR»
 				
+				Program program = factory.create();
 				program.execute();
 			}
 			
-			
-			«IF model.implicitFunction !== null»
-			private static void buildFunction0(){
-				Function function = new Function(program, (byte) 0x00);
-				«FOR instruction : model.implicitFunction.instructions»
-				function.addInstruction(«compileInstruction(instruction)»);
-				«ENDFOR»
-				return function;
-			}
-	        «ENDIF»
-	        «FOR function : model.explicitFunctions»
-			private static void buildFunction«Integer.parseInt(function.name)»(){
-				Function function = new Function(program, (byte) 0x«Integer.toHexString(Integer.parseInt(function.name))»);
-				«FOR instruction : function.body.instructions»
-				function.addInstruction(«compileInstruction(instruction)»);
-				«ENDFOR»
-				return function;
-			}
-	        «ENDFOR»
 		}
 		''';
 	}
 	
-	def String compileInstruction(Instruction instruction) {
-		if(instruction instanceof Increment){
-			return "new Increment(function)";
+	def String compileInstruction(Instruction instruction, int level) {
+		if(instruction.type instanceof Increment){
+			return "factory.addIncrement();";
+		} else if(instruction.type instanceof Decrement){
+			return "factory.addDecrement();";
+		} else if(instruction.type instanceof MoveLeft){
+			return "factory.addMoveLeft();";
+		} else if(instruction.type instanceof MoveRight){
+			return "factory.addMoveRight();";
+		} else if(instruction.type instanceof Store){
+			return "factory.addStore();";
+		} else if(instruction.type instanceof Recall){
+			return "factory.addRecall();";
+		} else if(instruction.type instanceof Assignment){
+			return "factory.addAssignment();";
+		} else if(instruction.type instanceof Branch){
+			val branch = instruction.type as Branch;
+			val result = new StringBuilder();
+			result.append("factory.beginBranch();");
+			for(Instruction bodyInstruction : branch.body.instructions){
+				result.append("\n" + compileInstruction(bodyInstruction, level + 1));
+			}
+			result.append("\n" + "factory.endBranch();");
+			return result.toString();
+		} else if(instruction.type instanceof Loop){
+			val loop = instruction.type as Loop;
+			val result = new StringBuilder();
+			result.append("factory.beginLoop();");
+			for(Instruction bodyInstruction : loop.body.instructions){
+				result.append("\n" +  compileInstruction(bodyInstruction, level + 1));
+			}
+			result.append("\n" + "factory.endLoop();");
+			return result.toString();
+		} else if(instruction.type instanceof Label){
+			val label = instruction.type as Label;
+			return "factory.addLabelInstruction((byte) 0x" + Integer.toHexString(Integer.parseInt(label.name)) + ");";
+		} else if(instruction.type instanceof GOTO){
+			val GOTO = instruction.type as GOTO;
+			return "factory.addGOTOInstruction((byte) 0x" + Integer.toHexString(Integer.parseInt(GOTO.label.name)) + ");";
+		} else if(instruction.type instanceof ComputedGOTO){
+			return "factory.addComputedGOTO();";
+		} else if(instruction.type instanceof StaticDispatch){
+			val staticDispatch = instruction.type as StaticDispatch;
+			return "factory.addStaticDispatchInstruction((byte) 0x" + Integer.toHexString(Integer.parseInt(staticDispatch.target.name)) + ");";
+		} else if(instruction.type instanceof DynamicDispatch){
+			return "factory.addDynamicDispatch();";
 		} else {
-			return "null";
+			return "// unknown instruction type (" + instruction.type.class.getSimpleName() + ")";
 		}
-	}
-	
-	final static String INDENTATION_WHITESPACE = "   ";
-	
-	def String getIndentation(int level){
-		var whitespace = "";
-		for(var i=0; i<level; i++){
-			whitespace += INDENTATION_WHITESPACE;
-		}
-		return whitespace;
 	}
 	
 	/**

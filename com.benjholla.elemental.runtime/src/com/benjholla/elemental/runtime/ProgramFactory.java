@@ -82,7 +82,7 @@ public class ProgramFactory {
 		program.addFunction(function);
 	}
 	
-	public void addIncrementInstruction() {
+	public void addIncrement() {
 		if(function != null) {
 			Increment increment = new Increment(function);
 			addInstruction(increment);
@@ -91,7 +91,7 @@ public class ProgramFactory {
 		}
 	}
 
-	public void addDecrementInstruction() {
+	public void addDecrement() {
 		if(function != null) {
 			Decrement decrement = new Decrement(function);
 			addInstruction(decrement);
@@ -100,7 +100,7 @@ public class ProgramFactory {
 		}
 	}
 	
-	public void addMoveLeftInstruction() {
+	public void addMoveLeft() {
 		if(function != null) {
 			MoveLeft moveLeft = new MoveLeft(function);
 			addInstruction(moveLeft);
@@ -109,7 +109,7 @@ public class ProgramFactory {
 		}
 	}
 	
-	public void addMoveRightInstruction() {
+	public void addMoveRight() {
 		if(function != null) {
 			MoveRight moveRight = new MoveRight(function);
 			addInstruction(moveRight);
@@ -118,7 +118,7 @@ public class ProgramFactory {
 		}
 	}
 	
-	public void addStoreInstruction() {
+	public void addStore() {
 		if(function != null) {
 			Store store = new Store(function);
 			addInstruction(store);
@@ -127,7 +127,7 @@ public class ProgramFactory {
 		}
 	}
 	
-	public void addRecallInstruction() {
+	public void addRecall() {
 		if(function != null) {
 			Recall recall = new Recall(function);
 			addInstruction(recall);
@@ -136,7 +136,7 @@ public class ProgramFactory {
 		}
 	}
 	
-	public void addAssignmentInstruction() {
+	public void addAssignment() {
 		if(function != null) {
 			Assignment assignment = new Assignment(function);
 			addInstruction(assignment);
@@ -145,7 +145,7 @@ public class ProgramFactory {
 		}
 	}
 	
-	public void beginBranchInstruction() {
+	public void beginBranch() {
 		if(function != null) {
 			Branch branch = new Branch(function);
 			addInstruction(branch);
@@ -155,7 +155,7 @@ public class ProgramFactory {
 		}
 	}
 	
-	public void endBranchInstruction() {
+	public void endBranch() {
 		if(function != null) {
 			if(scope.isEmpty() || !(scope.peek() instanceof Branch)) {
 				throw new IllegalStateException("No corresponding begin branch.");
@@ -172,7 +172,7 @@ public class ProgramFactory {
 		}
 	}
 	
-	public void beginLoopInstruction() {
+	public void beginLoop() {
 		if(function != null) {
 			Loop loop = new Loop(function);
 			addInstruction(loop);
@@ -182,7 +182,7 @@ public class ProgramFactory {
 		}
 	}
 	
-	public void endLoopInstruction() {
+	public void endLoop() {
 		if(function != null) {
 			if(scope.isEmpty() || !(scope.peek() instanceof Loop)) {
 				throw new IllegalStateException("No corresponding begin loop.");
@@ -196,7 +196,7 @@ public class ProgramFactory {
 		}
 	}
 	
-	public void addLabelInstruction(Byte labelName) {
+	public void addLabel(Byte labelName) {
 		if(function != null) {
 			if(!labels.containsKey(labelName)) {
 				Label label = futureLabels.remove(labelName);
@@ -212,7 +212,7 @@ public class ProgramFactory {
 		}
 	}
 	
-	public void addGOTOInstruction(Byte labelName) {
+	public void addGOTO(Byte labelName) {
 		if(function != null) {
 			Label label = labels.get(labelName);
 			if(label == null) {
@@ -229,7 +229,7 @@ public class ProgramFactory {
 		}
 	}
 	
-	public void addComputedGOTOInstruction() {
+	public void addComputedGOTO() {
 		if(function != null) {
 			ComputedGOTO computedGOTO = new ComputedGOTO(function);
 			addInstruction(computedGOTO);
@@ -238,7 +238,7 @@ public class ProgramFactory {
 		}
 	}
 	
-	public void addStaticDispatchInstruction(Byte target) {
+	public void addStaticDispatch(Byte target) {
 		if(function != null) {
 			StaticDispatch staticDispatch = new StaticDispatch(function, target);
 			addInstruction(staticDispatch);
@@ -247,7 +247,7 @@ public class ProgramFactory {
 		}
 	}
 	
-	public void addDynamicDispatchInstruction() {
+	public void addDynamicDispatch() {
 		if(function != null) {
 			DynamicDispatch dynamicDispatch = new DynamicDispatch(function);
 			addInstruction(dynamicDispatch);

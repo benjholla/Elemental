@@ -14,7 +14,7 @@ class TestProgramFactory {
 	void testBasic() {
 		ProgramFactory programFactory = new ProgramFactory(System.in, System.out);
 		programFactory.beginFunction((byte)0);
-		programFactory.addIncrementInstruction();
+		programFactory.addIncrement();
 		programFactory.endFunction();
 		Program program = programFactory.create();
 		program.execute();
@@ -24,7 +24,7 @@ class TestProgramFactory {
 	void testContainmentFailure() {
 		try {
 			ProgramFactory programFactory = new ProgramFactory(System.in, System.out);
-			programFactory.addIncrementInstruction();
+			programFactory.addIncrement();
 			Program program = programFactory.create();
 			program.execute();
 		} catch (Exception e) {
@@ -41,7 +41,7 @@ class TestProgramFactory {
 		try {
 			ProgramFactory programFactory = new ProgramFactory(System.in, System.out);
 			programFactory.beginFunction((byte)0);
-			programFactory.addIncrementInstruction();
+			programFactory.addIncrement();
 			Program program = programFactory.create();
 			program.execute();
 		} catch (Exception e) {
@@ -58,10 +58,10 @@ class TestProgramFactory {
 		ByteArrayOutputStream stdout = new ByteArrayOutputStream();
 		ProgramFactory programFactory = new ProgramFactory(System.in, stdout);
 		programFactory.beginFunction((byte)0);
-		programFactory.addIncrementInstruction();
-		programFactory.beginBranchInstruction();
-		programFactory.addRecallInstruction();
-		programFactory.endBranchInstruction();
+		programFactory.addIncrement();
+		programFactory.beginBranch();
+		programFactory.addRecall();
+		programFactory.endBranch();
 		programFactory.endFunction();
 		Program program = programFactory.create();
 		program.execute();
@@ -75,9 +75,9 @@ class TestProgramFactory {
 		ByteArrayOutputStream stdout = new ByteArrayOutputStream();
 		ProgramFactory programFactory = new ProgramFactory(System.in, stdout);
 		programFactory.beginFunction((byte)0);
-		programFactory.beginBranchInstruction();
-		programFactory.addRecallInstruction();
-		programFactory.endBranchInstruction();
+		programFactory.beginBranch();
+		programFactory.addRecall();
+		programFactory.endBranch();
 		programFactory.endFunction();
 		Program program = programFactory.create();
 		program.execute();
@@ -92,13 +92,13 @@ class TestProgramFactory {
 		ProgramFactory programFactory = new ProgramFactory(System.in, stdout);
 		programFactory.beginFunction((byte)0);
 		
-		programFactory.beginBranchInstruction();
-		programFactory.addRecallInstruction();
-		programFactory.endBranchInstruction();
+		programFactory.beginBranch();
+		programFactory.addRecall();
+		programFactory.endBranch();
 		
-		programFactory.beginBranchInstruction();
-		programFactory.addRecallInstruction();
-		programFactory.endBranchInstruction();
+		programFactory.beginBranch();
+		programFactory.addRecall();
+		programFactory.endBranch();
 		
 		programFactory.endFunction();
 		Program program = programFactory.create();
@@ -114,14 +114,14 @@ class TestProgramFactory {
 		ProgramFactory programFactory = new ProgramFactory(System.in, stdout);
 		programFactory.beginFunction((byte)0);
 		
-		programFactory.beginBranchInstruction();
-		programFactory.addRecallInstruction();
-		programFactory.endBranchInstruction();
+		programFactory.beginBranch();
+		programFactory.addRecall();
+		programFactory.endBranch();
 		
-		programFactory.addIncrementInstruction();
-		programFactory.beginBranchInstruction();
-		programFactory.addRecallInstruction();
-		programFactory.endBranchInstruction();
+		programFactory.addIncrement();
+		programFactory.beginBranch();
+		programFactory.addRecall();
+		programFactory.endBranch();
 		
 		programFactory.endFunction();
 		Program program = programFactory.create();
@@ -137,15 +137,15 @@ class TestProgramFactory {
 		ProgramFactory programFactory = new ProgramFactory(System.in, stdout);
 		programFactory.beginFunction((byte)0);
 		
-		programFactory.addIncrementInstruction();
-		programFactory.beginBranchInstruction();
-		programFactory.addRecallInstruction();
-		programFactory.endBranchInstruction();
+		programFactory.addIncrement();
+		programFactory.beginBranch();
+		programFactory.addRecall();
+		programFactory.endBranch();
 		
-		programFactory.addDecrementInstruction();
-		programFactory.beginBranchInstruction();
-		programFactory.addRecallInstruction();
-		programFactory.endBranchInstruction();
+		programFactory.addDecrement();
+		programFactory.beginBranch();
+		programFactory.addRecall();
+		programFactory.endBranch();
 		
 		programFactory.endFunction();
 		Program program = programFactory.create();
@@ -161,15 +161,15 @@ class TestProgramFactory {
 		ProgramFactory programFactory = new ProgramFactory(System.in, stdout);
 		programFactory.beginFunction((byte)0);
 		
-		programFactory.addIncrementInstruction();
+		programFactory.addIncrement();
 		
-		programFactory.beginBranchInstruction();
-		programFactory.addRecallInstruction();
-		programFactory.endBranchInstruction();
+		programFactory.beginBranch();
+		programFactory.addRecall();
+		programFactory.endBranch();
 		
-		programFactory.beginBranchInstruction();
-		programFactory.addRecallInstruction();
-		programFactory.endBranchInstruction();
+		programFactory.beginBranch();
+		programFactory.addRecall();
+		programFactory.endBranch();
 		
 		programFactory.endFunction();
 		Program program = programFactory.create();
@@ -185,11 +185,11 @@ class TestProgramFactory {
 		ProgramFactory programFactory = new ProgramFactory(System.in, stdout);
 		programFactory.beginFunction((byte)0);
 		
-		programFactory.beginBranchInstruction();
-		programFactory.beginBranchInstruction();
-		programFactory.addRecallInstruction();
-		programFactory.endBranchInstruction();
-		programFactory.endBranchInstruction();
+		programFactory.beginBranch();
+		programFactory.beginBranch();
+		programFactory.addRecall();
+		programFactory.endBranch();
+		programFactory.endBranch();
 		
 		programFactory.endFunction();
 		Program program = programFactory.create();
@@ -205,13 +205,13 @@ class TestProgramFactory {
 		ProgramFactory programFactory = new ProgramFactory(System.in, stdout);
 		programFactory.beginFunction((byte)0);
 		
-		programFactory.addIncrementInstruction();
-		programFactory.beginBranchInstruction();
-		programFactory.addDecrementInstruction();
-		programFactory.beginBranchInstruction();
-		programFactory.addRecallInstruction();
-		programFactory.endBranchInstruction();
-		programFactory.endBranchInstruction();
+		programFactory.addIncrement();
+		programFactory.beginBranch();
+		programFactory.addDecrement();
+		programFactory.beginBranch();
+		programFactory.addRecall();
+		programFactory.endBranch();
+		programFactory.endBranch();
 		
 		programFactory.endFunction();
 		Program program = programFactory.create();
@@ -227,12 +227,12 @@ class TestProgramFactory {
 		ProgramFactory programFactory = new ProgramFactory(System.in, stdout);
 		programFactory.beginFunction((byte)0);
 		
-		programFactory.addIncrementInstruction();
-		programFactory.beginBranchInstruction();
-		programFactory.beginBranchInstruction();
-		programFactory.addRecallInstruction();
-		programFactory.endBranchInstruction();
-		programFactory.endBranchInstruction();
+		programFactory.addIncrement();
+		programFactory.beginBranch();
+		programFactory.beginBranch();
+		programFactory.addRecall();
+		programFactory.endBranch();
+		programFactory.endBranch();
 		
 		programFactory.endFunction();
 		Program program = programFactory.create();
@@ -249,9 +249,9 @@ class TestProgramFactory {
 		ProgramFactory programFactory = new ProgramFactory(System.in, stdout);
 		programFactory.beginFunction((byte)0);
 		
-		programFactory.beginLoopInstruction();
-		programFactory.addRecallInstruction();
-		programFactory.endLoopInstruction();
+		programFactory.beginLoop();
+		programFactory.addRecall();
+		programFactory.endLoop();
 		
 		programFactory.endFunction();
 		Program program = programFactory.create();
@@ -268,12 +268,12 @@ class TestProgramFactory {
 		ProgramFactory programFactory = new ProgramFactory(System.in, stdout);
 		programFactory.beginFunction((byte)0);
 		
-		programFactory.addIncrementInstruction();
+		programFactory.addIncrement();
 		
-		programFactory.beginLoopInstruction();
-		programFactory.addRecallInstruction();
-		programFactory.addDecrementInstruction();
-		programFactory.endLoopInstruction();
+		programFactory.beginLoop();
+		programFactory.addRecall();
+		programFactory.addDecrement();
+		programFactory.endLoop();
 		
 		programFactory.endFunction();
 		Program program = programFactory.create();
@@ -290,13 +290,13 @@ class TestProgramFactory {
 		ProgramFactory programFactory = new ProgramFactory(System.in, stdout);
 		programFactory.beginFunction((byte)0);
 		
-		programFactory.addIncrementInstruction();
-		programFactory.addIncrementInstruction();
+		programFactory.addIncrement();
+		programFactory.addIncrement();
 		
-		programFactory.beginLoopInstruction();
-		programFactory.addRecallInstruction();
-		programFactory.addDecrementInstruction();
-		programFactory.endLoopInstruction();
+		programFactory.beginLoop();
+		programFactory.addRecall();
+		programFactory.addDecrement();
+		programFactory.endLoop();
 		
 		programFactory.endFunction();
 		Program program = programFactory.create();
