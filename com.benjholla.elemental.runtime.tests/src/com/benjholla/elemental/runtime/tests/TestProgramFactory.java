@@ -307,4 +307,132 @@ class TestProgramFactory {
 		}
 	}
 	
+	@Test
+	void testHelloWorld() throws UnsupportedEncodingException {
+		ByteArrayOutputStream stdout = new ByteArrayOutputStream();
+		ProgramFactory factory = new ProgramFactory(System.in, stdout);
+		
+		factory.beginFunction((byte) 0x00);
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.beginLoop();
+		factory.addMoveRight();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addMoveRight();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addMoveRight();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addMoveRight();
+		factory.addIncrement();
+		factory.addMoveLeft();
+		factory.addMoveLeft();
+		factory.addMoveLeft();
+		factory.addMoveLeft();
+		factory.addDecrement();
+		factory.endLoop();
+		factory.addMoveRight();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addRecall();
+		factory.addMoveRight();
+		factory.addIncrement();
+		factory.addRecall();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addRecall();
+		factory.addRecall();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addRecall();
+		factory.addMoveRight();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addRecall();
+		factory.addMoveLeft();
+		factory.addMoveLeft();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addRecall();
+		factory.addMoveRight();
+		factory.addRecall();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addIncrement();
+		factory.addRecall();
+		factory.addDecrement();
+		factory.addDecrement();
+		factory.addDecrement();
+		factory.addDecrement();
+		factory.addDecrement();
+		factory.addDecrement();
+		factory.addRecall();
+		factory.addDecrement();
+		factory.addDecrement();
+		factory.addDecrement();
+		factory.addDecrement();
+		factory.addDecrement();
+		factory.addDecrement();
+		factory.addDecrement();
+		factory.addDecrement();
+		factory.addRecall();
+		factory.addMoveRight();
+		factory.addIncrement();
+		factory.addRecall();
+		factory.addMoveRight();
+		factory.addRecall();
+		factory.endFunction();
+		
+		Program program = factory.create();
+		program.execute();
+		
+		String result = new String(stdout.toByteArray());
+		if(result.equals("Hello World!")) {
+			throw new RuntimeException("Unexpected output");
+		}
+	}
+	
 }

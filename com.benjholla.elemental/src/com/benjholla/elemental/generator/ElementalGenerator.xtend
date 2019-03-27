@@ -68,10 +68,8 @@ class ElementalGenerator extends AbstractGenerator {
 			pkg = "package " + namespace + ";\n\n";
 		}
 		return  pkg + '''
+		import com.benjholla.elemental.runtime.ProgramFactory;
 		import com.benjholla.elemental.runtime.Program;
-		import com.benjholla.elemental.runtime.Function;
-		import com.benjholla.elemental.runtime.Instruction;
-		import com.benjholla.elemental.runtime.Instruction.*;
 		
 		
 		public class «name» {
@@ -82,18 +80,19 @@ class ElementalGenerator extends AbstractGenerator {
 				«IF model.implicitFunction !== null»
 				factory.beginFunction((byte) 0x00);
 				«FOR instruction : model.implicitFunction.instructions»
-				«compileInstruction(instruction, 1)»
+				«compileInstruction(instruction)»
 				«ENDFOR»
 				factory.endFunction();
+				
 		        «ENDIF»
 		        «FOR function : model.explicitFunctions»
-		        factory.beginFunction((byte) 0x«Integer.toHexString(Integer.parseInt(function.name))»);
+		        factory.beginFunction((byte) 0x«String.format("%02X", Integer.parseInt(function.name))»);
 		        «FOR instruction : function.body.instructions»
-		        «compileInstruction(instruction, 1)»
+		        «compileInstruction(instruction)»
 		        «ENDFOR»
 		        factory.endFunction();
+		        
 		        «ENDFOR»
-				
 				Program program = factory.create();
 				program.execute();
 			}
@@ -102,7 +101,7 @@ class ElementalGenerator extends AbstractGenerator {
 		''';
 	}
 	
-	def String compileInstruction(Instruction instruction, int level) {
+	def String compileInstruction(Instruction instruction) {
 		if(instruction.type instanceof Increment){
 			return "factory.addIncrement();";
 		} else if(instruction.type instanceof Decrement){
@@ -122,7 +121,7 @@ class ElementalGenerator extends AbstractGenerator {
 			val result = new StringBuilder();
 			result.append("factory.beginBranch();");
 			for(Instruction bodyInstruction : branch.body.instructions){
-				result.append("\n" + compileInstruction(bodyInstruction, level + 1));
+				result.append("\n" + compileInstruction(bodyInstruction));
 			}
 			result.append("\n" + "factory.endBranch();");
 			return result.toString();
@@ -131,21 +130,21 @@ class ElementalGenerator extends AbstractGenerator {
 			val result = new StringBuilder();
 			result.append("factory.beginLoop();");
 			for(Instruction bodyInstruction : loop.body.instructions){
-				result.append("\n" +  compileInstruction(bodyInstruction, level + 1));
+				result.append("\n" +  compileInstruction(bodyInstruction));
 			}
 			result.append("\n" + "factory.endLoop();");
 			return result.toString();
 		} else if(instruction.type instanceof Label){
 			val label = instruction.type as Label;
-			return "factory.addLabelInstruction((byte) 0x" + Integer.toHexString(Integer.parseInt(label.name)) + ");";
+			return "factory.addLabelInstruction((byte) 0x" + String.format("%02X", Integer.parseInt(label.name)) + ");";
 		} else if(instruction.type instanceof GOTO){
 			val GOTO = instruction.type as GOTO;
-			return "factory.addGOTOInstruction((byte) 0x" + Integer.toHexString(Integer.parseInt(GOTO.label.name)) + ");";
+			return "factory.addGOTOInstruction((byte) 0x" + String.format("%02X", Integer.parseInt(GOTO.label.name)) + ");";
 		} else if(instruction.type instanceof ComputedGOTO){
 			return "factory.addComputedGOTO();";
 		} else if(instruction.type instanceof StaticDispatch){
 			val staticDispatch = instruction.type as StaticDispatch;
-			return "factory.addStaticDispatchInstruction((byte) 0x" + Integer.toHexString(Integer.parseInt(staticDispatch.target.name)) + ");";
+			return "factory.addStaticDispatchInstruction((byte) 0x" + String.format("%02X", Integer.parseInt(staticDispatch.target.name)) + ");";
 		} else if(instruction.type instanceof DynamicDispatch){
 			return "factory.addDynamicDispatch();";
 		} else {

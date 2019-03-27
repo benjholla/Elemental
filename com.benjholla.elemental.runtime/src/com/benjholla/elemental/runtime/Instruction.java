@@ -83,11 +83,8 @@ public abstract class Instruction {
 
 		@Override
 		public Instruction execute() {
-			program.setMemoryPointer(program.getMemoryPointer() + 1);
-			if(program.getMemoryPointer() == program.getMemory().size()){
-				// we have reached the end of the tape, grow by one cell
-				program.getMemory().add((byte)0x00);
-			}
+			int currentMemoryPointer = program.getMemoryPointer();
+			program.setMemoryPointer((currentMemoryPointer>0) ? currentMemoryPointer-1 : 0);
 			return successor;
 		}
 	}
@@ -99,8 +96,11 @@ public abstract class Instruction {
 
 		@Override
 		public Instruction execute() {
-			int currentMemoryPointer = program.getMemoryPointer();
-			program.setMemoryPointer((currentMemoryPointer>0) ? currentMemoryPointer-1 : 0);
+			program.setMemoryPointer(program.getMemoryPointer() + 1);
+			if(program.getMemoryPointer() == program.getMemory().size()){
+				// we have reached the end of the tape, grow by one cell
+				program.getMemory().add((byte)0x00);
+			}
 			return successor;
 		}
 	}
