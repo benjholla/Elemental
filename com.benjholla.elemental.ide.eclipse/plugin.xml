@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <!-- defines a elemental view category -->
+   <extension point="org.eclipse.ui.views">
+      <category name="Elemental" id="com.benjholla.elemental.ide.eclipse.views.categories" />
+   </extension>
+   
+   <!-- new project wizard -->
+   <extension point="org.eclipse.ui.newWizards">
+      <category name="Elemental" id="com.benjholla.elemental.ide.eclipse.category" />
+      <wizard category="com.benjholla.elemental.ide.eclipse.category" class="com.benjholla.elemental.ide.eclipse.ui.NewProjectWizard" icon="icons/elemental.gif" id="com.benjholla.elemental.ide.eclipse.ui.NewProjectWizard" name="Elemental Project">
+         <description>Creates a new elemental project in the workspace.</description>
+      </wizard>
+   </extension>
+   
+   <!-- project nature -->
+   <extension id="com.benjholla.elemental.ide.eclipse.nature" name="Elemental Project Nature" point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run class="com.benjholla.elemental.ide.eclipse.builder.ElementalNature" />
+      </runtime>
+      <builder id="com.benjholla.elemental.ide.eclipse.builder.ElementalBuilder" />
+   </extension>
+   
+   <!-- project nature icon -->
+   <extension point="org.eclipse.ui.ide.projectNatureImages">
+    <image 
+      id="com.benjholla.elemental.ide.eclipse.nature.icon"
+      natureId="com.benjholla.elemental.ide.eclipse.nature"
+      icon="icons/nature.gif">
+    </image>
+   </extension>
+   
+   <!-- Note that we don't really need a proper builder since we are leveraging XText builder, 
+   but in order to have a project nature we need to provide a builder so we just provide an empty builder... -->
+   
+   <!-- project builder -->
+   <extension id="com.benjholla.elemental.ide.eclipse.builder" name="Elemental Project Builder" point="org.eclipse.core.resources.builders">
+      <builder hasNature="true">
+         <run class="com.benjholla.elemental.ide.eclipse.builder.ElementalBuilder" />
+      </builder>
+   </extension>
+    
+   <!-- project build command -->
+   <extension point="org.eclipse.ui.commands">
+      <category name="Elemental Project Nature Commands" id="com.benjholla.elemental.ide.eclipse.builder.nature.category" />
+      <command name="Add/Remove Elemental Project Nature" defaultHandler="com.benjholla.elemental.ide.eclipse.builder.AddRemoveElementalNatureHandler" categoryId="com.benjholla.elemental.ide.eclipse.builder.nature.category" id="com.benjholla.elemental.ide.eclipse.builder.addRemoveElementalNature" />
+   </extension>
+   
+   <!-- add/remove project build nature -->
+   <extension point="org.eclipse.ui.menus">
+      <menuContribution locationURI="popup:org.eclipse.ui.projectConfigure?after=additions">
+         <command commandId="com.benjholla.elemental.ide.eclipse.builder.addRemoveElementalNature" label="Disable Elemental Builder" style="push">
+            <visibleWhen checkEnabled="false">
+               <with variable="selection">
+                  <count value="1" />
+                  <iterate>
+                     <adapt type="org.eclipse.core.resources.IProject">
+                        <test value="com.benjholla.elemental.ide.eclipse.nature" property="org.eclipse.core.resources.projectNature" />
+                     </adapt>
+                  </iterate>
+               </with>
+            </visibleWhen>
+         </command>
+         <command commandId="com.benjholla.elemental.ide.eclipse.builder.addRemoveElementalNature" label="Enable Elemental Builder" style="push">
+            <visibleWhen checkEnabled="false">
+               <with variable="selection">
+                  <count value="1" />
+                  <iterate>
+                     <adapt type="org.eclipse.core.resources.IProject">
+                        <not>
+                           <test value="com.benjholla.elemental.ide.eclipse.nature" property="org.eclipse.core.resources.projectNature" />
+                        </not>
+                     </adapt>
+                  </iterate>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+   
+</plugin>
