@@ -435,4 +435,140 @@ class TestProgramFactory {
 		}
 	}
 	
+	@Test
+	void testStaticDispatching() throws UnsupportedEncodingException {
+		ByteArrayOutputStream stdout = new ByteArrayOutputStream();
+		ProgramFactory factory = new ProgramFactory(System.in, stdout);
+		
+	    factory.beginFunction((byte) 0x00);
+	    factory.addStaticDispatch((byte) 0x01);
+	    factory.endFunction();
+	    
+	    factory.beginFunction((byte) 0x01);
+	    factory.addStaticDispatch((byte) 0x02);
+	    factory.endFunction();
+	    
+	    factory.beginFunction((byte) 0x02);
+	    factory.addRecall();
+	    factory.endFunction();
+	    
+		Program program = factory.create();
+		program.execute();
+		
+		if(stdout.toByteArray().length != 1) {
+			throw new RuntimeException("Unexpected output");
+		}
+	}
+	
+	@Test
+	void testStaticDispatchingReturns() throws UnsupportedEncodingException {
+		ByteArrayOutputStream stdout = new ByteArrayOutputStream();
+		ProgramFactory factory = new ProgramFactory(System.in, stdout);
+		
+        factory.beginFunction((byte) 0x00);
+        factory.addStaticDispatch((byte) 0x01);
+        factory.endFunction();
+        
+        factory.beginFunction((byte) 0x01);
+        factory.addStaticDispatch((byte) 0x02);
+        factory.addStaticDispatch((byte) 0x02);
+        factory.endFunction();
+        
+        factory.beginFunction((byte) 0x02);
+        factory.addRecall();
+        factory.endFunction();
+        
+		Program program = factory.create();
+		program.execute();
+		
+		if(stdout.toByteArray().length != 2) {
+			throw new RuntimeException("Unexpected output");
+		}
+	}
+	
+	@Test
+	void testDynamicDispatching() throws UnsupportedEncodingException {
+		ByteArrayOutputStream stdout = new ByteArrayOutputStream();
+		ProgramFactory factory = new ProgramFactory(System.in, stdout);
+		
+        factory.beginFunction((byte) 0x00);
+        factory.addIncrement();
+        factory.addDynamicDispatch();
+        factory.endFunction();
+        
+        factory.beginFunction((byte) 0x01);
+        factory.addRecall();
+        factory.endFunction();
+        
+        factory.beginFunction((byte) 0x02);
+        factory.addRecall();
+        factory.addRecall();
+        factory.endFunction();
+        
+		Program program = factory.create();
+		program.execute();
+		
+		if(stdout.toByteArray().length != 1) {
+			throw new RuntimeException("Unexpected output");
+		}
+	}
+	
+	@Test
+	void testDynamicDispatching2() throws UnsupportedEncodingException {
+		ByteArrayOutputStream stdout = new ByteArrayOutputStream();
+		ProgramFactory factory = new ProgramFactory(System.in, stdout);
+		
+		factory.beginFunction((byte) 0x00);
+        factory.addIncrement();
+        factory.addIncrement();
+        factory.addDynamicDispatch();
+        factory.endFunction();
+        
+        factory.beginFunction((byte) 0x01);
+        factory.addRecall();
+        factory.endFunction();
+        
+        factory.beginFunction((byte) 0x02);
+        factory.addRecall();
+        factory.addRecall();
+        factory.endFunction();
+        
+		Program program = factory.create();
+		program.execute();
+		
+		if(stdout.toByteArray().length != 2) {
+			throw new RuntimeException("Unexpected output");
+		}
+	}
+	
+	@Test
+	void testDynamicDispatching3() throws UnsupportedEncodingException {
+		ByteArrayOutputStream stdout = new ByteArrayOutputStream();
+		ProgramFactory factory = new ProgramFactory(System.in, stdout);
+		
+		factory.beginFunction((byte) 0x00);
+        factory.addIncrement();
+        factory.addIncrement();
+        factory.addDynamicDispatch();
+        factory.addDecrement();
+        factory.addDynamicDispatch();
+        factory.endFunction();
+        
+        factory.beginFunction((byte) 0x01);
+        factory.addRecall();
+        factory.endFunction();
+        
+        factory.beginFunction((byte) 0x02);
+        factory.addRecall();
+        factory.addRecall();
+        factory.endFunction();
+        
+		Program program = factory.create();
+		program.execute();
+		
+		if(stdout.toByteArray().length != 3) {
+			throw new RuntimeException("Unexpected output");
+		}
+	}
+	
 }

@@ -77,7 +77,7 @@ class ElementalGenerator extends AbstractGenerator {
 				
 				ProgramFactory factory = new ProgramFactory(System.in, System.out);
 				
-				«IF model.implicitFunction !== null»
+				«IF model.implicitFunction !== null && !model.implicitFunction.instructions.isEmpty»
 				factory.beginFunction((byte) 0x00);
 				«FOR instruction : model.implicitFunction.instructions»
 				«compileInstruction(instruction)»
@@ -136,15 +136,15 @@ class ElementalGenerator extends AbstractGenerator {
 			return result.toString();
 		} else if(instruction.type instanceof Label){
 			val label = instruction.type as Label;
-			return "factory.addLabelInstruction((byte) 0x" + String.format("%02X", Integer.parseInt(label.name)) + ");";
+			return "factory.addLabel((byte) 0x" + String.format("%02X", Integer.parseInt(label.name)) + ");";
 		} else if(instruction.type instanceof GOTO){
 			val GOTO = instruction.type as GOTO;
-			return "factory.addGOTOInstruction((byte) 0x" + String.format("%02X", Integer.parseInt(GOTO.label.name)) + ");";
+			return "factory.addGOTO((byte) 0x" + String.format("%02X", Integer.parseInt(GOTO.label.name)) + ");";
 		} else if(instruction.type instanceof ComputedGOTO){
 			return "factory.addComputedGOTO();";
 		} else if(instruction.type instanceof StaticDispatch){
 			val staticDispatch = instruction.type as StaticDispatch;
-			return "factory.addStaticDispatchInstruction((byte) 0x" + String.format("%02X", Integer.parseInt(staticDispatch.target.name)) + ");";
+			return "factory.addStaticDispatch((byte) 0x" + String.format("%02X", Integer.parseInt(staticDispatch.target.name)) + ");";
 		} else if(instruction.type instanceof DynamicDispatch){
 			return "factory.addDynamicDispatch();";
 		} else {
