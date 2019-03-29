@@ -571,4 +571,56 @@ class TestProgramFactory {
 		}
 	}
 	
+	@Test
+	void testAssignment() throws UnsupportedEncodingException {
+		ByteArrayOutputStream stdout = new ByteArrayOutputStream();
+		ProgramFactory factory = new ProgramFactory(System.in, stdout);
+		
+		factory.beginFunction((byte) 0x00);
+        factory.addMoveRight();
+        factory.addIncrement();
+        factory.addIncrement();
+        factory.addMoveLeft();
+        factory.addIncrement();
+        factory.addAssignment();
+        factory.addDecrement();
+        factory.addDecrement();
+        factory.beginBranch();
+        factory.addRecall();
+        factory.endBranch();
+        factory.endFunction();
+        
+		Program program = factory.create();
+		program.execute();
+		
+		if(stdout.toByteArray().length != 0) {
+			throw new RuntimeException("Unexpected output");
+		}
+	}
+	
+	@Test
+	void testAssignment2() throws UnsupportedEncodingException {
+		ByteArrayOutputStream stdout = new ByteArrayOutputStream();
+		ProgramFactory factory = new ProgramFactory(System.in, stdout);
+		
+		factory.beginFunction((byte) 0x00);
+        factory.addMoveRight();
+        factory.addIncrement();
+        factory.addIncrement();
+        factory.addMoveLeft();
+        factory.addIncrement();
+        factory.addAssignment();
+        factory.beginBranch();
+        factory.addRecall();
+        factory.endBranch();
+        factory.endFunction();
+        
+		Program program = factory.create();
+		program.execute();
+		
+		if(stdout.toByteArray().length != 1) {
+			throw new RuntimeException("Unexpected output");
+		}
+	}
+	
 }

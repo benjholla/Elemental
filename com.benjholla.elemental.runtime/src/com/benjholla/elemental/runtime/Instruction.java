@@ -149,7 +149,11 @@ public abstract class Instruction {
 
 		@Override
 		public Instruction execute() {
-			Byte value = program.getMemory().get(program.getMemoryPointer());
+			Byte cell = program.getMemory().get(program.getMemoryPointer());
+			Byte value = 0x00;
+			if(cell < program.getMemory().size()) {
+				value = program.getMemory().get(cell);
+			}
 			program.getMemory().set(program.getMemoryPointer(), value);
 			return successor;
 		}
