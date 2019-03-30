@@ -55,7 +55,7 @@ class ElementalGenerator extends AbstractGenerator {
 			  if(namespace.startsWith(".")){
 			  	namespace = namespace.substring(1);
 			  }
-			  fsa.generateFile(name + ".java", compile(namespace, name, model));
+			  fsa.generateFile(namespace.replace(".", File.separator) + File.separator + name + ".java", compile(namespace, name, model));
 			} else {
 			  throw new RuntimeException("Unsupported platform!")
 			}
