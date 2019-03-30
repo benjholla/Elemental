@@ -200,8 +200,9 @@ public class ProgramFactory {
 		if(function != null) {
 			if(!labels.containsKey(labelName)) {
 				Label label = futureLabels.remove(labelName);
-				if(label != null) {
+				if(label == null) {
 					label = new Label(function, labelName);
+					labels.put(labelName, label);
 				}
 				addInstruction(label);
 			} else {
@@ -267,6 +268,7 @@ public class ProgramFactory {
 					Instruction implicitReturn = new ImplicitReturn(function);
 					addInstruction(implicitReturn);
 					labels.clear();
+					futureLabels.clear();
 					function = null;
 				}
 			}

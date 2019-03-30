@@ -29,10 +29,14 @@ public class Function {
 	}
 	
 	public void addInstruction(Instruction instruction) {
-		body.add(instruction);
-		if(instruction instanceof Label) {
-			Label label = (Label) instruction;
-			labels.put(label.getName(), label);
+		if(instruction !=  null) {
+			body.add(instruction);
+			if(instruction instanceof Label) {
+				Label label = (Label) instruction;
+				labels.put(label.getName(), label);
+			}
+		} else {
+			throw new IllegalStateException("Instruction cannot be null");
 		}
 	}
 	

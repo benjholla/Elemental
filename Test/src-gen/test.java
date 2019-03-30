@@ -10,18 +10,12 @@ public class Test {
         factory.beginFunction((byte) 0x00);
         factory.addIncrement();
         factory.addIncrement();
-        factory.addDynamicDispatch();
+        factory.addLabel((byte) 0x00);
+        factory.beginBranch();
+        factory.addRecall();
         factory.addDecrement();
-        factory.addDynamicDispatch();
-        factory.endFunction();
-        
-        factory.beginFunction((byte) 0x01);
-        factory.addRecall();
-        factory.endFunction();
-        
-        factory.beginFunction((byte) 0x02);
-        factory.addRecall();
-        factory.addRecall();
+        factory.addGOTO((byte) 0x00);
+        factory.endBranch();
         factory.endFunction();
         
 		Program program = factory.create();

@@ -171,7 +171,11 @@ public abstract class Instruction {
 		}
 
 		protected void addInstruction(Instruction instruction) {
-			body.add(instruction);
+			if(instruction !=  null) {
+				body.add(instruction);
+			} else {
+				throw new IllegalStateException("Instruction cannot be null");
+			}
 		}
 		
 		@Override
@@ -220,7 +224,11 @@ public abstract class Instruction {
 		}
 		
 		protected void addInstruction(Instruction instruction) {
-			body.add(instruction);
+			if(instruction !=  null) {
+				body.add(instruction);
+			} else {
+				throw new IllegalStateException("Instruction cannot be null");
+			}
 		}
 
 		@Override
