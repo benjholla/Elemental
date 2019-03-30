@@ -2,7 +2,7 @@
 Elemental is an esoteric language for exploring elemental properties of program language features.
 
 ## Lineage
-This language was inspired by [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck), which is a variation on [Corrado Böhm](https://en.wikipedia.org/wiki/Corrado_Böhm)'s [P''](https://esolangs.org/wiki/P%E2%80%B2%E2%80%B2).
+The Elemental language was inspired by [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck), which is a variation on [Corrado Böhm](https://en.wikipedia.org/wiki/Corrado_Böhm)'s [P''](https://esolangs.org/wiki/P%E2%80%B2%E2%80%B2). Elemental is backwards compatible with Brainfuck and can execute standard Brainfuck programs verbatim.
 
 ## Key Differences
 - Elemental has native comments
