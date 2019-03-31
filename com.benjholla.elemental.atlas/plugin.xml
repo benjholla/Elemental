@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+  
+   <!-- startup to register the XCSG tag hierarchy extensions -->
+   <extension point="org.eclipse.ui.startup">
+     <startup class="com.benjholla.elemental.atlas.common.XCSG" />
+   </extension>
+  
+   <!-- create an initializer extension to initialize toolbox commons preferences -->
+   <extension point="org.eclipse.equinox.preferences.preferences">
+	   <initializer class="com.benjholla.elemental.atlas.preferences.ElementalPreferences" />
+   </extension>
+
+   <!-- create a preferences menu item -->
+   <extension point="org.eclipse.ui.preferencePages">
+      <page
+            class="com.benjholla.elemental.atlas.ui.ElementalPreferencesPage"
+            id="com.benjholla.elemental.atlas.ui.preferences"
+            name="Elemental Indexer"
+            category="com.benjholla.elemental.atlas.ui">
+      </page>
+   </extension>
+  
+   <!-- create an Atlas indexer for Elemental -->
+   <extension
+        id="ElementalLanguageIndexingProviderFactory"
+        name="ElementalLanguageIndexingProviderFactory"
+        point="com.ensoftcorp.atlas.core.LanguageIndexingProviderFactories">
+     <ProviderFactory
+           class="com.benjholla.elemental.atlas.indexer.ElementalIndexer">
+     </ProviderFactory>
+   </extension>
+   
+   <!-- create Atlas selection converters -->
+   <extension point="com.ensoftcorp.atlas.ui.selectionConverters">
+      <converter class="com.benjholla.elemental.atlas.selections.ElementalSelectionConverter" />
+   </extension>
+  
+</plugin>
