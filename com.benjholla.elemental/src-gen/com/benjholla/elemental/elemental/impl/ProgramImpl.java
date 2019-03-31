@@ -6,7 +6,7 @@ package com.benjholla.elemental.elemental.impl;
 import com.benjholla.elemental.elemental.Block;
 import com.benjholla.elemental.elemental.ElementalPackage;
 import com.benjholla.elemental.elemental.Function;
-import com.benjholla.elemental.elemental.Model;
+import com.benjholla.elemental.elemental.Program;
 
 import java.util.Collection;
 
@@ -26,19 +26,19 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Model</b></em>'.
+ * An implementation of the model object '<em><b>Program</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link com.benjholla.elemental.elemental.impl.ModelImpl#getImplicitFunction <em>Implicit Function</em>}</li>
- *   <li>{@link com.benjholla.elemental.elemental.impl.ModelImpl#getExplicitFunctions <em>Explicit Functions</em>}</li>
+ *   <li>{@link com.benjholla.elemental.elemental.impl.ProgramImpl#getImplicitFunction <em>Implicit Function</em>}</li>
+ *   <li>{@link com.benjholla.elemental.elemental.impl.ProgramImpl#getExplicitFunctions <em>Explicit Functions</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ModelImpl extends MinimalEObjectImpl.Container implements Model
+public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
 {
   /**
    * The cached value of the '{@link #getImplicitFunction() <em>Implicit Function</em>}' containment reference.
@@ -65,7 +65,7 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ModelImpl()
+  protected ProgramImpl()
   {
     super();
   }
@@ -78,7 +78,7 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   @Override
   protected EClass eStaticClass()
   {
-    return ElementalPackage.Literals.MODEL;
+    return ElementalPackage.Literals.PROGRAM;
   }
 
   /**
@@ -103,7 +103,7 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
     implicitFunction = newImplicitFunction;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ElementalPackage.MODEL__IMPLICIT_FUNCTION, oldImplicitFunction, newImplicitFunction);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ElementalPackage.PROGRAM__IMPLICIT_FUNCTION, oldImplicitFunction, newImplicitFunction);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -121,14 +121,14 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
     {
       NotificationChain msgs = null;
       if (implicitFunction != null)
-        msgs = ((InternalEObject)implicitFunction).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ElementalPackage.MODEL__IMPLICIT_FUNCTION, null, msgs);
+        msgs = ((InternalEObject)implicitFunction).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ElementalPackage.PROGRAM__IMPLICIT_FUNCTION, null, msgs);
       if (newImplicitFunction != null)
-        msgs = ((InternalEObject)newImplicitFunction).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ElementalPackage.MODEL__IMPLICIT_FUNCTION, null, msgs);
+        msgs = ((InternalEObject)newImplicitFunction).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ElementalPackage.PROGRAM__IMPLICIT_FUNCTION, null, msgs);
       msgs = basicSetImplicitFunction(newImplicitFunction, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ElementalPackage.MODEL__IMPLICIT_FUNCTION, newImplicitFunction, newImplicitFunction));
+      eNotify(new ENotificationImpl(this, Notification.SET, ElementalPackage.PROGRAM__IMPLICIT_FUNCTION, newImplicitFunction, newImplicitFunction));
   }
 
   /**
@@ -141,7 +141,7 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     if (explicitFunctions == null)
     {
-      explicitFunctions = new EObjectContainmentEList<Function>(Function.class, this, ElementalPackage.MODEL__EXPLICIT_FUNCTIONS);
+      explicitFunctions = new EObjectContainmentEList<Function>(Function.class, this, ElementalPackage.PROGRAM__EXPLICIT_FUNCTIONS);
     }
     return explicitFunctions;
   }
@@ -156,9 +156,9 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case ElementalPackage.MODEL__IMPLICIT_FUNCTION:
+      case ElementalPackage.PROGRAM__IMPLICIT_FUNCTION:
         return basicSetImplicitFunction(null, msgs);
-      case ElementalPackage.MODEL__EXPLICIT_FUNCTIONS:
+      case ElementalPackage.PROGRAM__EXPLICIT_FUNCTIONS:
         return ((InternalEList<?>)getExplicitFunctions()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -174,9 +174,9 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case ElementalPackage.MODEL__IMPLICIT_FUNCTION:
+      case ElementalPackage.PROGRAM__IMPLICIT_FUNCTION:
         return getImplicitFunction();
-      case ElementalPackage.MODEL__EXPLICIT_FUNCTIONS:
+      case ElementalPackage.PROGRAM__EXPLICIT_FUNCTIONS:
         return getExplicitFunctions();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -193,10 +193,10 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case ElementalPackage.MODEL__IMPLICIT_FUNCTION:
+      case ElementalPackage.PROGRAM__IMPLICIT_FUNCTION:
         setImplicitFunction((Block)newValue);
         return;
-      case ElementalPackage.MODEL__EXPLICIT_FUNCTIONS:
+      case ElementalPackage.PROGRAM__EXPLICIT_FUNCTIONS:
         getExplicitFunctions().clear();
         getExplicitFunctions().addAll((Collection<? extends Function>)newValue);
         return;
@@ -214,10 +214,10 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case ElementalPackage.MODEL__IMPLICIT_FUNCTION:
+      case ElementalPackage.PROGRAM__IMPLICIT_FUNCTION:
         setImplicitFunction((Block)null);
         return;
-      case ElementalPackage.MODEL__EXPLICIT_FUNCTIONS:
+      case ElementalPackage.PROGRAM__EXPLICIT_FUNCTIONS:
         getExplicitFunctions().clear();
         return;
     }
@@ -234,12 +234,12 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case ElementalPackage.MODEL__IMPLICIT_FUNCTION:
+      case ElementalPackage.PROGRAM__IMPLICIT_FUNCTION:
         return implicitFunction != null;
-      case ElementalPackage.MODEL__EXPLICIT_FUNCTIONS:
+      case ElementalPackage.PROGRAM__EXPLICIT_FUNCTIONS:
         return explicitFunctions != null && !explicitFunctions.isEmpty();
     }
     return super.eIsSet(featureID);
   }
 
-} //ModelImpl
+} //ProgramImpl

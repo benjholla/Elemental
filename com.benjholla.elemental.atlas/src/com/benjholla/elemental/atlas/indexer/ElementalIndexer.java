@@ -2,7 +2,9 @@ package com.benjholla.elemental.atlas.indexer;
 
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.Map.Entry;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -10,6 +12,7 @@ import org.eclipse.core.runtime.SubMonitor;
 
 import com.benjholla.elemental.atlas.common.XCSG;
 import com.benjholla.elemental.atlas.log.Log;
+import com.benjholla.elemental.elemental.Program;
 import com.benjholla.elemental.ide.eclipse.builder.ElementalNature;
 import com.benjholla.elemental.ide.eclipse.core.ElementalProject;
 import com.ensoftcorp.atlas.core.db.graph.EditableGraph;
@@ -26,8 +29,12 @@ public class ElementalIndexer implements com.ensoftcorp.atlas.core.indexing.prov
 	private static void index(ElementalProjectAST ast, EditableGraph graph, Node projectNode, SubMonitor monitor) throws Exception {
 		Log.info("Indexing: " + ast.getElementalProject().getProject().getName());
 		
-//		// index the program
-//		for(Program program : ast.getASTForest()) {
+		// index the program
+		for(Entry<IFile,Program> entry : ast.getASTForest().entrySet()) {
+			IFile source = entry.getKey();
+			Program program = entry.getValue();
+			EMFSourceCorrespondence sc = new EMFSourceCorrespondence(source, program);
+			Log.info("Processing: " + sc.toString());
 //			File sourceFile = program.getParserSourceCorrespondence().getSource();
 //			String sourceFileName = sourceFile.getName();
 //			monitor.subTask("Processing: " + sourceFileName);
@@ -61,7 +68,7 @@ public class ElementalIndexer implements com.ensoftcorp.atlas.core.indexing.prov
 //			
 //			// index the contents of the namespace
 //			program.index(graph, implicitFunctionNode, monitor);
-//		}
+		}
 	}
 
 	@Override

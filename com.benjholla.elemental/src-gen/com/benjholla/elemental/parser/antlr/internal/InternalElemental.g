@@ -43,7 +43,7 @@ import com.benjholla.elemental.services.ElementalGrammarAccess;
 
     @Override
     protected String getFirstRuleName() {
-    	return "Model";
+    	return "Program";
    	}
 
    	@Override
@@ -60,15 +60,15 @@ import com.benjholla.elemental.services.ElementalGrammarAccess;
     }
 }
 
-// Entry rule entryRuleModel
-entryRuleModel returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getModelRule()); }
-	iv_ruleModel=ruleModel
-	{ $current=$iv_ruleModel.current; }
+// Entry rule entryRuleProgram
+entryRuleProgram returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getProgramRule()); }
+	iv_ruleProgram=ruleProgram
+	{ $current=$iv_ruleProgram.current; }
 	EOF;
 
-// Rule Model
-ruleModel returns [EObject current=null]
+// Rule Program
+ruleProgram returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -79,12 +79,12 @@ ruleModel returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getModelAccess().getImplicitFunctionBlockParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getProgramAccess().getImplicitFunctionBlockParserRuleCall_0_0());
 				}
 				lv_implicitFunction_0_0=ruleBlock
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getModelRule());
+						$current = createModelElementForParent(grammarAccess.getProgramRule());
 					}
 					set(
 						$current,
@@ -98,12 +98,12 @@ ruleModel returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getModelAccess().getExplicitFunctionsFunctionParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getProgramAccess().getExplicitFunctionsFunctionParserRuleCall_1_0());
 				}
 				lv_explicitFunctions_1_0=ruleFunction
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getModelRule());
+						$current = createModelElementForParent(grammarAccess.getProgramRule());
 					}
 					add(
 						$current,

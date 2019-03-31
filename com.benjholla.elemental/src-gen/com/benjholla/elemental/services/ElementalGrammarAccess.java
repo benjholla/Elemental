@@ -23,15 +23,15 @@ import org.eclipse.xtext.service.GrammarProvider;
 @Singleton
 public class ElementalGrammarAccess extends AbstractGrammarElementFinder {
 	
-	public class ModelElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.benjholla.elemental.Elemental.Model");
+	public class ProgramElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.benjholla.elemental.Elemental.Program");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cImplicitFunctionAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cImplicitFunctionBlockParserRuleCall_0_0 = (RuleCall)cImplicitFunctionAssignment_0.eContents().get(0);
 		private final Assignment cExplicitFunctionsAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cExplicitFunctionsFunctionParserRuleCall_1_0 = (RuleCall)cExplicitFunctionsAssignment_1.eContents().get(0);
 		
-		//Model:
+		//Program:
 		//	implicitFunction=Block
 		//	explicitFunctions+=Function*;
 		@Override public ParserRule getRule() { return rule; }
@@ -523,7 +523,7 @@ public class ElementalGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	
-	private final ModelElements pModel;
+	private final ProgramElements pProgram;
 	private final BlockElements pBlock;
 	private final LabelElements pLabel;
 	private final FunctionElements pFunction;
@@ -551,7 +551,7 @@ public class ElementalGrammarAccess extends AbstractGrammarElementFinder {
 	@Inject
 	public ElementalGrammarAccess(GrammarProvider grammarProvider) {
 		this.grammar = internalFindGrammar(grammarProvider);
-		this.pModel = new ModelElements();
+		this.pProgram = new ProgramElements();
 		this.pBlock = new BlockElements();
 		this.pLabel = new LabelElements();
 		this.pFunction = new FunctionElements();
@@ -598,15 +598,15 @@ public class ElementalGrammarAccess extends AbstractGrammarElementFinder {
 	
 
 	
-	//Model:
+	//Program:
 	//	implicitFunction=Block
 	//	explicitFunctions+=Function*;
-	public ModelElements getModelAccess() {
-		return pModel;
+	public ProgramElements getProgramAccess() {
+		return pProgram;
 	}
 	
-	public ParserRule getModelRule() {
-		return getModelAccess().getRule();
+	public ParserRule getProgramRule() {
+		return getProgramAccess().getRule();
 	}
 	
 	//Block:

@@ -9,22 +9,22 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Model</b></em>'.
+ * A representation of the model object '<em><b>Program</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link com.benjholla.elemental.elemental.Model#getImplicitFunction <em>Implicit Function</em>}</li>
- *   <li>{@link com.benjholla.elemental.elemental.Model#getExplicitFunctions <em>Explicit Functions</em>}</li>
+ *   <li>{@link com.benjholla.elemental.elemental.Program#getImplicitFunction <em>Implicit Function</em>}</li>
+ *   <li>{@link com.benjholla.elemental.elemental.Program#getExplicitFunctions <em>Explicit Functions</em>}</li>
  * </ul>
  *
- * @see com.benjholla.elemental.elemental.ElementalPackage#getModel()
+ * @see com.benjholla.elemental.elemental.ElementalPackage#getProgram()
  * @model
  * @generated
  */
-public interface Model extends EObject
+public interface Program extends EObject
 {
   /**
    * Returns the value of the '<em><b>Implicit Function</b></em>' containment reference.
@@ -36,14 +36,14 @@ public interface Model extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Implicit Function</em>' containment reference.
    * @see #setImplicitFunction(Block)
-   * @see com.benjholla.elemental.elemental.ElementalPackage#getModel_ImplicitFunction()
+   * @see com.benjholla.elemental.elemental.ElementalPackage#getProgram_ImplicitFunction()
    * @model containment="true"
    * @generated
    */
   Block getImplicitFunction();
 
   /**
-   * Sets the value of the '{@link com.benjholla.elemental.elemental.Model#getImplicitFunction <em>Implicit Function</em>}' containment reference.
+   * Sets the value of the '{@link com.benjholla.elemental.elemental.Program#getImplicitFunction <em>Implicit Function</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Implicit Function</em>' containment reference.
@@ -62,10 +62,10 @@ public interface Model extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Explicit Functions</em>' containment reference list.
-   * @see com.benjholla.elemental.elemental.ElementalPackage#getModel_ExplicitFunctions()
+   * @see com.benjholla.elemental.elemental.ElementalPackage#getProgram_ExplicitFunctions()
    * @model containment="true"
    * @generated
    */
   EList<Function> getExplicitFunctions();
 
-} // Model
+} // Program

@@ -13,7 +13,7 @@ import com.benjholla.elemental.elemental.Increment
 import com.benjholla.elemental.elemental.Instruction
 import com.benjholla.elemental.elemental.Label
 import com.benjholla.elemental.elemental.Loop
-import com.benjholla.elemental.elemental.Model
+import com.benjholla.elemental.elemental.Program
 import com.benjholla.elemental.elemental.MoveLeft
 import com.benjholla.elemental.elemental.MoveRight
 import com.benjholla.elemental.elemental.Recall
@@ -42,7 +42,7 @@ class ElementalGenerator extends AbstractGenerator {
 	val EXTENSION = ".e";
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-		for (Model model : resource.allContents.toIterable.filter(Model)) {
+		for (Program model : resource.allContents.toIterable.filter(Program)) {
 			if (model.eResource.URI.isPlatform) {
 			  val relativePath = model.eResource.URI.toPlatformString(true);
 			  val platformRoot = ResourcesPlugin.getWorkspace().getRoot();
@@ -62,7 +62,7 @@ class ElementalGenerator extends AbstractGenerator {
 		}
 	}
 	
-	def String compile(String namespace, String name, Model model) {
+	def String compile(String namespace, String name, Program model) {
 		var pkg = "";
 		if(!namespace.isEmpty()){
 			pkg = "package " + namespace + ";\n\n";

@@ -75,7 +75,7 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
         @Override
         protected String getFirstRuleName() {
-        	return "Model";
+        	return "Program";
        	}
 
        	@Override
@@ -86,25 +86,25 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
 
 
-    // $ANTLR start "entryRuleModel"
-    // InternalElemental.g:64:1: entryRuleModel returns [EObject current=null] : iv_ruleModel= ruleModel EOF ;
-    public final EObject entryRuleModel() throws RecognitionException {
+    // $ANTLR start "entryRuleProgram"
+    // InternalElemental.g:64:1: entryRuleProgram returns [EObject current=null] : iv_ruleProgram= ruleProgram EOF ;
+    public final EObject entryRuleProgram() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleModel = null;
+        EObject iv_ruleProgram = null;
 
 
         try {
-            // InternalElemental.g:64:46: (iv_ruleModel= ruleModel EOF )
-            // InternalElemental.g:65:2: iv_ruleModel= ruleModel EOF
+            // InternalElemental.g:64:48: (iv_ruleProgram= ruleProgram EOF )
+            // InternalElemental.g:65:2: iv_ruleProgram= ruleProgram EOF
             {
-             newCompositeNode(grammarAccess.getModelRule()); 
+             newCompositeNode(grammarAccess.getProgramRule()); 
             pushFollow(FOLLOW_1);
-            iv_ruleModel=ruleModel();
+            iv_ruleProgram=ruleProgram();
 
             state._fsp--;
 
-             current =iv_ruleModel; 
+             current =iv_ruleProgram; 
             match(input,EOF,FOLLOW_2); 
 
             }
@@ -119,12 +119,12 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleModel"
+    // $ANTLR end "entryRuleProgram"
 
 
-    // $ANTLR start "ruleModel"
-    // InternalElemental.g:71:1: ruleModel returns [EObject current=null] : ( ( (lv_implicitFunction_0_0= ruleBlock ) ) ( (lv_explicitFunctions_1_0= ruleFunction ) )* ) ;
-    public final EObject ruleModel() throws RecognitionException {
+    // $ANTLR start "ruleProgram"
+    // InternalElemental.g:71:1: ruleProgram returns [EObject current=null] : ( ( (lv_implicitFunction_0_0= ruleBlock ) ) ( (lv_explicitFunctions_1_0= ruleFunction ) )* ) ;
+    public final EObject ruleProgram() throws RecognitionException {
         EObject current = null;
 
         EObject lv_implicitFunction_0_0 = null;
@@ -149,7 +149,7 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
             // InternalElemental.g:81:5: lv_implicitFunction_0_0= ruleBlock
             {
 
-            					newCompositeNode(grammarAccess.getModelAccess().getImplicitFunctionBlockParserRuleCall_0_0());
+            					newCompositeNode(grammarAccess.getProgramAccess().getImplicitFunctionBlockParserRuleCall_0_0());
             				
             pushFollow(FOLLOW_3);
             lv_implicitFunction_0_0=ruleBlock();
@@ -158,7 +158,7 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
 
             					if (current==null) {
-            						current = createModelElementForParent(grammarAccess.getModelRule());
+            						current = createModelElementForParent(grammarAccess.getProgramRule());
             					}
             					set(
             						current,
@@ -192,7 +192,7 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
             	    // InternalElemental.g:100:5: lv_explicitFunctions_1_0= ruleFunction
             	    {
 
-            	    					newCompositeNode(grammarAccess.getModelAccess().getExplicitFunctionsFunctionParserRuleCall_1_0());
+            	    					newCompositeNode(grammarAccess.getProgramAccess().getExplicitFunctionsFunctionParserRuleCall_1_0());
             	    				
             	    pushFollow(FOLLOW_3);
             	    lv_explicitFunctions_1_0=ruleFunction();
@@ -201,7 +201,7 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
 
 
             	    					if (current==null) {
-            	    						current = createModelElementForParent(grammarAccess.getModelRule());
+            	    						current = createModelElementForParent(grammarAccess.getProgramRule());
             	    					}
             	    					add(
             	    						current,
@@ -241,7 +241,7 @@ public class InternalElementalParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleModel"
+    // $ANTLR end "ruleProgram"
 
 
     // $ANTLR start "entryRuleBlock"

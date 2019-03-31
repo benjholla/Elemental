@@ -6,9 +6,9 @@
     complianceLevel="6.0" copyrightFields="false" runtimeVersion="2.16">
   <genPackages prefix="Elemental" basePackage="com.benjholla.elemental" disposableProviderFactory="true"
       fileExtensions="e" ecorePackage="Elemental.ecore#/">
-    <genClasses ecoreClass="Elemental.ecore#//Model">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Elemental.ecore#//Model/implicitFunction"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Elemental.ecore#//Model/explicitFunctions"/>
+    <genClasses ecoreClass="Elemental.ecore#//Program">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Elemental.ecore#//Program/implicitFunction"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Elemental.ecore#//Program/explicitFunctions"/>
     </genClasses>
     <genClasses ecoreClass="Elemental.ecore#//Block">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Elemental.ecore#//Block/instructions"/>

@@ -3,7 +3,7 @@
  */
 package com.benjholla.elemental.tests
 
-import com.benjholla.elemental.elemental.Model
+import com.benjholla.elemental.elemental.Program
 import com.google.inject.Inject
 import org.eclipse.xtext.testing.InjectWith
 import org.eclipse.xtext.testing.extensions.InjectionExtension
@@ -16,10 +16,10 @@ import org.junit.jupiter.api.^extension.ExtendWith
 @InjectWith(ElementalInjectorProvider)
 class ElementalParsingTest {
 	@Inject
-	ParseHelper<Model> parseHelper
+	ParseHelper<Program> parseHelper
 	
 	@Test
-	def void loadModel() {
+	def void loadProgram() {
 		val result = parseHelper.parse('''
 			Hello Xtext!
 		''')

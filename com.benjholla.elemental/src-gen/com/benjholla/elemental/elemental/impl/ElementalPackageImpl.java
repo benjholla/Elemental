@@ -16,9 +16,9 @@ import com.benjholla.elemental.elemental.Increment;
 import com.benjholla.elemental.elemental.Instruction;
 import com.benjholla.elemental.elemental.Label;
 import com.benjholla.elemental.elemental.Loop;
-import com.benjholla.elemental.elemental.Model;
 import com.benjholla.elemental.elemental.MoveLeft;
 import com.benjholla.elemental.elemental.MoveRight;
+import com.benjholla.elemental.elemental.Program;
 import com.benjholla.elemental.elemental.Recall;
 import com.benjholla.elemental.elemental.StaticDispatch;
 import com.benjholla.elemental.elemental.Store;
@@ -43,7 +43,7 @@ public class ElementalPackageImpl extends EPackageImpl implements ElementalPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass modelEClass = null;
+  private EClass programEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -233,9 +233,9 @@ public class ElementalPackageImpl extends EPackageImpl implements ElementalPacka
    * @generated
    */
   @Override
-  public EClass getModel()
+  public EClass getProgram()
   {
-    return modelEClass;
+    return programEClass;
   }
 
   /**
@@ -244,9 +244,9 @@ public class ElementalPackageImpl extends EPackageImpl implements ElementalPacka
    * @generated
    */
   @Override
-  public EReference getModel_ImplicitFunction()
+  public EReference getProgram_ImplicitFunction()
   {
-    return (EReference)modelEClass.getEStructuralFeatures().get(0);
+    return (EReference)programEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -255,9 +255,9 @@ public class ElementalPackageImpl extends EPackageImpl implements ElementalPacka
    * @generated
    */
   @Override
-  public EReference getModel_ExplicitFunctions()
+  public EReference getProgram_ExplicitFunctions()
   {
-    return (EReference)modelEClass.getEStructuralFeatures().get(1);
+    return (EReference)programEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -577,9 +577,9 @@ public class ElementalPackageImpl extends EPackageImpl implements ElementalPacka
     isCreated = true;
 
     // Create classes and their features
-    modelEClass = createEClass(MODEL);
-    createEReference(modelEClass, MODEL__IMPLICIT_FUNCTION);
-    createEReference(modelEClass, MODEL__EXPLICIT_FUNCTIONS);
+    programEClass = createEClass(PROGRAM);
+    createEReference(programEClass, PROGRAM__IMPLICIT_FUNCTION);
+    createEReference(programEClass, PROGRAM__EXPLICIT_FUNCTIONS);
 
     blockEClass = createEClass(BLOCK);
     createEReference(blockEClass, BLOCK__INSTRUCTIONS);
@@ -656,9 +656,9 @@ public class ElementalPackageImpl extends EPackageImpl implements ElementalPacka
     // Add supertypes to classes
 
     // Initialize classes and features; add operations and parameters
-    initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getModel_ImplicitFunction(), this.getBlock(), null, "implicitFunction", null, 0, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getModel_ExplicitFunctions(), this.getFunction(), null, "explicitFunctions", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(programEClass, Program.class, "Program", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getProgram_ImplicitFunction(), this.getBlock(), null, "implicitFunction", null, 0, 1, Program.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getProgram_ExplicitFunctions(), this.getFunction(), null, "explicitFunctions", null, 0, -1, Program.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(blockEClass, Block.class, "Block", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getBlock_Instructions(), this.getInstruction(), null, "instructions", null, 0, -1, Block.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

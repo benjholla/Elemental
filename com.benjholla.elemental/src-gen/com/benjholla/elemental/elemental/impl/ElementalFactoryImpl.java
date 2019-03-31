@@ -65,7 +65,7 @@ public class ElementalFactoryImpl extends EFactoryImpl implements ElementalFacto
   {
     switch (eClass.getClassifierID())
     {
-      case ElementalPackage.MODEL: return createModel();
+      case ElementalPackage.PROGRAM: return createProgram();
       case ElementalPackage.BLOCK: return createBlock();
       case ElementalPackage.LABEL: return createLabel();
       case ElementalPackage.FUNCTION: return createFunction();
@@ -94,10 +94,10 @@ public class ElementalFactoryImpl extends EFactoryImpl implements ElementalFacto
    * @generated
    */
   @Override
-  public Model createModel()
+  public Program createProgram()
   {
-    ModelImpl model = new ModelImpl();
-    return model;
+    ProgramImpl program = new ProgramImpl();
+    return program;
   }
 
   /**

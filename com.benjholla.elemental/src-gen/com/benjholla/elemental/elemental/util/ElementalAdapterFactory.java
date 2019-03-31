@@ -76,9 +76,9 @@ public class ElementalAdapterFactory extends AdapterFactoryImpl
     new ElementalSwitch<Adapter>()
     {
       @Override
-      public Adapter caseModel(Model object)
+      public Adapter caseProgram(Program object)
       {
-        return createModelAdapter();
+        return createProgramAdapter();
       }
       @Override
       public Adapter caseBlock(Block object)
@@ -188,16 +188,16 @@ public class ElementalAdapterFactory extends AdapterFactoryImpl
 
 
   /**
-   * Creates a new adapter for an object of class '{@link com.benjholla.elemental.elemental.Model <em>Model</em>}'.
+   * Creates a new adapter for an object of class '{@link com.benjholla.elemental.elemental.Program <em>Program</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see com.benjholla.elemental.elemental.Model
+   * @see com.benjholla.elemental.elemental.Program
    * @generated
    */
-  public Adapter createModelAdapter()
+  public Adapter createProgramAdapter()
   {
     return null;
   }

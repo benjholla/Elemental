@@ -58,14 +58,14 @@ public interface ElementalPackage extends EPackage
   ElementalPackage eINSTANCE = com.benjholla.elemental.elemental.impl.ElementalPackageImpl.init();
 
   /**
-   * The meta object id for the '{@link com.benjholla.elemental.elemental.impl.ModelImpl <em>Model</em>}' class.
+   * The meta object id for the '{@link com.benjholla.elemental.elemental.impl.ProgramImpl <em>Program</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see com.benjholla.elemental.elemental.impl.ModelImpl
-   * @see com.benjholla.elemental.elemental.impl.ElementalPackageImpl#getModel()
+   * @see com.benjholla.elemental.elemental.impl.ProgramImpl
+   * @see com.benjholla.elemental.elemental.impl.ElementalPackageImpl#getProgram()
    * @generated
    */
-  int MODEL = 0;
+  int PROGRAM = 0;
 
   /**
    * The feature id for the '<em><b>Implicit Function</b></em>' containment reference.
@@ -74,7 +74,7 @@ public interface ElementalPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MODEL__IMPLICIT_FUNCTION = 0;
+  int PROGRAM__IMPLICIT_FUNCTION = 0;
 
   /**
    * The feature id for the '<em><b>Explicit Functions</b></em>' containment reference list.
@@ -83,16 +83,16 @@ public interface ElementalPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MODEL__EXPLICIT_FUNCTIONS = 1;
+  int PROGRAM__EXPLICIT_FUNCTIONS = 1;
 
   /**
-   * The number of structural features of the '<em>Model</em>' class.
+   * The number of structural features of the '<em>Program</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MODEL_FEATURE_COUNT = 2;
+  int PROGRAM_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link com.benjholla.elemental.elemental.impl.BlockImpl <em>Block</em>}' class.
@@ -500,36 +500,36 @@ public interface ElementalPackage extends EPackage
 
 
   /**
-   * Returns the meta object for class '{@link com.benjholla.elemental.elemental.Model <em>Model</em>}'.
+   * Returns the meta object for class '{@link com.benjholla.elemental.elemental.Program <em>Program</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Model</em>'.
-   * @see com.benjholla.elemental.elemental.Model
+   * @return the meta object for class '<em>Program</em>'.
+   * @see com.benjholla.elemental.elemental.Program
    * @generated
    */
-  EClass getModel();
+  EClass getProgram();
 
   /**
-   * Returns the meta object for the containment reference '{@link com.benjholla.elemental.elemental.Model#getImplicitFunction <em>Implicit Function</em>}'.
+   * Returns the meta object for the containment reference '{@link com.benjholla.elemental.elemental.Program#getImplicitFunction <em>Implicit Function</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference '<em>Implicit Function</em>'.
-   * @see com.benjholla.elemental.elemental.Model#getImplicitFunction()
-   * @see #getModel()
+   * @see com.benjholla.elemental.elemental.Program#getImplicitFunction()
+   * @see #getProgram()
    * @generated
    */
-  EReference getModel_ImplicitFunction();
+  EReference getProgram_ImplicitFunction();
 
   /**
-   * Returns the meta object for the containment reference list '{@link com.benjholla.elemental.elemental.Model#getExplicitFunctions <em>Explicit Functions</em>}'.
+   * Returns the meta object for the containment reference list '{@link com.benjholla.elemental.elemental.Program#getExplicitFunctions <em>Explicit Functions</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference list '<em>Explicit Functions</em>'.
-   * @see com.benjholla.elemental.elemental.Model#getExplicitFunctions()
-   * @see #getModel()
+   * @see com.benjholla.elemental.elemental.Program#getExplicitFunctions()
+   * @see #getProgram()
    * @generated
    */
-  EReference getModel_ExplicitFunctions();
+  EReference getProgram_ExplicitFunctions();
 
   /**
    * Returns the meta object for class '{@link com.benjholla.elemental.elemental.Block <em>Block</em>}'.
@@ -824,14 +824,14 @@ public interface ElementalPackage extends EPackage
   interface Literals
   {
     /**
-     * The meta object literal for the '{@link com.benjholla.elemental.elemental.impl.ModelImpl <em>Model</em>}' class.
+     * The meta object literal for the '{@link com.benjholla.elemental.elemental.impl.ProgramImpl <em>Program</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see com.benjholla.elemental.elemental.impl.ModelImpl
-     * @see com.benjholla.elemental.elemental.impl.ElementalPackageImpl#getModel()
+     * @see com.benjholla.elemental.elemental.impl.ProgramImpl
+     * @see com.benjholla.elemental.elemental.impl.ElementalPackageImpl#getProgram()
      * @generated
      */
-    EClass MODEL = eINSTANCE.getModel();
+    EClass PROGRAM = eINSTANCE.getProgram();
 
     /**
      * The meta object literal for the '<em><b>Implicit Function</b></em>' containment reference feature.
@@ -839,7 +839,7 @@ public interface ElementalPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference MODEL__IMPLICIT_FUNCTION = eINSTANCE.getModel_ImplicitFunction();
+    EReference PROGRAM__IMPLICIT_FUNCTION = eINSTANCE.getProgram_ImplicitFunction();
 
     /**
      * The meta object literal for the '<em><b>Explicit Functions</b></em>' containment reference list feature.
@@ -847,7 +847,7 @@ public interface ElementalPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference MODEL__EXPLICIT_FUNCTIONS = eINSTANCE.getModel_ExplicitFunctions();
+    EReference PROGRAM__EXPLICIT_FUNCTIONS = eINSTANCE.getProgram_ExplicitFunctions();
 
     /**
      * The meta object literal for the '{@link com.benjholla.elemental.elemental.impl.BlockImpl <em>Block</em>}' class.

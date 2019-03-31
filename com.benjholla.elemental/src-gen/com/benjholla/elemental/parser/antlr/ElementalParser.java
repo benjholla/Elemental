@@ -27,7 +27,7 @@ public class ElementalParser extends AbstractAntlrParser {
 
 	@Override 
 	protected String getDefaultRuleName() {
-		return "Model";
+		return "Program";
 	}
 
 	public ElementalGrammarAccess getGrammarAccess() {

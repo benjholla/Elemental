@@ -24,13 +24,13 @@ public interface ElementalFactory extends EFactory
   ElementalFactory eINSTANCE = com.benjholla.elemental.elemental.impl.ElementalFactoryImpl.init();
 
   /**
-   * Returns a new object of class '<em>Model</em>'.
+   * Returns a new object of class '<em>Program</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Model</em>'.
+   * @return a new object of class '<em>Program</em>'.
    * @generated
    */
-  Model createModel();
+  Program createProgram();
 
   /**
    * Returns a new object of class '<em>Block</em>'.

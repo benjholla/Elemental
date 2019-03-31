@@ -83,20 +83,20 @@ public class InternalElementalParser extends AbstractInternalContentAssistParser
 
 
 
-    // $ANTLR start "entryRuleModel"
-    // InternalElemental.g:53:1: entryRuleModel : ruleModel EOF ;
-    public final void entryRuleModel() throws RecognitionException {
+    // $ANTLR start "entryRuleProgram"
+    // InternalElemental.g:53:1: entryRuleProgram : ruleProgram EOF ;
+    public final void entryRuleProgram() throws RecognitionException {
         try {
-            // InternalElemental.g:54:1: ( ruleModel EOF )
-            // InternalElemental.g:55:1: ruleModel EOF
+            // InternalElemental.g:54:1: ( ruleProgram EOF )
+            // InternalElemental.g:55:1: ruleProgram EOF
             {
-             before(grammarAccess.getModelRule()); 
+             before(grammarAccess.getProgramRule()); 
             pushFollow(FOLLOW_1);
-            ruleModel();
+            ruleProgram();
 
             state._fsp--;
 
-             after(grammarAccess.getModelRule()); 
+             after(grammarAccess.getProgramRule()); 
             match(input,EOF,FOLLOW_2); 
 
             }
@@ -110,35 +110,35 @@ public class InternalElementalParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "entryRuleModel"
+    // $ANTLR end "entryRuleProgram"
 
 
-    // $ANTLR start "ruleModel"
-    // InternalElemental.g:62:1: ruleModel : ( ( rule__Model__Group__0 ) ) ;
-    public final void ruleModel() throws RecognitionException {
+    // $ANTLR start "ruleProgram"
+    // InternalElemental.g:62:1: ruleProgram : ( ( rule__Program__Group__0 ) ) ;
+    public final void ruleProgram() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalElemental.g:66:2: ( ( ( rule__Model__Group__0 ) ) )
-            // InternalElemental.g:67:2: ( ( rule__Model__Group__0 ) )
+            // InternalElemental.g:66:2: ( ( ( rule__Program__Group__0 ) ) )
+            // InternalElemental.g:67:2: ( ( rule__Program__Group__0 ) )
             {
-            // InternalElemental.g:67:2: ( ( rule__Model__Group__0 ) )
-            // InternalElemental.g:68:3: ( rule__Model__Group__0 )
+            // InternalElemental.g:67:2: ( ( rule__Program__Group__0 ) )
+            // InternalElemental.g:68:3: ( rule__Program__Group__0 )
             {
-             before(grammarAccess.getModelAccess().getGroup()); 
-            // InternalElemental.g:69:3: ( rule__Model__Group__0 )
-            // InternalElemental.g:69:4: rule__Model__Group__0
+             before(grammarAccess.getProgramAccess().getGroup()); 
+            // InternalElemental.g:69:3: ( rule__Program__Group__0 )
+            // InternalElemental.g:69:4: rule__Program__Group__0
             {
             pushFollow(FOLLOW_2);
-            rule__Model__Group__0();
+            rule__Program__Group__0();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getModelAccess().getGroup()); 
+             after(grammarAccess.getProgramAccess().getGroup()); 
 
             }
 
@@ -157,7 +157,7 @@ public class InternalElementalParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "ruleModel"
+    // $ANTLR end "ruleProgram"
 
 
     // $ANTLR start "entryRuleBlock"
@@ -1840,23 +1840,23 @@ public class InternalElementalParser extends AbstractInternalContentAssistParser
     // $ANTLR end "rule__Instruction__TypeAlternatives_0"
 
 
-    // $ANTLR start "rule__Model__Group__0"
-    // InternalElemental.g:595:1: rule__Model__Group__0 : rule__Model__Group__0__Impl rule__Model__Group__1 ;
-    public final void rule__Model__Group__0() throws RecognitionException {
+    // $ANTLR start "rule__Program__Group__0"
+    // InternalElemental.g:595:1: rule__Program__Group__0 : rule__Program__Group__0__Impl rule__Program__Group__1 ;
+    public final void rule__Program__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalElemental.g:599:1: ( rule__Model__Group__0__Impl rule__Model__Group__1 )
-            // InternalElemental.g:600:2: rule__Model__Group__0__Impl rule__Model__Group__1
+            // InternalElemental.g:599:1: ( rule__Program__Group__0__Impl rule__Program__Group__1 )
+            // InternalElemental.g:600:2: rule__Program__Group__0__Impl rule__Program__Group__1
             {
             pushFollow(FOLLOW_3);
-            rule__Model__Group__0__Impl();
+            rule__Program__Group__0__Impl();
 
             state._fsp--;
 
             pushFollow(FOLLOW_2);
-            rule__Model__Group__1();
+            rule__Program__Group__1();
 
             state._fsp--;
 
@@ -1875,35 +1875,35 @@ public class InternalElementalParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "rule__Model__Group__0"
+    // $ANTLR end "rule__Program__Group__0"
 
 
-    // $ANTLR start "rule__Model__Group__0__Impl"
-    // InternalElemental.g:607:1: rule__Model__Group__0__Impl : ( ( rule__Model__ImplicitFunctionAssignment_0 ) ) ;
-    public final void rule__Model__Group__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__Program__Group__0__Impl"
+    // InternalElemental.g:607:1: rule__Program__Group__0__Impl : ( ( rule__Program__ImplicitFunctionAssignment_0 ) ) ;
+    public final void rule__Program__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalElemental.g:611:1: ( ( ( rule__Model__ImplicitFunctionAssignment_0 ) ) )
-            // InternalElemental.g:612:1: ( ( rule__Model__ImplicitFunctionAssignment_0 ) )
+            // InternalElemental.g:611:1: ( ( ( rule__Program__ImplicitFunctionAssignment_0 ) ) )
+            // InternalElemental.g:612:1: ( ( rule__Program__ImplicitFunctionAssignment_0 ) )
             {
-            // InternalElemental.g:612:1: ( ( rule__Model__ImplicitFunctionAssignment_0 ) )
-            // InternalElemental.g:613:2: ( rule__Model__ImplicitFunctionAssignment_0 )
+            // InternalElemental.g:612:1: ( ( rule__Program__ImplicitFunctionAssignment_0 ) )
+            // InternalElemental.g:613:2: ( rule__Program__ImplicitFunctionAssignment_0 )
             {
-             before(grammarAccess.getModelAccess().getImplicitFunctionAssignment_0()); 
-            // InternalElemental.g:614:2: ( rule__Model__ImplicitFunctionAssignment_0 )
-            // InternalElemental.g:614:3: rule__Model__ImplicitFunctionAssignment_0
+             before(grammarAccess.getProgramAccess().getImplicitFunctionAssignment_0()); 
+            // InternalElemental.g:614:2: ( rule__Program__ImplicitFunctionAssignment_0 )
+            // InternalElemental.g:614:3: rule__Program__ImplicitFunctionAssignment_0
             {
             pushFollow(FOLLOW_2);
-            rule__Model__ImplicitFunctionAssignment_0();
+            rule__Program__ImplicitFunctionAssignment_0();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getModelAccess().getImplicitFunctionAssignment_0()); 
+             after(grammarAccess.getProgramAccess().getImplicitFunctionAssignment_0()); 
 
             }
 
@@ -1922,21 +1922,21 @@ public class InternalElementalParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "rule__Model__Group__0__Impl"
+    // $ANTLR end "rule__Program__Group__0__Impl"
 
 
-    // $ANTLR start "rule__Model__Group__1"
-    // InternalElemental.g:622:1: rule__Model__Group__1 : rule__Model__Group__1__Impl ;
-    public final void rule__Model__Group__1() throws RecognitionException {
+    // $ANTLR start "rule__Program__Group__1"
+    // InternalElemental.g:622:1: rule__Program__Group__1 : rule__Program__Group__1__Impl ;
+    public final void rule__Program__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalElemental.g:626:1: ( rule__Model__Group__1__Impl )
-            // InternalElemental.g:627:2: rule__Model__Group__1__Impl
+            // InternalElemental.g:626:1: ( rule__Program__Group__1__Impl )
+            // InternalElemental.g:627:2: rule__Program__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
-            rule__Model__Group__1__Impl();
+            rule__Program__Group__1__Impl();
 
             state._fsp--;
 
@@ -1955,24 +1955,24 @@ public class InternalElementalParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "rule__Model__Group__1"
+    // $ANTLR end "rule__Program__Group__1"
 
 
-    // $ANTLR start "rule__Model__Group__1__Impl"
-    // InternalElemental.g:633:1: rule__Model__Group__1__Impl : ( ( rule__Model__ExplicitFunctionsAssignment_1 )* ) ;
-    public final void rule__Model__Group__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__Program__Group__1__Impl"
+    // InternalElemental.g:633:1: rule__Program__Group__1__Impl : ( ( rule__Program__ExplicitFunctionsAssignment_1 )* ) ;
+    public final void rule__Program__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalElemental.g:637:1: ( ( ( rule__Model__ExplicitFunctionsAssignment_1 )* ) )
-            // InternalElemental.g:638:1: ( ( rule__Model__ExplicitFunctionsAssignment_1 )* )
+            // InternalElemental.g:637:1: ( ( ( rule__Program__ExplicitFunctionsAssignment_1 )* ) )
+            // InternalElemental.g:638:1: ( ( rule__Program__ExplicitFunctionsAssignment_1 )* )
             {
-            // InternalElemental.g:638:1: ( ( rule__Model__ExplicitFunctionsAssignment_1 )* )
-            // InternalElemental.g:639:2: ( rule__Model__ExplicitFunctionsAssignment_1 )*
+            // InternalElemental.g:638:1: ( ( rule__Program__ExplicitFunctionsAssignment_1 )* )
+            // InternalElemental.g:639:2: ( rule__Program__ExplicitFunctionsAssignment_1 )*
             {
-             before(grammarAccess.getModelAccess().getExplicitFunctionsAssignment_1()); 
-            // InternalElemental.g:640:2: ( rule__Model__ExplicitFunctionsAssignment_1 )*
+             before(grammarAccess.getProgramAccess().getExplicitFunctionsAssignment_1()); 
+            // InternalElemental.g:640:2: ( rule__Program__ExplicitFunctionsAssignment_1 )*
             loop2:
             do {
                 int alt2=2;
@@ -1985,10 +1985,10 @@ public class InternalElementalParser extends AbstractInternalContentAssistParser
 
                 switch (alt2) {
             	case 1 :
-            	    // InternalElemental.g:640:3: rule__Model__ExplicitFunctionsAssignment_1
+            	    // InternalElemental.g:640:3: rule__Program__ExplicitFunctionsAssignment_1
             	    {
             	    pushFollow(FOLLOW_4);
-            	    rule__Model__ExplicitFunctionsAssignment_1();
+            	    rule__Program__ExplicitFunctionsAssignment_1();
 
             	    state._fsp--;
 
@@ -2001,7 +2001,7 @@ public class InternalElementalParser extends AbstractInternalContentAssistParser
                 }
             } while (true);
 
-             after(grammarAccess.getModelAccess().getExplicitFunctionsAssignment_1()); 
+             after(grammarAccess.getProgramAccess().getExplicitFunctionsAssignment_1()); 
 
             }
 
@@ -2020,7 +2020,7 @@ public class InternalElementalParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "rule__Model__Group__1__Impl"
+    // $ANTLR end "rule__Program__Group__1__Impl"
 
 
     // $ANTLR start "rule__Block__Group__0"
@@ -5191,9 +5191,9 @@ public class InternalElementalParser extends AbstractInternalContentAssistParser
     // $ANTLR end "rule__DynamicDispatch__Group__1__Impl"
 
 
-    // $ANTLR start "rule__Model__ImplicitFunctionAssignment_0"
-    // InternalElemental.g:1783:1: rule__Model__ImplicitFunctionAssignment_0 : ( ruleBlock ) ;
-    public final void rule__Model__ImplicitFunctionAssignment_0() throws RecognitionException {
+    // $ANTLR start "rule__Program__ImplicitFunctionAssignment_0"
+    // InternalElemental.g:1783:1: rule__Program__ImplicitFunctionAssignment_0 : ( ruleBlock ) ;
+    public final void rule__Program__ImplicitFunctionAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -5204,13 +5204,13 @@ public class InternalElementalParser extends AbstractInternalContentAssistParser
             // InternalElemental.g:1788:2: ( ruleBlock )
             // InternalElemental.g:1789:3: ruleBlock
             {
-             before(grammarAccess.getModelAccess().getImplicitFunctionBlockParserRuleCall_0_0()); 
+             before(grammarAccess.getProgramAccess().getImplicitFunctionBlockParserRuleCall_0_0()); 
             pushFollow(FOLLOW_2);
             ruleBlock();
 
             state._fsp--;
 
-             after(grammarAccess.getModelAccess().getImplicitFunctionBlockParserRuleCall_0_0()); 
+             after(grammarAccess.getProgramAccess().getImplicitFunctionBlockParserRuleCall_0_0()); 
 
             }
 
@@ -5229,12 +5229,12 @@ public class InternalElementalParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "rule__Model__ImplicitFunctionAssignment_0"
+    // $ANTLR end "rule__Program__ImplicitFunctionAssignment_0"
 
 
-    // $ANTLR start "rule__Model__ExplicitFunctionsAssignment_1"
-    // InternalElemental.g:1798:1: rule__Model__ExplicitFunctionsAssignment_1 : ( ruleFunction ) ;
-    public final void rule__Model__ExplicitFunctionsAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__Program__ExplicitFunctionsAssignment_1"
+    // InternalElemental.g:1798:1: rule__Program__ExplicitFunctionsAssignment_1 : ( ruleFunction ) ;
+    public final void rule__Program__ExplicitFunctionsAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -5245,13 +5245,13 @@ public class InternalElementalParser extends AbstractInternalContentAssistParser
             // InternalElemental.g:1803:2: ( ruleFunction )
             // InternalElemental.g:1804:3: ruleFunction
             {
-             before(grammarAccess.getModelAccess().getExplicitFunctionsFunctionParserRuleCall_1_0()); 
+             before(grammarAccess.getProgramAccess().getExplicitFunctionsFunctionParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
             ruleFunction();
 
             state._fsp--;
 
-             after(grammarAccess.getModelAccess().getExplicitFunctionsFunctionParserRuleCall_1_0()); 
+             after(grammarAccess.getProgramAccess().getExplicitFunctionsFunctionParserRuleCall_1_0()); 
 
             }
 
@@ -5270,7 +5270,7 @@ public class InternalElementalParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "rule__Model__ExplicitFunctionsAssignment_1"
+    // $ANTLR end "rule__Program__ExplicitFunctionsAssignment_1"
 
 
     // $ANTLR start "rule__Block__InstructionsAssignment_1"

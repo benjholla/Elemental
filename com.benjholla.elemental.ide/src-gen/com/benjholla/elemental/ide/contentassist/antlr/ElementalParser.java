@@ -32,7 +32,7 @@ public class ElementalParser extends AbstractContentAssistParser {
 		
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, ElementalGrammarAccess grammarAccess) {
 			builder.put(grammarAccess.getInstructionAccess().getTypeAlternatives_0(), "rule__Instruction__TypeAlternatives_0");
-			builder.put(grammarAccess.getModelAccess().getGroup(), "rule__Model__Group__0");
+			builder.put(grammarAccess.getProgramAccess().getGroup(), "rule__Program__Group__0");
 			builder.put(grammarAccess.getBlockAccess().getGroup(), "rule__Block__Group__0");
 			builder.put(grammarAccess.getLabelAccess().getGroup(), "rule__Label__Group__0");
 			builder.put(grammarAccess.getFunctionAccess().getGroup(), "rule__Function__Group__0");
@@ -49,8 +49,8 @@ public class ElementalParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getComputedGOTOAccess().getGroup(), "rule__ComputedGOTO__Group__0");
 			builder.put(grammarAccess.getStaticDispatchAccess().getGroup(), "rule__StaticDispatch__Group__0");
 			builder.put(grammarAccess.getDynamicDispatchAccess().getGroup(), "rule__DynamicDispatch__Group__0");
-			builder.put(grammarAccess.getModelAccess().getImplicitFunctionAssignment_0(), "rule__Model__ImplicitFunctionAssignment_0");
-			builder.put(grammarAccess.getModelAccess().getExplicitFunctionsAssignment_1(), "rule__Model__ExplicitFunctionsAssignment_1");
+			builder.put(grammarAccess.getProgramAccess().getImplicitFunctionAssignment_0(), "rule__Program__ImplicitFunctionAssignment_0");
+			builder.put(grammarAccess.getProgramAccess().getExplicitFunctionsAssignment_1(), "rule__Program__ExplicitFunctionsAssignment_1");
 			builder.put(grammarAccess.getBlockAccess().getInstructionsAssignment_1(), "rule__Block__InstructionsAssignment_1");
 			builder.put(grammarAccess.getLabelAccess().getNameAssignment_1(), "rule__Label__NameAssignment_1");
 			builder.put(grammarAccess.getFunctionAccess().getNameAssignment_0(), "rule__Function__NameAssignment_0");

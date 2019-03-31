@@ -16,9 +16,9 @@ import com.benjholla.elemental.elemental.Increment;
 import com.benjholla.elemental.elemental.Instruction;
 import com.benjholla.elemental.elemental.Label;
 import com.benjholla.elemental.elemental.Loop;
-import com.benjholla.elemental.elemental.Model;
 import com.benjholla.elemental.elemental.MoveLeft;
 import com.benjholla.elemental.elemental.MoveRight;
+import com.benjholla.elemental.elemental.Program;
 import com.benjholla.elemental.elemental.Recall;
 import com.benjholla.elemental.elemental.StaticDispatch;
 import com.benjholla.elemental.elemental.Store;
@@ -85,14 +85,14 @@ public class ElementalSemanticSequencer extends AbstractDelegatingSemanticSequen
 			case ElementalPackage.LOOP:
 				sequence_Loop(context, (Loop) semanticObject); 
 				return; 
-			case ElementalPackage.MODEL:
-				sequence_Model(context, (Model) semanticObject); 
-				return; 
 			case ElementalPackage.MOVE_LEFT:
 				sequence_MoveLeft(context, (MoveLeft) semanticObject); 
 				return; 
 			case ElementalPackage.MOVE_RIGHT:
 				sequence_MoveRight(context, (MoveRight) semanticObject); 
+				return; 
+			case ElementalPackage.PROGRAM:
+				sequence_Program(context, (Program) semanticObject); 
 				return; 
 			case ElementalPackage.RECALL:
 				sequence_Recall(context, (Recall) semanticObject); 
@@ -302,18 +302,6 @@ public class ElementalSemanticSequencer extends AbstractDelegatingSemanticSequen
 	
 	/**
 	 * Contexts:
-	 *     Model returns Model
-	 *
-	 * Constraint:
-	 *     (implicitFunction=Block explicitFunctions+=Function*)
-	 */
-	protected void sequence_Model(ISerializationContext context, Model semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     MoveLeft returns MoveLeft
 	 *
 	 * Constraint:
@@ -332,6 +320,18 @@ public class ElementalSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     {MoveRight}
 	 */
 	protected void sequence_MoveRight(ISerializationContext context, MoveRight semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Program returns Program
+	 *
+	 * Constraint:
+	 *     (implicitFunction=Block explicitFunctions+=Function*)
+	 */
+	protected void sequence_Program(ISerializationContext context, Program semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
