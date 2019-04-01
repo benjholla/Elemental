@@ -12,6 +12,7 @@ import org.eclipse.core.runtime.SubMonitor;
 
 import com.benjholla.elemental.atlas.common.XCSG;
 import com.benjholla.elemental.atlas.log.Log;
+import com.benjholla.elemental.elemental.Function;
 import com.benjholla.elemental.elemental.Program;
 import com.benjholla.elemental.ide.eclipse.builder.ElementalNature;
 import com.benjholla.elemental.ide.eclipse.core.ElementalProject;
@@ -26,6 +27,30 @@ import com.ensoftcorp.atlas.core.script.Common;
 
 public class ElementalIndexer implements com.ensoftcorp.atlas.core.indexing.providers.LanguageIndexingProviderFactory<ElementalProject, ElementalProjectAST> {
 
+	private static void index(ProgramFactory factory, com.benjholla.elemental.elemental.Function function) {
+		factory.beginFunction((byte) Integer.parseInt(function.getName()));
+		for(com.benjholla.elemental.elemental.Instruction instruction : function.getBody().getInstructions()) {
+			index(factory, instruction);
+		}
+		factory.endFunction();
+	}
+	
+	private static void index(ProgramFactory factory, com.benjholla.elemental.elemental.Instruction instruction) {
+		if(instruction instanceof com.benjholla.elemental.elemental.Increment) {
+			factory.addIncrement();
+		} else if(instruction instanceof com.benjholla.elemental.elemental.Decrement) {
+			factory.addDecrement();
+		} else if(instruction instanceof com.benjholla.elemental.elemental.MoveLeft) {
+			factory.addMoveLeft();
+		} else if(instruction instanceof com.benjholla.elemental.elemental.MoveRight) {
+			factory.addMoveRight();
+		} else if(instruction instanceof com.benjholla.elemental.elemental.Store) {
+			factory.addStore();
+		} else if(instruction instanceof com.benjholla.elemental.elemental.Recall) {
+			factory.addRecall();
+		}
+	}
+	
 	private static void index(ElementalProjectAST ast, EditableGraph graph, Node projectNode, SubMonitor monitor) throws Exception {
 		Log.info("Indexing: " + ast.getElementalProject().getProject().getName());
 		
@@ -33,8 +58,18 @@ public class ElementalIndexer implements com.ensoftcorp.atlas.core.indexing.prov
 		for(Entry<IFile,Program> entry : ast.getASTForest().entrySet()) {
 			IFile source = entry.getKey();
 			Program program = entry.getValue();
-			EMFSourceCorrespondence sc = new EMFSourceCorrespondence(source, program);
-			Log.info("Processing: " + sc.toString());
+			
+			ProgramFactory factory = new ProgramFactory();
+			
+			if(program.getImplicitFunction() != null && !program.getImplicitFunction().getInstructions().isEmpty()) {
+				index(factory, (Function) program.getImplicitFunction());
+			}
+			for(com.benjholla.elemental.elemental.Function function : program.getExplicitFunctions()) {
+				index(factory, function);
+			}
+			
+//			EMFSourceCorrespondence sc = new EMFSourceCorrespondence(source, program);
+//			Log.info("Processing: " + sc.toString());
 //			File sourceFile = program.getParserSourceCorrespondence().getSource();
 //			String sourceFileName = sourceFile.getName();
 //			monitor.subTask("Processing: " + sourceFileName);

@@ -3,8 +3,14 @@ package com.benjholla.elemental.atlas.indexer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.ecore.EObject;
 
+import com.benjholla.elemental.elemental.Program;
+import com.benjholla.elemental.services.ElementalGrammarAccess;
+import com.google.inject.Inject;
+
 public class EMFSourceCorrespondence {
 
+	@Inject ElementalGrammarAccess grammar;
+	
 	private IFile source = null;
 	private int offset = 0;
 	private int length = 0;
@@ -13,10 +19,12 @@ public class EMFSourceCorrespondence {
 
 	public EMFSourceCorrespondence(IFile source, EObject object) {
 		this.source = source;
-		this.offset = 0;
-		this.length = 0;
-		this.startLine = 0;
-		this.endLine = 0;
+		if(object instanceof Program) {
+			this.offset = 0;
+			this.length = 0;
+			this.startLine = 0;
+			this.endLine = 0;
+		}
 	}
 	
 	public EMFSourceCorrespondence(IFile source, int offset, int length, int startLine, int endLine) {
@@ -52,5 +60,5 @@ public class EMFSourceCorrespondence {
 		return "EMFSourceCorrespondence [source=" + source + ", offset=" + offset + ", length=" + length
 				+ ", startLine=" + startLine + ", endLine=" + endLine + "]";
 	}
-
+	
 }

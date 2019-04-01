@@ -30,5 +30,6 @@ Export-Package: com.benjholla.elemental.elemental.impl,
  com.benjholla.elemental.serializer,
  com.benjholla.elemental.scoping,
  com.benjholla.elemental.parser.antlr.internal,
- com.benjholla.elemental.parser.antlr
+ com.benjholla.elemental.parser.antlr,
+ com.benjholla.elemental.formatting2
 Import-Package: org.apache.log4j
