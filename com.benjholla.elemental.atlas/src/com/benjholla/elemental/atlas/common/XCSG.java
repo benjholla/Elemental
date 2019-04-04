@@ -38,7 +38,6 @@ public class XCSG implements IStartup {
 	public static final String Project = com.ensoftcorp.atlas.core.xcsg.XCSG.Project;
 	public static final String Namespace = com.ensoftcorp.atlas.core.xcsg.XCSG.Namespace;
 	public static final String Function = com.ensoftcorp.atlas.core.xcsg.XCSG.Function;
-	public static final String Return = com.ensoftcorp.atlas.core.xcsg.XCSG.Return;
 	public static final String ControlFlow_Node = com.ensoftcorp.atlas.core.xcsg.XCSG.ControlFlow_Node;
 	public static final String ControlFlowRoot = com.ensoftcorp.atlas.core.xcsg.XCSG.controlFlowRoot;
 	public static final String ControlFlowExit = com.ensoftcorp.atlas.core.xcsg.XCSG.controlFlowExitPoint;

@@ -49,7 +49,53 @@ import com.ensoftcorp.atlas.core.indexing.providers.SimpleIndexingStage;
 import com.ensoftcorp.atlas.core.script.Common;
 
 public class ElementalIndexer implements com.ensoftcorp.atlas.core.indexing.providers.LanguageIndexingProviderFactory<ElementalProject, ElementalProjectAST> {
-
+	
+	private static void index(ElementalProjectAST ast, EditableGraph graph, Node projectNode, SubMonitor monitor) throws Exception {
+		Log.info("Indexing: " + ast.getElementalProject().getProject().getName());
+		
+		// index the program
+		for(Entry<IFile,Program> entry : ast.getASTForest().entrySet()) {
+			IFile source = entry.getKey();
+			
+//			EMFSourceCorrespondence sc = new EMFSourceCorrespondence(source, program);
+//			Log.info("Processing: " + sc.toString());
+//			File sourceFile = program.getParserSourceCorrespondence().getSource();
+//			String sourceFileName = sourceFile.getName();
+//			monitor.subTask("Processing: " + sourceFileName);
+			
+			// create a namespace (defined by the source file)
+			Node namespaceNode = graph.createNode();
+			namespaceNode.tag(XCSG.Namespace);
+			namespaceNode.putAttr(XCSG.name, source.getName());
+//			ParserSourceCorrespondence psc = program.getParserSourceCorrespondence();
+//			SourceCorrespondence namespaceSC = new SourceCorrespondence(WorkspaceUtils.getFile(psc.getSource()), psc.getOffset(), psc.getLength(), psc.getStartLine(), psc.getEndLine());
+//			namespaceNode.putAttr(XCSG.sourceCorrespondence, namespaceSC);
+			
+			// make the project contain the namespace
+			Edge projectContainsEdge = graph.createEdge(projectNode, namespaceNode);
+			projectContainsEdge.tag(XCSG.Contains);
+			
+			Program program = entry.getValue();
+			IndexBuilder builder = new IndexBuilder();
+			if(program.getImplicitFunction() != null && !program.getImplicitFunction().getInstructions().isEmpty()) {
+				indexImplicitFunction(builder, program.getImplicitFunction());
+			}
+			for(Function function : program.getExplicitFunctions()) {
+				indexExplicitFunction(builder, function);
+			}
+			
+			IndexProgram indexProgram = builder.create();
+			for(IndexFunction indexFunction : indexProgram.getFunctions()) {
+				Node functionNode = indexFunction.index(graph, monitor);
+				
+				Edge namespaceContainsEdge = graph.createEdge(namespaceNode, functionNode);
+				namespaceContainsEdge.tag(XCSG.Contains);
+				
+				buildCFG(indexFunction, functionNode, graph, monitor);
+			}
+		}
+	}
+	
 	private static void indexImplicitFunction(IndexBuilder builder, Block block) {
 		builder.beginFunction((byte) 0);
 		for(Instruction instruction : block.getInstructions()) {
@@ -110,52 +156,6 @@ public class ElementalIndexer implements com.ensoftcorp.atlas.core.indexing.prov
 			builder.addDynamicDispatch();
 		} else {
 			throw new RuntimeException("Unknown instruction type: " + instruction.getType().toString());
-		}
-	}
-	
-	private static void index(ElementalProjectAST ast, EditableGraph graph, Node projectNode, SubMonitor monitor) throws Exception {
-		Log.info("Indexing: " + ast.getElementalProject().getProject().getName());
-		
-		// index the program
-		for(Entry<IFile,Program> entry : ast.getASTForest().entrySet()) {
-			IFile source = entry.getKey();
-			
-//			EMFSourceCorrespondence sc = new EMFSourceCorrespondence(source, program);
-//			Log.info("Processing: " + sc.toString());
-//			File sourceFile = program.getParserSourceCorrespondence().getSource();
-//			String sourceFileName = sourceFile.getName();
-//			monitor.subTask("Processing: " + sourceFileName);
-			
-			// create a namespace (defined by the source file)
-			Node namespaceNode = graph.createNode();
-			namespaceNode.tag(XCSG.Namespace);
-			namespaceNode.putAttr(XCSG.name, source.getName());
-//			ParserSourceCorrespondence psc = program.getParserSourceCorrespondence();
-//			SourceCorrespondence namespaceSC = new SourceCorrespondence(WorkspaceUtils.getFile(psc.getSource()), psc.getOffset(), psc.getLength(), psc.getStartLine(), psc.getEndLine());
-//			namespaceNode.putAttr(XCSG.sourceCorrespondence, namespaceSC);
-			
-			// make the project contain the namespace
-			Edge projectContainsEdge = graph.createEdge(projectNode, namespaceNode);
-			projectContainsEdge.tag(XCSG.Contains);
-			
-			Program program = entry.getValue();
-			IndexBuilder builder = new IndexBuilder();
-			if(program.getImplicitFunction() != null && !program.getImplicitFunction().getInstructions().isEmpty()) {
-				indexImplicitFunction(builder, program.getImplicitFunction());
-			}
-			for(Function function : program.getExplicitFunctions()) {
-				indexExplicitFunction(builder, function);
-			}
-			
-			IndexProgram indexProgram = builder.create();
-			for(IndexFunction indexFunction : indexProgram.getFunctions()) {
-				Node functionNode = indexFunction.index(graph, monitor);
-				
-				Edge namespaceContainsEdge = graph.createEdge(namespaceNode, functionNode);
-				namespaceContainsEdge.tag(XCSG.Contains);
-				
-				buildCFG(indexFunction, functionNode, graph, monitor);
-			}
 		}
 	}
 	

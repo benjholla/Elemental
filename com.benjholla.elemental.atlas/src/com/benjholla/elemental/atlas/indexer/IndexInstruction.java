@@ -76,7 +76,7 @@ public abstract class IndexInstruction {
 		@Override
 		public Node index(EditableGraph graph, SubMonitor monitor) {
 			Node instruction = graph.createNode();
-			instruction.tag(XCSG.Return);
+			instruction.tag(XCSG.ControlFlow_Node);
 			instruction.tag(XCSG.ControlFlowExit);
 			instruction.putAttr(XCSG.name, "return");
 			return instruction;
