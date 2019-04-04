@@ -167,7 +167,7 @@ public class ElementalSelectionConverter implements ISelectionConverter {
 				Q project = Common.universe().nodes(XCSG.Project).selectNode(XCSG.name, projectName);
 				Q namespaces = project.children().nodes(XCSG.Namespace).selectNode(XCSG.name, file.getName());
 				result.addAll(namespaces.eval().nodes());
-				result.addAll(namespaces.children().nodes(XCSG.Elemental.ImplictFunction).eval().nodes());
+				result.addAll(namespaces.children().nodes(XCSG.Function).eval().nodes());
 			}
 			return Common.toQ(result);
 		}
@@ -190,7 +190,7 @@ public class ElementalSelectionConverter implements ISelectionConverter {
 				String projectName = file.getProject().getName();
 				Q project = Common.universe().nodes(XCSG.Project).selectNode(XCSG.name, projectName);
 				Q namespaces = project.children().nodes(XCSG.Namespace).selectNode(XCSG.name, file.getName());
-				Q implicitFunctions = namespaces.children().nodes(XCSG.Elemental.ImplictFunction);
+				Q implicitFunctions = namespaces.children().nodes(XCSG.Function);
 				Q cfgs = CommonQueries.cfg(implicitFunctions);
 				Q cfgNodes = cfgs.selectEdge(XCSG.name, sourceSelection.getSelection().getText());
 				cfgNodes = Common.toQ(cfgNodes.eval());

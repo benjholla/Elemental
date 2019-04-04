@@ -307,6 +307,10 @@ public abstract class Instruction {
 			super(function);
 			this.target = target;
 		}
+		
+		public Byte getTarget() {
+			return target;
+		}
 
 		@Override
 		public Instruction execute() {

@@ -6,69 +6,69 @@ import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
-import com.benjholla.elemental.atlas.indexer.Instruction.Assignment;
-import com.benjholla.elemental.atlas.indexer.Instruction.Branch;
-import com.benjholla.elemental.atlas.indexer.Instruction.ComputedGOTO;
-import com.benjholla.elemental.atlas.indexer.Instruction.Decrement;
-import com.benjholla.elemental.atlas.indexer.Instruction.DynamicDispatch;
-import com.benjholla.elemental.atlas.indexer.Instruction.GOTO;
-import com.benjholla.elemental.atlas.indexer.Instruction.ImplicitReturn;
-import com.benjholla.elemental.atlas.indexer.Instruction.Increment;
-import com.benjholla.elemental.atlas.indexer.Instruction.Label;
-import com.benjholla.elemental.atlas.indexer.Instruction.Loop;
-import com.benjholla.elemental.atlas.indexer.Instruction.LoopBack;
-import com.benjholla.elemental.atlas.indexer.Instruction.MoveLeft;
-import com.benjholla.elemental.atlas.indexer.Instruction.MoveRight;
-import com.benjholla.elemental.atlas.indexer.Instruction.Recall;
-import com.benjholla.elemental.atlas.indexer.Instruction.StaticDispatch;
-import com.benjholla.elemental.atlas.indexer.Instruction.Store;
+import com.benjholla.elemental.atlas.indexer.IndexInstruction.IndexAssignment;
+import com.benjholla.elemental.atlas.indexer.IndexInstruction.IndexBranch;
+import com.benjholla.elemental.atlas.indexer.IndexInstruction.IndexComputedGOTO;
+import com.benjholla.elemental.atlas.indexer.IndexInstruction.IndexDecrement;
+import com.benjholla.elemental.atlas.indexer.IndexInstruction.IndexDynamicDispatch;
+import com.benjholla.elemental.atlas.indexer.IndexInstruction.IndexGOTO;
+import com.benjholla.elemental.atlas.indexer.IndexInstruction.IndexImplicitReturn;
+import com.benjholla.elemental.atlas.indexer.IndexInstruction.IndexIncrement;
+import com.benjholla.elemental.atlas.indexer.IndexInstruction.IndexLabel;
+import com.benjholla.elemental.atlas.indexer.IndexInstruction.IndexLoop;
+import com.benjholla.elemental.atlas.indexer.IndexInstruction.IndexLoopBack;
+import com.benjholla.elemental.atlas.indexer.IndexInstruction.IndexMoveLeft;
+import com.benjholla.elemental.atlas.indexer.IndexInstruction.IndexMoveRight;
+import com.benjholla.elemental.atlas.indexer.IndexInstruction.IndexRecall;
+import com.benjholla.elemental.atlas.indexer.IndexInstruction.IndexStaticDispatch;
+import com.benjholla.elemental.atlas.indexer.IndexInstruction.IndexStore;
 
-public class ProgramFactory {
+public class IndexBuilder {
 	
 	public static final String INCOMPLETE_PROGRAM = "Incomplete program";
 	public static final String INSTRUCTIONS_MUST_BE_CONTAINED_BY_A_FUNCTION = "Instructions must be contained by a function.";
 	public static final String LABELS_WITHIN_FUNCTIONS_MUST_BE_UNIQUE = "Every label within a function must be unique.";
 	
-	private Program program;
+	private IndexProgram program;
 	
-	public ProgramFactory() {
-		program = new Program();
+	public IndexBuilder() {
+		program = new IndexProgram();
 	}
 
-	public Program create() {
+	public IndexProgram create() {
 		if(function != null || !scope.isEmpty()) {
 			throw new RuntimeException(INCOMPLETE_PROGRAM);
 		}
 		return program;
 	}
 	
-	private Function function = null;
-	private Stack<Instruction> scope = new Stack<Instruction>();
-	private Instruction lastInstruction = null;
-	private List<Instruction> branchTerminals = new ArrayList<Instruction>();
-	private Map<Byte,Label> labels = new HashMap<Byte,Label>();
-	private Map<Byte,Label> futureLabels = new HashMap<Byte,Label>();
+	private IndexFunction function = null;
+	private Stack<IndexInstruction> scope = new Stack<IndexInstruction>();
+	private IndexInstruction lastInstruction = null;
+	private List<IndexInstruction> branchTerminals = new ArrayList<IndexInstruction>();
+	private Map<Byte,IndexLabel> labels = new HashMap<Byte,IndexLabel>();
+	private Map<Byte,IndexLabel> futureLabels = new HashMap<Byte,IndexLabel>();
 	
-	private void setPredecessor(Instruction instruction) {
+	private void setPredecessor(IndexInstruction instruction) {
 		if(lastInstruction != null) {
-			lastInstruction.setSuccessor(instruction);
+			lastInstruction.addSuccessor(instruction);
 		}
 		lastInstruction = instruction;
 	}
 	
-	private void addInstruction(Instruction instruction) {
-		for(Instruction branchTerminal : branchTerminals) {
-			branchTerminal.setSuccessor(instruction);
+	private void addInstruction(IndexInstruction instruction) {
+		for(IndexInstruction branchTerminal : branchTerminals) {
+			branchTerminal.addSuccessor(instruction);
 		}
 		branchTerminals.clear();
 		if(scope.isEmpty()) {
 			function.addInstruction(instruction);
 		} else {
-			if(scope.peek() instanceof Branch) {
-				Branch branch = ((Branch) scope.peek());
+			if(scope.peek() instanceof IndexBranch) {
+				IndexBranch branch = ((IndexBranch) scope.peek());
 				branch.addInstruction(instruction);
-			} else if(scope.peek() instanceof Loop) {
-				Loop loop = ((Loop) scope.peek());
+			} else if(scope.peek() instanceof IndexLoop) {
+				IndexLoop loop = ((IndexLoop) scope.peek());
 				loop.addInstruction(instruction);
 			}
 		}
@@ -76,13 +76,13 @@ public class ProgramFactory {
 	}
 	
 	public void beginFunction(Byte name) {
-		function = new Function(program, name);
+		function = new IndexFunction(program, name);
 		program.addFunction(function);
 	}
 	
 	public void addIncrement() {
 		if(function != null) {
-			Increment increment = new Increment(function);
+			IndexIncrement increment = new IndexIncrement(function);
 			addInstruction(increment);
 		} else {
 			throw new IllegalStateException(INSTRUCTIONS_MUST_BE_CONTAINED_BY_A_FUNCTION);
@@ -91,7 +91,7 @@ public class ProgramFactory {
 
 	public void addDecrement() {
 		if(function != null) {
-			Decrement decrement = new Decrement(function);
+			IndexDecrement decrement = new IndexDecrement(function);
 			addInstruction(decrement);
 		} else {
 			throw new IllegalStateException(INSTRUCTIONS_MUST_BE_CONTAINED_BY_A_FUNCTION);
@@ -100,7 +100,7 @@ public class ProgramFactory {
 	
 	public void addMoveLeft() {
 		if(function != null) {
-			MoveLeft moveLeft = new MoveLeft(function);
+			IndexMoveLeft moveLeft = new IndexMoveLeft(function);
 			addInstruction(moveLeft);
 		} else {
 			throw new IllegalStateException(INSTRUCTIONS_MUST_BE_CONTAINED_BY_A_FUNCTION);
@@ -109,7 +109,7 @@ public class ProgramFactory {
 	
 	public void addMoveRight() {
 		if(function != null) {
-			MoveRight moveRight = new MoveRight(function);
+			IndexMoveRight moveRight = new IndexMoveRight(function);
 			addInstruction(moveRight);
 		} else {
 			throw new IllegalStateException(INSTRUCTIONS_MUST_BE_CONTAINED_BY_A_FUNCTION);
@@ -118,7 +118,7 @@ public class ProgramFactory {
 	
 	public void addStore() {
 		if(function != null) {
-			Store store = new Store(function);
+			IndexStore store = new IndexStore(function);
 			addInstruction(store);
 		} else {
 			throw new IllegalStateException(INSTRUCTIONS_MUST_BE_CONTAINED_BY_A_FUNCTION);
@@ -127,7 +127,7 @@ public class ProgramFactory {
 	
 	public void addRecall() {
 		if(function != null) {
-			Recall recall = new Recall(function);
+			IndexRecall recall = new IndexRecall(function);
 			addInstruction(recall);
 		} else {
 			throw new IllegalStateException(INSTRUCTIONS_MUST_BE_CONTAINED_BY_A_FUNCTION);
@@ -136,7 +136,7 @@ public class ProgramFactory {
 	
 	public void addAssignment() {
 		if(function != null) {
-			Assignment assignment = new Assignment(function);
+			IndexAssignment assignment = new IndexAssignment(function);
 			addInstruction(assignment);
 		} else {
 			throw new IllegalStateException(INSTRUCTIONS_MUST_BE_CONTAINED_BY_A_FUNCTION);
@@ -145,7 +145,7 @@ public class ProgramFactory {
 	
 	public void beginBranch() {
 		if(function != null) {
-			Branch branch = new Branch(function);
+			IndexBranch branch = new IndexBranch(function);
 			addInstruction(branch);
 			scope.add(branch);
 		} else {
@@ -155,12 +155,12 @@ public class ProgramFactory {
 	
 	public void endBranch() {
 		if(function != null) {
-			if(scope.isEmpty() || !(scope.peek() instanceof Branch)) {
+			if(scope.isEmpty() || !(scope.peek() instanceof IndexBranch)) {
 				throw new IllegalStateException("No corresponding begin branch.");
 			} else {
 				lastInstruction = scope.pop();
-				Branch branch = (Branch) lastInstruction;
-				List<Instruction> body = branch.getBody();
+				IndexBranch branch = (IndexBranch) lastInstruction;
+				List<IndexInstruction> body = branch.getBody();
 				if(!body.isEmpty()) {
 					branchTerminals.add(body.get(body.size()-1));
 				}
@@ -172,7 +172,7 @@ public class ProgramFactory {
 	
 	public void beginLoop() {
 		if(function != null) {
-			Loop loop = new Loop(function);
+			IndexLoop loop = new IndexLoop(function);
 			addInstruction(loop);
 			scope.add(loop);
 		} else {
@@ -182,10 +182,10 @@ public class ProgramFactory {
 	
 	public void endLoop() {
 		if(function != null) {
-			if(scope.isEmpty() || !(scope.peek() instanceof Loop)) {
+			if(scope.isEmpty() || !(scope.peek() instanceof IndexLoop)) {
 				throw new IllegalStateException("No corresponding begin loop.");
 			} else {
-				LoopBack loopBack = new LoopBack(function, (Loop) scope.peek());
+				IndexLoopBack loopBack = new IndexLoopBack(function, (IndexLoop) scope.peek());
 				addInstruction(loopBack);
 				lastInstruction = scope.pop();
 			}
@@ -197,9 +197,9 @@ public class ProgramFactory {
 	public void addLabel(Byte labelName) {
 		if(function != null) {
 			if(!labels.containsKey(labelName)) {
-				Label label = futureLabels.remove(labelName);
+				IndexLabel label = futureLabels.remove(labelName);
 				if(label == null) {
-					label = new Label(function, labelName);
+					label = new IndexLabel(function, labelName);
 					labels.put(labelName, label);
 				}
 				addInstruction(label);
@@ -213,15 +213,15 @@ public class ProgramFactory {
 	
 	public void addGOTO(Byte labelName) {
 		if(function != null) {
-			Label label = labels.get(labelName);
+			IndexLabel label = labels.get(labelName);
 			if(label == null) {
 				label = futureLabels.get(labelName);
 				if(label == null) {
-					label = new Label(function, labelName);
+					label = new IndexLabel(function, labelName);
 					futureLabels.put(labelName, label);
 				}
 			}
-			GOTO GOTO = new GOTO(function, label);
+			IndexGOTO GOTO = new IndexGOTO(function, label);
 			addInstruction(GOTO);
 		} else {
 			throw new IllegalStateException(INSTRUCTIONS_MUST_BE_CONTAINED_BY_A_FUNCTION);
@@ -230,7 +230,7 @@ public class ProgramFactory {
 	
 	public void addComputedGOTO() {
 		if(function != null) {
-			ComputedGOTO computedGOTO = new ComputedGOTO(function);
+			IndexComputedGOTO computedGOTO = new IndexComputedGOTO(function);
 			addInstruction(computedGOTO);
 		} else {
 			throw new IllegalStateException(INSTRUCTIONS_MUST_BE_CONTAINED_BY_A_FUNCTION);
@@ -239,7 +239,7 @@ public class ProgramFactory {
 	
 	public void addStaticDispatch(Byte target) {
 		if(function != null) {
-			StaticDispatch staticDispatch = new StaticDispatch(function, target);
+			IndexStaticDispatch staticDispatch = new IndexStaticDispatch(function, target);
 			addInstruction(staticDispatch);
 		} else {
 			throw new IllegalStateException(INSTRUCTIONS_MUST_BE_CONTAINED_BY_A_FUNCTION);
@@ -248,7 +248,7 @@ public class ProgramFactory {
 	
 	public void addDynamicDispatch() {
 		if(function != null) {
-			DynamicDispatch dynamicDispatch = new DynamicDispatch(function);
+			IndexDynamicDispatch dynamicDispatch = new IndexDynamicDispatch(function);
 			addInstruction(dynamicDispatch);
 		} else {
 			throw new IllegalStateException(INSTRUCTIONS_MUST_BE_CONTAINED_BY_A_FUNCTION);
@@ -263,7 +263,7 @@ public class ProgramFactory {
 				if(!futureLabels.isEmpty()) {
 					throw new IllegalStateException("Labels were referenced that do not exist");
 				} else {
-					Instruction implicitReturn = new ImplicitReturn(function);
+					IndexInstruction implicitReturn = new IndexImplicitReturn(function);
 					addInstruction(implicitReturn);
 					labels.clear();
 					futureLabels.clear();
