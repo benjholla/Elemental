@@ -27,12 +27,12 @@ The Elemental language was inspired by [Brainfuck](https://en.wikipedia.org/wiki
 |  *[0-9]+*:  |  T3  | (Function) Declares a uniquely named function (named [0-9]+ within range 0-255)                                                                                                                        |
 |  {*[0-9]+*} |  T3  | (Static Dispatch) Jump to a named function                                                                                                                                                             |
 |      ?      |  T4  | (Dynamic Dispatch/Function Pointer) Jumps to a named function with the value of the current cell                                                                                                       |
-|  "*[0-9]+*" |  T5  | (Label) Sets a unique label (named [0-9]+ within range 0-255) within a function                                                                                                                        |
-|  '*[0-9]+*' |  T5  | (GOTO) Jumps to a named label within the current function                                                                                                                                              |
-|      &      |  T5  | (Computed GOTO) Jumps to the named label within the current function with the value of the current cell                                                                                                |
+|  "*[0-9]+*" |  T3  | (Label) Sets a unique label (named [0-9]+ within range 0-255) within a function                                                                                                                        |
+|  '*[0-9]+*' |  T3  | (GOTO) Jumps to a named label within the current function                                                                                                                                              |
+|      &      |  T4  | (Computed GOTO) Jumps to the named label within the current function with the value of the current cell                                                                                                |
 |      .      |  T1  | (Recall) Write byte value to output from current tape cell                                                                                                                                             |
-|      ,      |  T6  | (Store) Read byte value from input into current tape cell                                                                                                                                              |
-|      =      |  T7  | (Assignment) Replace the value of the current cell with the value of the cell at the address indicated by the current cell                                                                             |
+|      ,      |  T5  | (Store) Read byte value from input into current tape cell                                                                                                                                              |
+|      =      |  T6  | (Assignment) Replace the value of the current cell with the value of the cell at the address indicated by the current cell                                                                             |
 
 Each Elemental instruction can be group into a type where each type adds a new challenge to program analysis.
 
