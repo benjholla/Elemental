@@ -26,6 +26,7 @@ public class ElementalProjectAST {
 		this.project = project;
 		for(File sourceFile : project.getSourceFiles()) {
 			try {
+				// TODO: how should the parser be invoked? https://www.eclipse.org/forums/index.php/t/1069267/
 				Injector injector = new ElementalStandaloneSetup().createInjectorAndDoEMFRegistration();
 				ResourceSet resourceSet = injector.getInstance(ResourceSet.class);
 				IFile file = WorkspaceUtils.getFile(sourceFile);

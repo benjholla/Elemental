@@ -39,10 +39,12 @@ public abstract class IndexInstruction {
 	protected IndexProgram program;
 	protected IndexFunction function;
 	protected List<IndexInstruction> successors = new ArrayList<IndexInstruction>();
+	protected EMFSourceCorrespondence sc;
 	
-	protected IndexInstruction(IndexFunction function) {
+	protected IndexInstruction(IndexFunction function, EMFSourceCorrespondence sc) {
 		this.function = function;
 		this.program = function.getProgram();
+		this.sc = sc;
 	}
 	
 	public IndexProgram getProgram() {
@@ -51,6 +53,10 @@ public abstract class IndexInstruction {
 	
 	public IndexFunction getFunction() {
 		return function;
+	}
+	
+	public EMFSourceCorrespondence getSourceCorrespondence() {
+		return sc;
 	}
 
 	protected void addSuccessor(IndexInstruction successor) {
@@ -69,8 +75,8 @@ public abstract class IndexInstruction {
 	}
 	
 	public static class IndexImplicitReturn extends IndexInstruction {
-		protected IndexImplicitReturn(IndexFunction function) {
-			super(function);
+		protected IndexImplicitReturn(IndexFunction function, EMFSourceCorrespondence sc) {
+			super(function, sc);
 		}
 
 		@Override
@@ -79,13 +85,14 @@ public abstract class IndexInstruction {
 			instruction.tag(XCSG.ControlFlow_Node);
 			instruction.tag(XCSG.ControlFlowExit);
 			instruction.putAttr(XCSG.name, "return");
+			instruction.putAttr(XCSG.sourceCorrespondence, function.getSourceCorrespondence().toAtlasSourceCorrespondence());
 			return instruction;
 		}
 	}
 	
 	public static class IndexIncrement extends IndexInstruction {
-		protected IndexIncrement(IndexFunction function) {
-			super(function);
+		protected IndexIncrement(IndexFunction function, EMFSourceCorrespondence sc) {
+			super(function, sc);
 		}
 		
 		@Override
@@ -93,13 +100,14 @@ public abstract class IndexInstruction {
 			Node instruction = graph.createNode();
 			instruction.tag(XCSG.Elemental.IncrementInstruction);
 			instruction.putAttr(XCSG.name, "+");
+			instruction.putAttr(XCSG.sourceCorrespondence, sc.toAtlasSourceCorrespondence());
 			return instruction;
 		}
 	}
 	
 	public static class IndexDecrement extends IndexInstruction {
-		protected IndexDecrement(IndexFunction function) {
-			super(function);
+		protected IndexDecrement(IndexFunction function, EMFSourceCorrespondence sc) {
+			super(function, sc);
 		}
 		
 		@Override
@@ -107,13 +115,14 @@ public abstract class IndexInstruction {
 			Node instruction = graph.createNode();
 			instruction.tag(XCSG.Elemental.DecrementInstruction);
 			instruction.putAttr(XCSG.name, "-");
+			instruction.putAttr(XCSG.sourceCorrespondence, sc.toAtlasSourceCorrespondence());
 			return instruction;
 		}
 	}
 	
 	public static class IndexMoveLeft extends IndexInstruction {
-		protected IndexMoveLeft(IndexFunction function) {
-			super(function);
+		protected IndexMoveLeft(IndexFunction function, EMFSourceCorrespondence sc) {
+			super(function, sc);
 		}
 		
 		@Override
@@ -121,13 +130,14 @@ public abstract class IndexInstruction {
 			Node instruction = graph.createNode();
 			instruction.tag(XCSG.Elemental.MoveLeftInstruction);
 			instruction.putAttr(XCSG.name, "<");
+			instruction.putAttr(XCSG.sourceCorrespondence, sc.toAtlasSourceCorrespondence());
 			return instruction;
 		}
 	}
 	
 	public static class IndexMoveRight extends IndexInstruction {
-		protected IndexMoveRight(IndexFunction function) {
-			super(function);
+		protected IndexMoveRight(IndexFunction function, EMFSourceCorrespondence sc) {
+			super(function, sc);
 		}
 		
 		@Override
@@ -135,13 +145,14 @@ public abstract class IndexInstruction {
 			Node instruction = graph.createNode();
 			instruction.tag(XCSG.Elemental.MoveRightInstruction);
 			instruction.putAttr(XCSG.name, ">");
+			instruction.putAttr(XCSG.sourceCorrespondence, sc.toAtlasSourceCorrespondence());
 			return instruction;
 		}
 	}
 	
 	public static class IndexStore extends IndexInstruction {
-		protected IndexStore(IndexFunction function) {
-			super(function);
+		protected IndexStore(IndexFunction function, EMFSourceCorrespondence sc) {
+			super(function, sc);
 		}
 		
 		@Override
@@ -149,13 +160,14 @@ public abstract class IndexInstruction {
 			Node instruction = graph.createNode();
 			instruction.tag(XCSG.Elemental.ReadInputInstruction);
 			instruction.putAttr(XCSG.name, ",");
+			instruction.putAttr(XCSG.sourceCorrespondence, sc.toAtlasSourceCorrespondence());
 			return instruction;
 		}
 	}
 	
 	public static class IndexRecall extends IndexInstruction {
-		protected IndexRecall(IndexFunction function) {
-			super(function);
+		protected IndexRecall(IndexFunction function, EMFSourceCorrespondence sc) {
+			super(function, sc);
 		}
 		
 		@Override
@@ -163,13 +175,14 @@ public abstract class IndexInstruction {
 			Node instruction = graph.createNode();
 			instruction.tag(XCSG.Elemental.WriteOutputInstruction);
 			instruction.putAttr(XCSG.name, ".");
+			instruction.putAttr(XCSG.sourceCorrespondence, sc.toAtlasSourceCorrespondence());
 			return instruction;
 		}
 	}
 	
 	public static class IndexAssignment extends IndexInstruction {
-		protected IndexAssignment(IndexFunction function) {
-			super(function);
+		protected IndexAssignment(IndexFunction function, EMFSourceCorrespondence sc) {
+			super(function, sc);
 		}
 		
 		@Override
@@ -177,6 +190,7 @@ public abstract class IndexInstruction {
 			Node instruction = graph.createNode();
 			instruction.tag(XCSG.Elemental.AssignmentInstruction);
 			instruction.putAttr(XCSG.name, "=");
+			instruction.putAttr(XCSG.sourceCorrespondence, sc.toAtlasSourceCorrespondence());
 			return instruction;
 		}
 	}
@@ -184,8 +198,8 @@ public abstract class IndexInstruction {
 	public static class IndexBranch extends IndexInstruction {
 		private List<IndexInstruction> body = new ArrayList<IndexInstruction>();
 		
-		protected IndexBranch(IndexFunction function) {
-			super(function);
+		protected IndexBranch(IndexFunction function, EMFSourceCorrespondence sc) {
+			super(function, sc);
 		}
 		
 		public List<IndexInstruction> getBody() {
@@ -205,13 +219,14 @@ public abstract class IndexInstruction {
 			Node instruction = graph.createNode();
 			instruction.tag(XCSG.ControlFlowBranchCondition);
 			instruction.putAttr(XCSG.name, "(");
+			instruction.putAttr(XCSG.sourceCorrespondence, sc.toAtlasSourceCorrespondence());
 			return instruction;
 		}
 	}
 	
 	public static class IndexLoopBack extends IndexInstruction {
-		public IndexLoopBack(IndexFunction function, IndexLoop header) {
-			super(function);
+		public IndexLoopBack(IndexFunction function, IndexLoop header, EMFSourceCorrespondence sc) {
+			super(function, sc);
 			this.successors.add(header);
 		}
 		
@@ -227,6 +242,7 @@ public abstract class IndexInstruction {
 			Node instruction = graph.createNode();
 			instruction.tag(XCSG.Elemental.LoopFooter);
 			instruction.putAttr(XCSG.name, "]");
+			instruction.putAttr(XCSG.sourceCorrespondence, sc.toAtlasSourceCorrespondence());
 			return instruction;
 		}
 	}
@@ -234,8 +250,8 @@ public abstract class IndexInstruction {
 	public static class IndexLoop extends IndexInstruction {
 		private List<IndexInstruction> body = new ArrayList<IndexInstruction>();
 		
-		protected IndexLoop(IndexFunction function, IndexInstruction... instructions) {
-			super(function);
+		protected IndexLoop(IndexFunction function, EMFSourceCorrespondence sc, IndexInstruction... instructions) {
+			super(function, sc);
 		}
 		
 		public List<IndexInstruction> getBody() {
@@ -256,6 +272,7 @@ public abstract class IndexInstruction {
 			instruction.tag(XCSG.ControlFlowLoopCondition);
 			instruction.tag(XCSG.Loop);
 			instruction.putAttr(XCSG.name, "[");
+			instruction.putAttr(XCSG.sourceCorrespondence, sc.toAtlasSourceCorrespondence());
 			return instruction;
 		}
 	}
@@ -263,8 +280,8 @@ public abstract class IndexInstruction {
 	public static class IndexLabel extends IndexInstruction {
 		private Byte name;
 		
-		protected IndexLabel(IndexFunction function, Byte name) {
-			super(function);
+		protected IndexLabel(IndexFunction function, Byte name, EMFSourceCorrespondence sc) {
+			super(function, sc);
 			this.name = name;
 		}
 		
@@ -277,13 +294,14 @@ public abstract class IndexInstruction {
 			Node instruction = graph.createNode();
 			instruction.tag(XCSG.Elemental.LabelInstruction);
 			instruction.putAttr(XCSG.name, "label:" + name);
+			instruction.putAttr(XCSG.sourceCorrespondence, sc.toAtlasSourceCorrespondence());
 			return instruction;
 		}
 	}
 	
 	public static class IndexGOTO extends IndexInstruction {
-		protected IndexGOTO(IndexFunction function, IndexLabel label) {
-			super(function);
+		protected IndexGOTO(IndexFunction function, IndexLabel label, EMFSourceCorrespondence sc) {
+			super(function, sc);
 			this.successors.add(label);
 		}
 		
@@ -299,13 +317,14 @@ public abstract class IndexInstruction {
 			Node instruction = graph.createNode();
 			instruction.tag(XCSG.Elemental.GOTOInstruction);
 			instruction.putAttr(XCSG.name, "goto label:" + getLabel().getName());
+			instruction.putAttr(XCSG.sourceCorrespondence, sc.toAtlasSourceCorrespondence());
 			return instruction;
 		}
 	}
 	
 	public static class IndexComputedGOTO extends IndexInstruction {
-		protected IndexComputedGOTO(IndexFunction function) {
-			super(function);
+		protected IndexComputedGOTO(IndexFunction function, EMFSourceCorrespondence sc) {
+			super(function, sc);
 		}
 		
 		@Override
@@ -313,6 +332,7 @@ public abstract class IndexInstruction {
 			Node instruction = graph.createNode();
 			instruction.tag(XCSG.Elemental.ComputedGOTOInstruction);
 			instruction.putAttr(XCSG.name, "goto label:?");
+			instruction.putAttr(XCSG.sourceCorrespondence, sc.toAtlasSourceCorrespondence());
 			return instruction;
 		}
 	}
@@ -320,8 +340,8 @@ public abstract class IndexInstruction {
 	public static class IndexStaticDispatch extends IndexInstruction {
 		private Byte target;
 		
-		protected IndexStaticDispatch(IndexFunction function, Byte target) {
-			super(function);
+		protected IndexStaticDispatch(IndexFunction function, Byte target, EMFSourceCorrespondence sc) {
+			super(function, sc);
 			this.target = target;
 		}
 		
@@ -334,13 +354,14 @@ public abstract class IndexInstruction {
 			Node instruction = graph.createNode();
 			instruction.tag(XCSG.Elemental.StaticDispatchInstruction);
 			instruction.putAttr(XCSG.name, "call function:" + getTarget());
+			instruction.putAttr(XCSG.sourceCorrespondence, sc.toAtlasSourceCorrespondence());
 			return instruction;
 		}
 	}
 	
 	public static class IndexDynamicDispatch extends IndexInstruction {
-		protected IndexDynamicDispatch(IndexFunction function) {
-			super(function);
+		protected IndexDynamicDispatch(IndexFunction function, EMFSourceCorrespondence sc) {
+			super(function, sc);
 		}
 		
 		@Override
@@ -348,6 +369,7 @@ public abstract class IndexInstruction {
 			Node instruction = graph.createNode();
 			instruction.tag(XCSG.Elemental.DynamicDispatchInstruction);
 			instruction.putAttr(XCSG.name, "call function:?");
+			instruction.putAttr(XCSG.sourceCorrespondence, sc.toAtlasSourceCorrespondence());
 			return instruction;
 		}
 	}

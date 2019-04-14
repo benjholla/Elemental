@@ -55,21 +55,18 @@ public class ElementalIndexer implements com.ensoftcorp.atlas.core.indexing.prov
 		
 		// index the program
 		for(Entry<IFile,Program> entry : ast.getASTForest().entrySet()) {
-			IFile source = entry.getKey();
+			IFile sourceFile = entry.getKey();
 			
-//			EMFSourceCorrespondence sc = new EMFSourceCorrespondence(source, program);
-//			Log.info("Processing: " + sc.toString());
-//			File sourceFile = program.getParserSourceCorrespondence().getSource();
-//			String sourceFileName = sourceFile.getName();
-//			monitor.subTask("Processing: " + sourceFileName);
+			EMFSourceCorrespondence sc = new EMFSourceCorrespondence(sourceFile, entry.getValue());
+			String status = "Processing: " + sc.getSource().getName();
+			Log.info(status);
+			monitor.subTask(status);
 			
 			// create a namespace (defined by the source file)
 			Node namespaceNode = graph.createNode();
 			namespaceNode.tag(XCSG.Namespace);
-			namespaceNode.putAttr(XCSG.name, source.getName());
-//			ParserSourceCorrespondence psc = program.getParserSourceCorrespondence();
-//			SourceCorrespondence namespaceSC = new SourceCorrespondence(WorkspaceUtils.getFile(psc.getSource()), psc.getOffset(), psc.getLength(), psc.getStartLine(), psc.getEndLine());
-//			namespaceNode.putAttr(XCSG.sourceCorrespondence, namespaceSC);
+			namespaceNode.putAttr(XCSG.name, sourceFile.getName());
+			namespaceNode.putAttr(XCSG.sourceCorrespondence, sc.toAtlasSourceCorrespondence());
 			
 			// make the project contain the namespace
 			Edge projectContainsEdge = graph.createEdge(projectNode, namespaceNode);
@@ -78,10 +75,10 @@ public class ElementalIndexer implements com.ensoftcorp.atlas.core.indexing.prov
 			Program program = entry.getValue();
 			IndexBuilder builder = new IndexBuilder();
 			if(program.getImplicitFunction() != null && !program.getImplicitFunction().getInstructions().isEmpty()) {
-				indexImplicitFunction(builder, program.getImplicitFunction());
+				indexImplicitFunction(builder, sourceFile, program.getImplicitFunction());
 			}
 			for(Function function : program.getExplicitFunctions()) {
-				indexExplicitFunction(builder, function);
+				indexExplicitFunction(builder, sourceFile, function);
 			}
 			
 			IndexProgram indexProgram = builder.create();
@@ -96,64 +93,64 @@ public class ElementalIndexer implements com.ensoftcorp.atlas.core.indexing.prov
 		}
 	}
 	
-	private static void indexImplicitFunction(IndexBuilder builder, Block block) {
-		builder.beginFunction((byte) 0);
+	private static void indexImplicitFunction(IndexBuilder builder, IFile sourceFile, Block block) {
+		builder.beginFunction((byte) 0, sourceFile, block);
 		for(Instruction instruction : block.getInstructions()) {
-			index(builder, instruction);
+			index(builder, sourceFile, instruction);
 		}
 		builder.endFunction();
 	}
 	
-	private static void indexExplicitFunction(IndexBuilder builder, Function function) {
-		builder.beginFunction((byte) Integer.parseInt(function.getName()));
+	private static void indexExplicitFunction(IndexBuilder builder, IFile sourceFile, Function function) {
+		builder.beginFunction((byte) Integer.parseInt(function.getName()), sourceFile, function);
 		for(Instruction instruction : function.getBody().getInstructions()) {
-			index(builder, instruction);
+			index(builder, sourceFile, instruction);
 		}
 		builder.endFunction();
 	}
 	
-	private static void index(IndexBuilder builder, Instruction instruction) {
+	private static void index(IndexBuilder builder, IFile sourceFile, Instruction instruction) {
 		if(instruction.getType() instanceof Increment) {
-			builder.addIncrement();
+			builder.addIncrement(sourceFile, (Increment) instruction.getType());
 		} else if(instruction.getType() instanceof Decrement) {
-			builder.addDecrement();
+			builder.addDecrement(sourceFile, (Decrement) instruction.getType());
 		} else if(instruction.getType() instanceof MoveLeft) {
-			builder.addMoveLeft();
+			builder.addMoveLeft(sourceFile, (MoveLeft) instruction.getType());
 		} else if(instruction.getType() instanceof MoveRight) {
-			builder.addMoveRight();
+			builder.addMoveRight(sourceFile, (MoveRight) instruction.getType());
 		} else if(instruction.getType() instanceof Store) {
-			builder.addStore();
+			builder.addStore(sourceFile, (Store) instruction.getType());
 		} else if(instruction.getType() instanceof Recall) {
-			builder.addRecall();
+			builder.addRecall(sourceFile, (Recall) instruction.getType());
 		} else if(instruction.getType() instanceof Assignment) {
-			builder.addAssignment();
+			builder.addAssignment(sourceFile, (Assignment) instruction.getType());
 		} else if(instruction.getType() instanceof Branch) {
 			Branch branch = (Branch) instruction;
-			builder.beginBranch();
+			builder.beginBranch(sourceFile, (Branch) instruction.getType());
 			for(Instruction branchBodyInstruction : branch.getBody().getInstructions()) {
-				index(builder, branchBodyInstruction);
+				index(builder, sourceFile, branchBodyInstruction);
 			}
-			builder.endBranch();
+			builder.endBranch(sourceFile, branch);
 		} else if(instruction.getType() instanceof Loop) {
 			Loop loop = (Loop) instruction.getType();
-			builder.beginLoop();
+			builder.beginLoop(sourceFile, (Loop) instruction.getType());
 			for(Instruction loopBodyInstruction : loop.getBody().getInstructions()) {
-				index(builder, loopBodyInstruction);
+				index(builder, sourceFile, loopBodyInstruction);
 			}
-			builder.endLoop();
+			builder.endLoop(sourceFile, loop);
 		} else if(instruction.getType() instanceof Label) {
 			Label label = (Label) instruction.getType();
-			builder.addLabel((byte) Integer.parseInt(label.getName()));
+			builder.addLabel((byte) Integer.parseInt(label.getName()), sourceFile, label);
 		} else if(instruction.getType() instanceof GOTO) {
 			GOTO go2 = (GOTO) instruction.getType();
-			builder.addGOTO((byte) Integer.parseInt(go2.getLabel().getName()));
+			builder.addGOTO((byte) Integer.parseInt(go2.getLabel().getName()), sourceFile, go2);
 		} else if(instruction.getType() instanceof ComputedGOTO) {
-			builder.addComputedGOTO();
+			builder.addComputedGOTO(sourceFile, (ComputedGOTO) instruction.getType());
 		} else if(instruction.getType() instanceof StaticDispatch) {
 			StaticDispatch staticDispatch = (StaticDispatch) instruction.getType();
-			builder.addStaticDispatch((byte) Integer.parseInt(staticDispatch.getTarget().getName()));
+			builder.addStaticDispatch((byte) Integer.parseInt(staticDispatch.getTarget().getName()), sourceFile, (StaticDispatch) instruction.getType());
 		} else if(instruction.getType() instanceof DynamicDispatch) {
-			builder.addDynamicDispatch();
+			builder.addDynamicDispatch(sourceFile, (DynamicDispatch) instruction.getType());
 		} else {
 			throw new RuntimeException("Unknown instruction type: " + instruction.getType().toString());
 		}

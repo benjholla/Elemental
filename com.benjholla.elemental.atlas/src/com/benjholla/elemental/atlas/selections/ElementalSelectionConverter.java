@@ -125,7 +125,7 @@ public class ElementalSelectionConverter implements ISelectionConverter {
 	private boolean isElementalFile(Object selection) {
 		if (selection instanceof IFile) {
 			IFile file = (IFile) selection;
-			return "bf".equals(file.getFileExtension());
+			return "e".equals(file.getFileExtension());
 		}
 		return false;
 	}

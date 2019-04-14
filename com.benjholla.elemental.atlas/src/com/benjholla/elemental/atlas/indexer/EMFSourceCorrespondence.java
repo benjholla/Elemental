@@ -2,15 +2,14 @@ package com.benjholla.elemental.atlas.indexer;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtext.nodemodel.ICompositeNode;
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
 import com.benjholla.elemental.elemental.Program;
-import com.benjholla.elemental.services.ElementalGrammarAccess;
-import com.google.inject.Inject;
+import com.ensoftcorp.atlas.core.index.common.SourceCorrespondence;
 
 public class EMFSourceCorrespondence {
 
-	@Inject ElementalGrammarAccess grammar;
-	
 	private IFile source = null;
 	private int offset = 0;
 	private int length = 0;
@@ -24,6 +23,12 @@ public class EMFSourceCorrespondence {
 			this.length = 0;
 			this.startLine = 0;
 			this.endLine = 0;
+		} else {
+			ICompositeNode node = NodeModelUtils.getNode(object);
+			this.offset = node.getOffset();
+			this.length = node.getLength();
+			this.startLine = node.getStartLine();
+			this.endLine = node.getEndLine();
 		}
 	}
 	
@@ -59,6 +64,10 @@ public class EMFSourceCorrespondence {
 	public String toString() {
 		return "EMFSourceCorrespondence [source=" + source + ", offset=" + offset + ", length=" + length
 				+ ", startLine=" + startLine + ", endLine=" + endLine + "]";
+	}
+	
+	public SourceCorrespondence toAtlasSourceCorrespondence() {
+		return new SourceCorrespondence(source, offset, length, startLine, endLine);
 	}
 	
 }
